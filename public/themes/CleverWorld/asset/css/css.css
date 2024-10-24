@@ -1,0 +1,134 @@
+
+*{margin:0;padding:0;}
+body{
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    color:#222;
+    font-weight: 400;
+    background: #f6feff;
+}
+ul {
+    list-style: none;
+}
+a{ color:#0b2e13;}
+a, a:hover {text-decoration:none; color: #0b2e13;}
+
+.clear {
+    clear: both;
+    font-size: 0px;
+    line-height: 0px;
+    height: 0;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}
+
+
+.imgbox{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100px; /* default*/
+    overflow: hidden;
+}
+.imgbox img{
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+        height: 100%;
+}
+
+.zoomImage {
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoomImage:hover {
+    transform: scale(1.1);
+}
+
+.message_panel{
+    width:500px;
+    margin:15px auto;
+    padding:20px;
+    border:1px solid #ccc;
+    border-radius: 15px;
+}
+.breadcrumb{
+    margin:10px 0;
+}
+.ui-widget-header{
+    background:red;
+    color:#fff;
+}
+.validate-error{
+    border:1px solid red !important;
+}
+.form-group .control-label{
+    text-align:right;
+    padding-right:2px;
+}
+.form-group.required .control-label:after{
+    content:' *';
+    color:red;
+}
+.banner_ft{
+    text-align:center;
+}
+.lang img{
+    width:30px;
+}
+.btn-read-more {
+    padding: 5px;
+    text-align: center;
+    border-radius: 0px;
+    display: inline-block;
+    border: 2px solid #662D91;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    color:#662D91;
+}
+.btn-read-more:hover {
+    color: #FFF;
+    background: #662D91;
+}
+
+#frmsearch {
+    width:100%;
+    border-radius: 10px;
+}
+#frmsearch .btn-group{
+    float: left;
+}
+#frmsearch .textsearch{
+    margin-left: 65px;
+    background: #fff;
+    border-radius: 8px;
+}
+#btn-search{
+}
+#btn-search i{
+    color: #fff;
+    font-size: 15px;
+}
+
+.title_pages{
+    margin-bottom: 20px;
+}
+.title_pages:after{
+    clear:both;
+    content:'';
+    display:block;
+}

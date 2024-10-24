@@ -1,0 +1,7 @@
+{
+    "name": "CleverWorld",
+    "namespace": "Theme\\CleverWorld\\",
+    "description": "CleverWorld shopping theme",
+    "author": "CleverWorld Technologies",
+    "required_plugins": []
+}
