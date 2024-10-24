@@ -54,11 +54,11 @@
 
                     <h4 class="text-left mb-3">{{__("Corporate membership website")}}</h4>
                     <div class="text-left">
-                        <a href="{{theme_option("cleverbox")}}" target="_blank">
-                            <img src="{{base}}asset/images/member1.png" class="mx-2">
+                        <a href="{{theme_option("cleverbox")}}" target="_blank" class="logo_cb">
+                            <img src="{{ RvMedia::getImageUrl("Logo%20Cb.svg") }}" class="mx-2">
                         </a>
-                        <a href="{{theme_option("peektoy")}}"  target="_blank">
-                            <img src="{{base}}asset/images/member2.png" class="mx-2">
+                        <a href="{{theme_option("peektoy")}}"  target="_blank" class="logo_peektoy">
+                            <img src="{{ RvMedia::getImageUrl("PEEKTOY LOGO.svg") }}" class="mx-2">
                         </a>
                     </div>
 
