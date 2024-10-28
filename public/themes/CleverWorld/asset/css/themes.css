@@ -60,21 +60,21 @@ body{
 
 #logo{ margin: 10px auto;}
 #logo img{ max-height: 52px;}
-.logo_cb{   
+.logo_cb{
     background: #fff;
     border-radius: 40px;
     display: inline-block;
     padding: 10px 40px;
-}   
+}
 .logo_peektoy{
 background: #F6E615;
     border-radius: 40px;
     display: inline-block;
     padding: 15px 14px;
-}    
+}
 .logo_cb img{
     height: 50px;
-	}   
+	}
 .logo_peektoy img{
 	height: 40px;
 }
@@ -120,7 +120,7 @@ background: #F6E615;
     .container{
          zoom:0.96;
     }
-}          
+}
 {
      padding-top: 30px;
 }
@@ -170,7 +170,7 @@ background: #F6E615;
     margin-top: 30px;
 }
 
-@media screen and (max-width: 768px) {    
+@media screen and (max-width: 768px) {
 	#banner{
 		      padding-top: 44px;
 	}
@@ -209,7 +209,7 @@ background: #F6E615;
         font-size: 28px;
     }
     #logo{ text-align: left;}
-    #right-box{ position: absolute; top: 26px; right:60px;}
+    #right-box{ position: absolute; top: 26px; right:80px;}
 }
 
 @media screen and (max-width: 1440px) {
@@ -249,9 +249,9 @@ background: #F6E615;
     #header .row {
       justify-content: space-between !important;
     }
-    
+
     #logo {
-        text-align: left; /* Căn trái nội dung bên trong logo */   
+        text-align: left; /* Căn trái nội dung bên trong logo */
 		        padding-top: 5px;
     }
 }
@@ -874,15 +874,15 @@ background: #F6E615;
         width:120px;
     }
 	#about-us-team{
-		padding-top: 50px; 
+		padding-top: 50px;
 		padding-bottom: 50px;
-	
+
 	}
 	#path_history {
 	    position: relative;
-	 	margin-top: 0px; 
+	 	margin-top: 0px;
 	    margin-bottom: 100px;
-	}  
+	}
 	#path_history::after {
 	    content: "";
 	    position: absolute;
@@ -906,12 +906,12 @@ background: #F6E615;
     #about-us-history .history_year{
         margin-bottom: 20px;
         left: -37px;
-    } 
+    }
      #about-us-history .history_content{
         text-align: justify;
 	    width: 74%;
 	    position: relative;
-	    right: -16px;     
+	    right: -16px;
 		padding-right: 0;
     }
     #about-us .about-us-text h2{
@@ -925,7 +925,7 @@ background: #F6E615;
     }
     .p-m-1 {
         padding: 0rem 1rem !important;
-    }   
+    }
 	.mt-m-1 {
         margin-top: 1rem !important;
     }
@@ -1340,7 +1340,7 @@ background: #F6E615;
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 768px) {   
+@media screen and (max-width: 768px) {
 	#map{
 	height:300px !important;
 	}
@@ -1416,10 +1416,10 @@ background: #F6E615;
 #footer #copyright_text{ color: #888; }
 
 @media screen and (max-width: 768px) {
-    #bsocial{ margin-top: 15px;}    
+    #bsocial{ margin-top: 15px;}
 	#footer{
 		padding-top:50px;
-	}  
+	}
 	.footer-parter .text-left{
 		text-align: center !important;
 	}

@@ -14,33 +14,31 @@
 
             <div class="col-md-7">
                 <div class="row">
-                    <div class="col-md-6 mt-5 mt-lg-0">
+                    <div class="col-md-5 mt-5 mt-lg-0">
                         <div class="title-footer">
                             <h2>{{ __('Contact') }}</h2>
                         </div>
                         <div class="info-item mb-3 d-flex align-items-center">
                             <a href="tel: {{ theme_option('hotline') }}">
-                                <img src="{{ base }}asset/images/icon3.png">
+                                <img src="{{ base }}asset/images/icon3.svg">
                                 {{ theme_option('hotline') }}
                             </a>
                         </div>
                         <div class="info-item mb-3 d-flex align-items-center">
                             <a href="mailto: {{ theme_option('email') }}">
-                                <img src="{{ base }}asset/images/icon2.png">
+                                <img src="{{ base }}asset/images/icon2.svg">
                                 {{ theme_option('email') }}
                             </a>
                         </div>
                         <div class="info-item mb-3">
                             <a href="https://{{ theme_option('website') }}">
-                                <img src="{{ base }}asset/images/world-wide.png" style="height: 24px">
+                                <img src="{{ base }}asset/images/world-wide.svg" style="height: 24px">
                                 {{ theme_option('website') }}
                             </a>
                         </div>
-                        <div class="info-item mb-3">
-                            {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
-                        </div>
+
                     </div>
-                    <div class="col-md-6 mt-5 mt-lg-0">
+                    <div class="col-md-7 mt-5 mt-lg-0">
                         <div class="title-footer">
                             <h2>{{ __('About Us') }}</h2>
                         </div>
@@ -48,7 +46,9 @@
                             <div class="">
                                 {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
                             </div>
-
+                            <div class="">
+                                {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
+                            </div>
                         </div>
                     </div>
                 </div>
