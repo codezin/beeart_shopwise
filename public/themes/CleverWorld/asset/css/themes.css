@@ -423,7 +423,8 @@ background: #F6E615;
     .mobile-nav-active #icon-menu{top: 30px;  right: 10px; }
     .mobile-nav-toggle {
         color: #05B4EA;
-        font-size: 45px;
+        font-size: 43px;         
+		font-weight: 900 !important;
         line-height: 0;
         margin-right: 10px;
         cursor: pointer;
@@ -1746,3 +1747,10 @@ background: #F6E615;
 }
 
 .swiper-pagination-bullet-active{ background:#000;}
+
+
+@media (max-width: 768px) {
+    .sm-flex-direction-column {
+        flex-direction: column;
+    }
+}

@@ -42,7 +42,7 @@
                         <div class="title-footer">
                             <h2>{{ __('About Us') }}</h2>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between sm-flex-direction-column ">
                             <div class="">
                                 {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
                             </div>

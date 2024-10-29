@@ -21,9 +21,9 @@ $page = get_page_by_id(2);
         <div class="description">
             <h2>{{$page->name}}</h2>
             <p>{!! $page->description !!} </p>
-            <div class="d-flex"><img  style="    height: 30px;" src="{{base}}asset/images/contact_addr.png">{{theme_option('address')}}</div>
-            <div ><a href="mailto:contact@cleverworld.vn"><img src="{{base}}asset/images/contact_email.png"> {{theme_option('email')}}</a></div>
-            <div><a href="tel:0896918585"><img src="{{base}}asset/images/contact_tel.png"> {{theme_option('phone')}}</a></div>
+            <div class="d-flex"><img  style="    width: 28px;padding-right: 7px;" src="{{base}}asset/images/contact_addr.svg">{{theme_option('address')}}</div>
+            <div ><a href="mailto:{{theme_option('email')}}"><img src="{{base}}asset/images/contact_email.svg"> {{theme_option('email')}}</a></div>
+            <div><a href="tel:{{theme_option('phone')}}"><img src="{{base}}asset/images/contact_tel.svg"> {{theme_option('phone')}}</a></div>
         </div>   
 	
     </section>
