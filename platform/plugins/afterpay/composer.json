@@ -1,0 +1,8 @@
+{
+    "name": "botble/afterpay",
+    "description": "Afterpay Payment Gateway",
+    "type": "package",
+    "require": {
+        // "afterpay/afterpay-checkout-sdk": "^1.0"
+    }
+}

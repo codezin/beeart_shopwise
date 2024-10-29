@@ -137,14 +137,20 @@
                 <div class="swiper-button-next-01"><i class="fa-solid fa-chevron-right"></i></div>
                 <div class="swiper-button-prev-01"><i class="fa-solid fa-chevron-left"></i></div>
             </div>
-        </div>     
+        </div>
 	<style type="text/css">
 	.img-fluid-w {
 	    max-width: 100%;
 	    height: 100%;
-	    width: auto;  
+	    width: auto;
 	    max-height: 60px;
 	}
+    @media screen and (max-width: 1200px) {
+        .img-fluid-w {
+
+            max-height: 43px;
+        }
+    }
 	</style>
 	    </section>
 
@@ -200,14 +206,15 @@
     <section id="news-home" class="news-home mb-5">
         <div class="container">
             @php
-
                 $news = get_featured_posts(4);
             @endphp
             <header class="section-header d-flex justify-content-between" data-aos="fade-top">
                 <h2>{{__("News")}}</h2>
                 <div>
-                    <a href="{{url(Language::getCurrentLocale()=="en"?"en/news":"news")}}" class="btn-viewall">{{__("All articles")}} <img
-                            src="{{base}}asset/images/right-arrow.svg" /></a></div>
+                    <a href="{{url(Language::getCurrentLocale()=="en"?"en/news":"news")}}" class="btn-viewall">{{__("All articles")}}
+                        <img src="{{base}}asset/images/right-arrow.svg" />
+                    </a>
+                </div>
             </header>
             <div class="row gy-4">
                 @foreach( $news as $r)
@@ -218,7 +225,7 @@
                         </div>
                         <div class="description">
                             <p class="post-date">
-                                <time>Clever World | 14.06.2024</time>
+                                <time>Clever World | {{date("d.m.Y",strtotime($r->created_at))}}</time>
                             </p>
                             <h2 class="title">
                                 <a href="{{$r->url}}">{{ $r->name }}</a>
@@ -230,6 +237,5 @@
             </div>
         </div>
     </section><!-- End News Home Section -->
-      {!! Theme::partial('section.contact') !!}
-
+    {!! Theme::partial('section.contact') !!}
 </main>
