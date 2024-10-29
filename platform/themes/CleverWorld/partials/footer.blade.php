@@ -75,8 +75,8 @@
 <script type="text/javascript" src="{{ base }}asset/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="{{ base }}asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="{{ base }}asset/vendor/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="{{ base }}asset/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="{{ base }}asset/vendor/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="{{ base }}asset/vendor/glightbox/js/glightbox.min.js"></script>
+<script type="text/javascript" src="{{ base }}asset/vendor/swiper/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="{{ base }}asset/vendor/aos/aos.js"></script>
 <script type="text/javascript" src="{{ base }}asset/js/js.js?v=1.0"></script>
 <script type="text/javascript" src="{{ base }}asset/js/nav.js?v=1.1"></script>
