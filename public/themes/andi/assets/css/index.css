@@ -1,0 +1,106 @@
+.section-category-list .category-list {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 36px;
+}
+.section-category-list .category-list .category-list-item {
+  transition: all 0.3s;
+  font-size: 16px;
+  font-weight: 500;
+}
+.section-category-list .category-list .category-list-item .item-img {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.section-category-list .category-list .category-list-item .item-title {
+  text-align: center;
+  transition: all 0.3s;
+}
+.section-category-list .category-list .category-list-item:hover {
+  transform: translateY(-20px);
+  -webkit-transform: translateY(-20px);
+}
+.section-category-list .category-list .category-list-item:hover .item-img img {
+  animation: zommImg 5s linear;
+}
+.section-category-list .category-list .category-list-item:hover .item-title {
+  color: #af9574;
+}
+
+.section-popular-collection .slick-list {
+  margin: 0 -12px;
+}
+.section-popular-collection .slick-slide > div {
+  padding: 0 12px;
+}
+.section-popular-collection .slick-arrow {
+  transform: translateY(-50%);
+  --webkie-tranform: translateY(-50%);
+}
+
+.section-best-seller .slick-list {
+  margin: 0 -19.5px;
+}
+.section-best-seller .slick-slide > div {
+  padding: 0 19.5px;
+}
+.section-best-seller .slick-arrow {
+  transform: translateY(-150%);
+  --webkie-tranform: translateY(-150%);
+}
+
+.section-love-us .row {
+  --bs-gutter-x: 41px;
+}
+
+.section-blog-latest .row {
+  --bs-gutter-x: 44px;
+  --bs-gutter-y: 32px;
+}
+
+@media only screen and (max-width: 1279.98px) {
+  .section-love-us .row {
+    --bs-gutter-x: 20px;
+  }
+  .section-love-us .row .icon_box_style1 {
+    padding: 0;
+  }
+  .section-category-list .category-list {
+    gap: 20px;
+  }
+}
+@media only screen and (max-width: 1023.98px) {
+  .section-category-list .category-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .section-best-seller .slick-slide > div {
+    padding: 0 15px;
+  }
+  .section-popular-collection .slick-list,
+  .section-best-seller .slick-list {
+    margin: 0 12px;
+  }
+  .section-popular-collection .slick-arrow {
+    transform: translateY(-100%);
+    --webkie-tranform: translateY(-100%);
+  }
+  .heading_h2 {
+    margin-bottom: 40px;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .section-category-list .category-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section-popular-collection .slick-slide > div {
+    padding: 0 7.5px;
+  }
+  .section-best-seller .slick-slide > div {
+    padding: 0 7.5px;
+  }
+  .section-popular-collection .slick-list,
+  .section-best-seller .slick-list {
+    margin: 0;
+  }
+}

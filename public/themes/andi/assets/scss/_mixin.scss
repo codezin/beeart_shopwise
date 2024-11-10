@@ -1,0 +1,68 @@
+@mixin btn-brand-color($text-color, $text-weight, $bg-color, $px, $py) {
+  padding: $px $py;
+  background-color: $bg-color !important ;
+  color: $text-color;
+  font-weight: $text-weight;
+  border-radius: 8px;
+  line-height: 1;
+}
+
+@mixin input-style($px: 12px, $py: 16px, $border-color: #dcd7d7) {
+  padding: $px $py;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  line-height: 1;
+}
+@mixin subheading_h6($fw) {
+  font-size: 16px;
+  font-weight: $fw;
+}
+@mixin subheading_h5($fw) {
+  font-size: 18px;
+  font-weight: $fw;
+}
+
+@mixin underline-text {
+  position: relative;
+  &::before {
+    transition: all 0.3s;
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #af9574;
+  }
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+@mixin flash-img($transition: 0.75s) {
+  position: relative;
+  &::before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    display: block;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    transform: skewX(-25deg);
+    transition: all $transition;
+  }
+}
+@mixin flash-img-hover {
+  &::before {
+    left: 125%;
+    z-index: 3;
+  }
+}

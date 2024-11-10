@@ -1,0 +1,45 @@
+@import "./mixin";
+.sidebar {
+  h4 {
+    margin-bottom: 39px;
+  }
+  .widget_title {
+    position: relative;
+    &::after {
+      content: url(../images/icons/down.svg);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+.product-wrapper {
+  --bs-gutter-x: 70px;
+}
+.shop_container {
+  --bs-gutter-x: 39px;
+  --bs-gutter-y: 40px;
+}
+
+@media only screen and (max-width: 1023.98px) {
+  .sidebar .widget_title::after {
+    display: none;
+  }
+  .item-box-style .item-actions .btn {
+    width: 100%;
+  }
+  .add-to-cart {
+    width: 100%;
+  }
+  .item-box-style .item-actions {
+    gap: 0;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .shop_container .col-6 {
+    max-width: 50% !important;
+  }
+  .shop_container {
+    --bs-gutter-x: 15px;
+  }
+}

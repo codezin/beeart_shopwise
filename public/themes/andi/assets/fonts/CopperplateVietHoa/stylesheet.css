@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'UTM Copperplate';
+    src: url('UTMCopperplateBold.eot');
+    src: url('UTMCopperplateBold.eot?#iefix') format('embedded-opentype'),
+        url('UTMCopperplateBold.woff2') format('woff2'),
+        url('UTMCopperplateBold.woff') format('woff'),
+        url('UTMCopperplateBold.ttf') format('truetype'),
+        url('UTMCopperplateBold.svg#UTMCopperplateBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Copperplate';
+    src: url('UTMCopperplate.eot');
+    src: url('UTMCopperplate.eot?#iefix') format('embedded-opentype'),
+        url('UTMCopperplate.woff2') format('woff2'),
+        url('UTMCopperplate.woff') format('woff'),
+        url('UTMCopperplate.ttf') format('truetype'),
+        url('UTMCopperplate.svg#UTMCopperplate') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

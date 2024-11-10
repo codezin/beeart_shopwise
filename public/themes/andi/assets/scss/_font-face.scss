@@ -1,0 +1,62 @@
+// WorkSans 100 ... 900
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+// // Copperplate
+// @font-face {
+//   font-family: "Copperplate";
+//   src: url("../fonts/CopperplateCC/otf/OPTICopperplate-Light.otf");
+//   font-weight: 100;
+//   font-style: light;
+// }
+// @font-face {
+//   font-family: "Copperplate";
+//   src: url("../fonts/CopperplateCC/otf/OPTICopperplate.otf");
+//   font-weight: 400;
+//   font-style: normal;
+// }
+// @font-face {
+//   font-family: "Copperplate";
+//   src: url("../fonts/CopperplateCC/otf/CopperplateCC-Heavy.otf");
+//   src: url("../fonts/CopperplateCC/ttf/CopperplateCC-Heavy.ttf")
+//     format("truetype");
+//   font-weight: 700;
+//   font-style: bold;
+// }
+// @font-face {
+//   font-family: "Copperplate";
+//   src: url("../fonts/CopperplateCC/otf/CopperplateCC-Heavy.otf");
+//   src: url("../fonts/CopperplateCC/ttf/CopperplateCC-Heavy.ttf")
+//     format("truetype");
+//   font-weight: 900;
+//   font-style: bolder;
+// }
+
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateVietHoa/UTMCopperplateBold.eot");
+  src: url("../fonts/CopperplateVietHoa/UTMCopperplateBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplateBold.woff2") format("woff2"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplateBold.woff") format("woff"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplateBold.ttf") format("truetype"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplateBold.svg#UTMCopperplateBold")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateVietHoa/UTMCopperplate.eot");
+  src: url("../fonts/CopperplateVietHoa/UTMCopperplate.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplate.woff2") format("woff2"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplate.woff") format("woff"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplate.ttf") format("truetype"),
+    url("../fonts/CopperplateVietHoa/UTMCopperplate.svg#UTMCopperplate")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

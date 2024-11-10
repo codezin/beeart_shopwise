@@ -1,0 +1,37 @@
+.container {
+  .row:first-child {
+    --bs-gutter-x: 62px;
+  }
+}
+
+.quantity .minus {
+  padding-left: 0;
+}
+
+.btn-addtocart {
+  width: 326px;
+  font-weight: 500;
+}
+.vertical_gallery .slick-list {
+  height: max-content !important;
+}
+
+.nav-tabs {
+  border-bottom: 1px #a2a2a2 solid;
+}
+
+@media only screen and (max-width: 767.98px) {
+  .btn-addtocart {
+    width: 100%;
+    padding: 13px 24px !important;
+  }
+  .tab-style3 .nav-tabs {
+    display: flex !important;
+  }
+  .tab-style3 .nav-tabs li.nav-item a {
+    font-size: 16px;
+  }
+  .medium_divider {
+    height: 40px;
+  }
+}

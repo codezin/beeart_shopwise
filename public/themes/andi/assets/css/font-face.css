@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateCC/otf/OPTICopperplate-Light.otf");
+  font-weight: 100;
+  font-style: light;
+}
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateCC/otf/OPTICopperplate.otf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateCC/otf/CopperplateCC-Heavy.otf");
+  src: url("../fonts/CopperplateCC/ttf/CopperplateCC-Heavy.ttf") format("truetype");
+  font-weight: 700;
+  font-style: bold;
+}
+@font-face {
+  font-family: "Copperplate";
+  src: url("../fonts/CopperplateCC/otf/CopperplateCC-Heavy.otf");
+  src: url("../fonts/CopperplateCC/ttf/CopperplateCC-Heavy.ttf") format("truetype");
+  font-weight: 900;
+  font-style: bolder;
+}

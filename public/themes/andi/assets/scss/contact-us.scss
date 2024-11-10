@@ -1,0 +1,39 @@
+@import "./vavaiable";
+@import "./mixin";
+.section-contact-us-page {
+  .container {
+    max-width: 628px;
+    margin: 0 auto;
+  }
+  .contact-info-wrapper {
+    --bs-gutter-x: 16px;
+  }
+  .contact_text a {
+    color: $dark-bg;
+  }
+  input,
+  textarea {
+    @include input-style(10.5px, 16px, #acacac);
+    width: 100%;
+    background-color: transparent !important;
+  }
+  .contact_style3 {
+    margin-top: 24px;
+    box-shadow: none;
+    border: 1px solid #af9574;
+    margin-bottom: 0;
+    .contact-icon {
+      margin-bottom: 8px;
+    }
+    .contact_text {
+      span {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .contact_style3 {
+    padding: 7px 20px;
+  }
+}
