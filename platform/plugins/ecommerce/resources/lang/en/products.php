@@ -45,6 +45,8 @@ return [
             'weight' => 'Weight',
             'wide' => 'Wide',
         ],
+        'minium_order' => 'Minimum Order per item',
+        'minium_orderplaceholder' => 'Minimum quantity per item for order',
         'barcode' => 'Barcode (ISBN, UPC, GTIN, etc.) ',
         'barcode_placeholder' => 'Enter barcode',
         'cost_per_item' => 'Cost per item',
