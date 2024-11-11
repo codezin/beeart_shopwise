@@ -8,7 +8,7 @@ $peektoy = get_page_by_id("17");
     <section id="banner" class="banner-project banner-bg d-flex align-items-center" style="background-image: url('{{ RvMedia::getImageUrl($page->banner) }}')">
         <div class="container">
             <header class="section-header text-center">
-                <h2>Dự án</h2>
+                <h2>{{__("Project")}}</h2>
             </header>
         </div>
     </section>

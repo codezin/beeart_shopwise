@@ -55,7 +55,21 @@
         </div>
     </div>
     <div class="row">
-       <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="form-group mb-3">
+                <label class="text-title-field">{{ trans('plugins/ecommerce::products.form.minium_order') }}</label>
+                <div class="next-input--stylized">
+                    <input name="minium_order"
+                           class="next-input input-mask-number regular-price next-input--invisible"
+                           step="any"
+                           value="{{ old('minium_order', $product ? $product->minium_order : ($originalProduct->minium_order ?? 0)) }}"
+                           type="number"
+                           placeholder="{{ trans('plugins/ecommerce::products.form.minium_orderplaceholder') }}">
+                </div>
+                {!! Form::helper(trans('plugins/ecommerce::products.form.minium_order')) !!}
+            </div>
+        </div>
+       <div class="col-md-4">
            <div class="form-group mb-3">
                <label class="text-title-field">{{ trans('plugins/ecommerce::products.form.cost_per_item') }}</label>
                <div class="next-input--stylized">
@@ -71,7 +85,7 @@
            </div>
        </div>
         <input type="hidden" value="{{ $product->id ?? null }}" name="product_id">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group mb-3">
                 <label class="text-title-field">{{ trans('plugins/ecommerce::products.form.barcode') }}</label>
                 <div class="next-input--stylized">

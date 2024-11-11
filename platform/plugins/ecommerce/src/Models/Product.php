@@ -55,6 +55,7 @@ class Product extends BaseModel
         'views',
         'stock_status',
         'barcode',
+        'minium_order',
         'cost_per_item',
     ];
 

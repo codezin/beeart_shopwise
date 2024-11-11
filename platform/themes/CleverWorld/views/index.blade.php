@@ -24,9 +24,9 @@
                         <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}"
                             class="d-block w-100" alt="Professional wholesale suppliers">
                         <div class="carousel-caption">
-                            <h5>Let’s Create a</h5>
-                            <h1>CLEVER WORLD</h1>
-                            <h5>with us</h5>
+                            <h5>{{$slider->title}}</h5>
+                            <h1>{{$slider->caption}}</h1>
+                            <h5>{{$slider->caption_2}}</h5>
                             <p class="mt-0 mt-lg-3"> {{ $slider->description }}</p>
                             <div class="mt-3 mt-lg-5"><a href="{{@$slider->link}}" class="btn-themes">{{__("View more")}}</a></div>
                         </div>

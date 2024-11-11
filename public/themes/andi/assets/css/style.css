@@ -4022,6 +4022,12 @@ input.text {
   line-height: 30px;
   margin-bottom: 15px;
   font-weight: 600;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  height: 55px;
 }
 
 h6.blog_title {
@@ -6512,7 +6518,11 @@ footer .widget_title {
   left: 0;
   top: 3px;
 }
-
+@media only screen and (max-width: 699px) {
+    .vertical_gallery #pr_item_gallery{
+        width: 100%;
+    }
+}
 .filter_price .ui-widget.ui-widget-content {
   border: 0;
   border-radius: 0;
@@ -8527,6 +8537,11 @@ hr {
   overflow: hidden;
   margin-bottom: 16px;
   position: relative;
+
+}
+.item-box-style .img  img{
+    height: 360px;
+	width: 100%;
 }
 .item-box-style .img::before {
   content: "";

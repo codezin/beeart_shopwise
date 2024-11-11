@@ -884,7 +884,8 @@
         event.preventDefault();
         event.stopPropagation();
         let currentVal = parseInt($(this).next('.qty').val(), 10);
-        if (currentVal > 1) {
+        let min = parseFloat($(this).next('.qty').attr("min"))??1;
+        if (currentVal > min) {
             $(this).next('.qty').val(currentVal - 1);
             if ($(this).closest('.form--shopping-cart').length) {
                 $('.btn-shopping-cart span').text($(this).next('.qty').val());
@@ -895,8 +896,8 @@
             }
         }
         else{
-            showError("The qty must be at least 1.");
-            $(this).next('.qty').val(1);
+            showError("The qty must be at least "+min+".");
+            $(this).next('.qty').val(min);
         }
         let tag = $(this);
         tag.prop("disabled", true);
@@ -926,14 +927,15 @@
     $(document).on('click', '.choose-quantity .btn-minus', function (event) {
         event.preventDefault();
         event.stopPropagation();
+
+        let min = parseFloat($(this).closest(".choose-quantity").find('input').attr("min"));
         let currentVal = parseInt($(this).closest(".choose-quantity").find('input').val(), 10);
-        if (currentVal > 0) {
+        if ( currentVal > min) {
             $(this).closest(".choose-quantity").find('input').val(currentVal - 1).trigger("input");
         }
 
         if (currentVal >= 0) {
             if ($(this).closest('.form--shopping-cart').length) {
-                console.log(currentVal - 1);
                 $('.btn-shopping-cart span').text(currentVal - 1);
 
                 ajaxUpdateCart($(this));

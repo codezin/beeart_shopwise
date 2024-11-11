@@ -86,7 +86,7 @@
                                 <div class="item-actions">
                                     <div class="choose-quantity">
                                         <p class="btn-minus"></p>
-                                        <input value="1" />
+                                        <input {{!empty($product->minium_order)?'value='.$product->minium_order.' min='.$product->minium_order:' value=1'}} />
                                         <p class="btn-plus"></p>
                                     </div>
                                     <div class="add-to-cart">

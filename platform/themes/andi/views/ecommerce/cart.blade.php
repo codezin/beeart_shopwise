@@ -86,7 +86,7 @@
                                                 <td class="product-quantity" data-title="{{ __('Quantity') }}">
                                                     <div class="quantity">
                                                         <input type="button" value="-" class="minus">
-                                                        <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" name="items[{{ $key }}][values][qty]">
+                                                        <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" min="{{$product->minium_order}}"  name="items[{{ $key }}][values][qty]">
                                                         <input type="button" value="+" class="plus">
                                                     </div>
                                                 </td>
