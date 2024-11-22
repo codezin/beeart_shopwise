@@ -16,8 +16,12 @@
                             $price = $value->affect_type == 0 ? $value->affect_price : (floatval($value->affect_price) * $product->front_sale_price_with_taxes) / 100;
                         }
                     @endphp
-                    <option data-extra-price="{{ $price }}"
-                            value="{{ $value->option_value }}">{{ $value->option_value }} {{ $price > 0 ? '+' . format_price($price) : '' }}</option>
+                    <option data-extra-price="{{ $price }}"   value="{{ $value->option_value }}">
+                            {{ $value->option_value }}
+                            @if( $product->price > 0)
+                            {{ $price > 0 ? '+' . format_price($price) : '' }}
+                            @endif
+                    </option>
                 @endforeach
             </select>
         </div>

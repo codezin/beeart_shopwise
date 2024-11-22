@@ -22,7 +22,7 @@
                 ->add('custom-scrollbar-js', 'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.js', ['jquery']);
 @endphp
 
-<div class="widget">
+<div class="widget" style="display:none">
     <h5 class="widget_title">{{ __('Product Categories') }}</h5>
     <ul class="ps-list--categories">
         @foreach($categories as $category)
@@ -37,8 +37,8 @@
 </div>
 
 @if (count($brands) > 0)
-    <aside class="widget">
-        <h5 class="widget_title">{{ __('Brands') }}</h5>
+    <aside class="widget" style="margin-top:0;padding-top:0;border:0">
+        <h5 class="widget_title">{{ __('Filter') }}</h5>
         <ul class="list_brand ps-custom-scrollbar">
             @foreach($brands as $brand)
                 <li>
@@ -51,7 +51,7 @@
         </ul>
     </aside>
 @endif
-<aside class="widget widget--tags">
+<aside class="widget widget--tags" style="display:none">
     <h5 class="widget_title">{{ __('Product Tags') }}</h5>
     <ul class="list_brand ps-custom-scrollbar">
         @foreach($tags as $tag)
@@ -64,7 +64,7 @@
         @endforeach
     </ul>
 </aside>
-<aside class="widget">
+<aside class="widget" style="display:none">
     <h5 class="widget_title">{{ __('By Price') }}</h5>
     <div class="filter_price">
         <div id="price_filter" data-min="0" data-max="{{ (int)theme_option('max_filter_price', 1000) * get_current_exchange_rate() }}" data-min-value="{{ request()->input('min_price', 0) }}" data-max-value="{{ (int)request()->input('max_price', theme_option('max_filter_price', 1000)) * get_current_exchange_rate() }}" data-price-sign="{{ get_application_currency()->symbol }}"></div>

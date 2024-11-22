@@ -82,7 +82,7 @@ $peektoy = get_page_by_id("17");
                         </div>
                     </div>
                     <div class="mb-5 text-center">
-                        <a href="{{ theme_option('cleverbox') }}" class="btn-themes">{{__("Go to")}} CLEVERBOX
+                        <a href="{{ theme_option('cleverbox') }}" class="btn-themes" target="_blank">{{__("Go to")}} CLEVERBOX
                             <img src="{{base}}asset/images/right-arrow-white.svg" />
                         </a>
                     </div>
@@ -138,7 +138,7 @@ $peektoy = get_page_by_id("17");
                     </div>
 
                     <div class="mb-5 text-center">
-                        <a href="{{theme_option('peektoy')}}" class="btn-themes">{{__("Go to")}} PEEKTOY
+                        <a href="{{theme_option('peektoy')}}" class="btn-themes"  target="_blank">{{__("Go to")}} PEEKTOY
                             <img src="{{base}}asset/images/right-arrow.svg" />
                         </a>
                     </div>

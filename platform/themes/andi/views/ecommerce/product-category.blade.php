@@ -67,16 +67,13 @@
 		                                ]) !!}
 		                            </div> --}}
                                     {!! render_product_options($product) !!}
-									@else
+									@else     
 									<div class="d-flex item-box-view">
-									    {!! render_product_options($product) !!}
-                                        @if( intval($product->front_sale_price_with_taxes)>0)
+										{!! render_product_options($product) !!}
+                                        @if( intval(@$product->front_sale_price_with_taxes)>0)
 									    <p class="subheading_h4 price">{{ format_price($product->front_sale_price_with_taxes) }}</p>
                                         @else
-                                        @php
-                                            $option = current($product->options->toArray());
-                                        @endphp
-                                        <p class="subheading_h4 price">{{ dd($option) }}</p>
+                                        <p class="subheading_h4 price">{{ format_price(@$product->options[0]->values[0]->affect_price) }}</p>
                                         @endif
 									</div>
 		                            @endif
@@ -99,6 +96,14 @@
                         </div>
                         @endforeach
                         @endif
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2 mt-md-4">
+                            <div class="pagination_style1 justify-content-center">
+                                {!! $products->appends(request()->query())->links() !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
