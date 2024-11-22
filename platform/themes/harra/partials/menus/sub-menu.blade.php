@@ -16,3 +16,11 @@
         </li>
     @endforeach
 </ul>
+
+{{-- <ul>
+    <li><a href="products.html">Signature artificial bouquets</a></li>
+    <li><a href="products.html">Preserved rose bouquets</a></li>
+    <li><a href="products.html">Gift box set</a></li>
+    <li><a href="products.html">Plushie bouquets</a></li>
+    <li><a href="products.html">DIY bouquet sets</a></li>
+</ul> --}}

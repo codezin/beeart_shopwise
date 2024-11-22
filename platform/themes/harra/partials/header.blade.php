@@ -63,20 +63,7 @@
     <header id="header" class="header d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
             <nav id="navbar" class="navbar">
-                <ul class="w-100 d-xl-flex align-items-center justify-content-between">
-                    <li class="dropdown"><a href="products.html"><span>Our Products</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="products.html">Signature artificial bouquets</a></li>
-                            <li><a href="products.html">Preserved rose bouquets</a></li>
-                            <li><a href="products.html">Gift box set</a></li>
-                            <li><a href="products.html">Plushie bouquets</a></li>
-                            <li><a href="products.html">DIY bouquet sets</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="blogs.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                @include(Theme::getThemeNamespace('partials.menus.header-menu'))
             </nav><!-- .navbar -->
             <div class="d-flex justify-content-center align-items-center right-header">
                 <form id="frmsearch" action="">
@@ -87,8 +74,8 @@
                                 class="fa-light fa-magnifying-glass"></i></button>
                     </div>
                 </form>
-                <a href="" class="mx-2 mx-lg-5"><img src="assets/img/user-account.svg" alt="" /></a>
-                <a href="cart.html"><img src="assets/img/shopping-bag.svg" alt="" /></a>
+                <a href="" class="mx-2 mx-lg-5"><img src="{{base}}assets/img/user-account.svg" alt="" /></a>
+                <a href="cart.html"><img src="{{base}}assets/img/shopping-bag.svg" alt="" /></a>
             </div>
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

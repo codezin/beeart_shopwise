@@ -39,6 +39,14 @@ class TestimonialForm extends FormAbstract
                     'data-counter' => 120,
                 ],
             ])
+            ->add('age', 'text', [
+                'label' => trans('plugins/testimonial::testimonial.age'),
+                'label_attr' => ['class' => 'control-label'],
+                'attr' => [
+                    'placeholder' => trans('plugins/testimonial::testimonial.age'),
+                    'data-counter' => 120,
+                ],
+            ])
             ->add('star', 'text', [
                 'label' => trans('plugins/testimonial::testimonial.star'),
                 'label_attr' => ['class' => 'control-label'],

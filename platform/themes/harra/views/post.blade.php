@@ -47,36 +47,7 @@
                         </div>
                     </div>
                 </div>
-                @php $relatedPosts = get_related_posts($post->id, 2); @endphp
-                @if ($relatedPosts->count())
-                    <br>
-                    <div class="related_post">
-                        <div class="content_title">
-                            <h5>{{ __('Related posts') }}</h5>
-                        </div>
-                        <div class="row">
-                            @foreach ($relatedPosts as $relatedItem)
-                                <div class="col-md-6">
-                                    <div class="blog_post blog_style2 box_shadow1">
-                                        <div class="blog_img">
-                                            <a href="{{ $relatedItem->url }}"><img src="{{ RvMedia::getImageUrl($relatedItem->image, 'small', false, RvMedia::getDefaultImage()) }}" alt="{{ $relatedItem->name }}" loading="lazy" /></a>
-                                        </div>
-                                        <div class="blog_content bg-white">
-                                            <div class="blog_text">
-                                                <h6 class="blog_title"><a href="{{ $relatedItem->url }}">{{ $relatedItem->name }}</a></h6>
-                                                <ul class="list_none blog_meta">
-                                                    <li><i class="ti-calendar"></i> {{ $relatedItem->created_at->translatedFormat('M d, Y') }}</li>
-                                                    <li><i class="ti-eye"></i> {{ number_format($relatedItem->views) }} {{ __('Views') }}</li>
-                                                </ul>
-                                                <p>{{ Str::limit($relatedItem->description, 110) }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
+
             </div>
             <div class="col-xl-3 mt-4 pt-2 mt-xl-0 pt-xl-0">
                 <div class="sidebar">
@@ -86,3 +57,49 @@
         </div>
     </div>
 </div>
+
+
+  <!-- ======= Banner Section ======= -->
+  <section id="banner" class="banner-news">
+    <div class="container">
+        <p class="back-page"><a href="blogs.html"><i class="fa-light fa-arrow-left-long"></i> Back to blog page</a></p>
+        <header class="section-header">
+            <h2 class="text-start">Dandelion Flirty Flowers</h2>
+            <p>We value the diverse perspectives and experiences of our users, and we encourage collaboration and community engagement. Our platform provides opportunities for users to contribute their knowledge, share their opinions, and engage in discussions with like-minded individuals.</p>
+        </header>
+    </div>
+</section>
+
+<main id="main">
+    <section id="detail" class="pt-5">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="me-lg-5">
+                        {!! BaseHelper::clean($post->content) !!}
+                    </div>
+                </div>
+                <div class="col-md-3 news-list" id="news-detail">
+                    <h3>{{ __('Related posts') }}</h3>
+                    @php $relatedPosts = get_related_posts($post->id, 2); @endphp
+                    @if ($relatedPosts->count())
+                    @foreach ($relatedPosts as $relatedItem)
+                    <div class="news_item">
+                        <div class="imgbox"><a href="{{ $relatedItem->url }}">
+                            <img src="{{ RvMedia::getImageUrl($relatedItem->image, null, false, RvMedia::getDefaultImage()) }}" alt=""/></a></div>
+                        <div>
+                            <div class="date">23/07/2024</div>
+                            <h2 class="title"><a href="{{ $relatedItem->url }}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a></h2>
+                            <p class="read-more"><a href="{{ $relatedItem->url }}">{{__("Read more")}}</a></p>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+</main><!-- End #main -->

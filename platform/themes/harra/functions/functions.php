@@ -4,9 +4,9 @@ use Botble\Base\Forms\FormAbstract;
 use Botble\SimpleSlider\Models\SimpleSliderItem;
 use Botble\Ecommerce\Models\ProductCategory;
 use Kris\LaravelFormBuilder\FormHelper;
-use Theme\AnDi\Fields\ThemeIconField;
+use Theme\Harra\Fields\ThemeIconField;
 
-define('base',asset('public/themes/harra').'/');
+define('base',asset('themes/harra').'/');
 register_page_template([
     'homepage' => __('Homepage'),
     'blog-sidebar' => __('Blog Sidebar'),

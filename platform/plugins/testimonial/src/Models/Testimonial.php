@@ -14,6 +14,7 @@ class Testimonial extends BaseModel
         'name',
         'company',
         'position',
+        'age',
         'star',
         'content',
         'image',
