@@ -1,7 +1,7 @@
 {
     "name": "CleverWorld",
     "namespace": "Theme\\CleverWorld\\",
-    "description": "CleverWorld shopping theme",
+    "description": "CleverWorld Layout Themes",
     "author": "CleverWorld Technologies",
     "required_plugins": []
 }

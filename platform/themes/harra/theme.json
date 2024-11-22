@@ -1,7 +1,7 @@
 {
-    "name": "AnDi",
-    "namespace": "Theme\\AnDi\\",
-    "description": "Jacaranda shopping theme",
+    "name": "Harra",
+    "namespace": "Theme\\Harra\\",
+    "description": "Harra Layout Themes",
     "author": "BeeArt Technologies",
     "required_plugins": []
 }

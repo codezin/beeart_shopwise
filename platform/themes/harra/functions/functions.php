@@ -6,7 +6,7 @@ use Botble\Ecommerce\Models\ProductCategory;
 use Kris\LaravelFormBuilder\FormHelper;
 use Theme\AnDi\Fields\ThemeIconField;
 
-define('base',asset('public/themes/andi').'/');
+define('base',asset('public/themes/harra').'/');
 register_page_template([
     'homepage' => __('Homepage'),
     'blog-sidebar' => __('Blog Sidebar'),
