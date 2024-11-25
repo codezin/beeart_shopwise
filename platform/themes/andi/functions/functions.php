@@ -10,7 +10,9 @@ define('base',asset('public/themes/andi').'/');
 register_page_template([
     'homepage' => __('Homepage'),
     'blog-sidebar' => __('Blog Sidebar'),
-    'about-us' => __("AboutUS")
+    'about-us' => __("AboutUS"),
+    'blog' => __("Blog"),
+    'contact' => 'Contact'
 ]);
 
 register_sidebar([

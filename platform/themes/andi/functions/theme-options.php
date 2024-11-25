@@ -51,6 +51,21 @@ app()->booted(function () {
             ],
         ])
         ->setField([
+            'id' => 'abn',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'text',
+            'label' => __('ABN'),
+            'attributes' => [
+                'name' => 'abn',
+                'value' => null,
+                'options' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'ABN',
+                    'data-counter' => 120,
+                ],
+            ],
+        ])
+        ->setField([
             'id' => 'address',
             'section_id' => 'opt-text-subsection-general',
             'type' => 'text',
