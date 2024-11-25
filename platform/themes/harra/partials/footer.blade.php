@@ -18,7 +18,7 @@
                         <img src="{{base}}assets/img/icon-tel.svg" alt="">
                     </div>
                     <div class="flex-grow-1 ms-lg-3">
-                        <a href="">+1 (585) 366 8846</a>
+                        <a href="">{{theme_option('hotline')}}</a>
                     </div>
                 </div>
                 <div class="mt-3 d-flex align-items-center">
@@ -26,7 +26,7 @@
                         <img src="{{base}}assets/img/icon-tel.svg" alt="">
                     </div>
                     <div class="flex-grow-1 ms-lg-3">
-                        <a href="">+1 (844) 976 2696</a>
+                        <a href="">{{ theme_option('hotline_2') }}</a>
                     </div>
                 </div>
             </div>
@@ -52,30 +52,24 @@
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
                 <div class="title">Help</div>
-                {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
+                {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
             </div>
             <div class="col-md-4 mt-3 mt-lg-0">
                 <div class="title">Payment methods</div>
-                <div class="payment-logo"><img src="assets/img/logo-visa.png" alt=""> <img src="assets/img/logo-master-card.png" alt=""> <img src="assets/img/logo-apple-pay.png" alt=""> <img src="assets/img/paypal.png" alt=""></div>
+                <div class="payment-logo"><img src="{{base}}assets/img/logo-visa.png" alt=""> <img src="assets/img/logo-master-card.png" alt=""> <img src="assets/img/logo-apple-pay.png" alt=""> <img src="assets/img/paypal.png" alt=""></div>
 
                 <div class="title mt-4">Follow us on</div>
                 <div class="social-links d-flex">
-                    <a href="#" class="twitter"><img src="assets/img/icon-facebook.svg" alt=""></a>
-                    <a href="#" class="facebook"><img src="assets/img/icon-youtube.svg" alt=""></a>
-                    <a href="#" class="instagram"><img src="assets/img/icon-instagram.svg" alt=""></a>
-                    <a href="#" class="linkedin"><img src="assets/img/icon-tiktok.svg" alt=""></a>
+                    <a href="#" class="twitter"><img src="{{base}}assets/img/icon-facebook.svg" alt=""></a>
+                    <a href="#" class="facebook"><img src="{{base}}assets/img/icon-youtube.svg" alt=""></a>
+                    <a href="#" class="instagram"><img src="{{base}}assets/img/icon-instagram.svg" alt=""></a>
+                    <a href="#" class="linkedin"><img src="{{base}}assets/img/icon-tiktok.svg" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
       <div class="copyright">
-          <div class="container">
-          © 2024 Lil Harra. All Rights Reserved
-            </div>
+        <div class="container">{{theme_option("copyright")}}</div>
     </div>
   </footer><!-- End Footer -->
 
@@ -135,9 +129,9 @@
 <script src="{{base}}assets/vendor/leaves/js/jquery.rotate.js"></script>
 <script src="{{base}}assets/vendor/leaves/js/jquery.classyleaves.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    /*$(document).ready(function(){
         $('#popupNewletter').modal('show');
-    });
+    });*/
 
     var tree = new ClassyLeaves({
         leaves: 8,

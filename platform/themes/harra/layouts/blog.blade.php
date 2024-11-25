@@ -2,42 +2,53 @@
 @php
 $posts = get_all_posts();
 @endphp
-<div class="main_content">
-    <!-- START SECTION BLOG -->
-    <div class="section section-blog-latest pb_80 pt_80">
-        <div class="container">
-            <h2 class="heading_h2">Blog</h2>
-            <div class="row">
-                @foreach ( $posts as $post)
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog_post blog_style2">
-                        <div class="blog_img">
-                            <img src="{{ RvMedia::getImageUrl($post->image) }}" alt="furniture_blog_img1" />
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_text">
-                                <h5 class="blog_title subheading_h5">
-                                    {{$post->name}}
-                                </h5>
-                                <p>
-                                    {{$post->description}}
-                                </p>
-                                <a class="btn-readmore" href="{{$post->url}}">{{__("Read more")}}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+@php
+   $page = Theme::get('page');
+    $posts = get_all_posts();
+@endphp
 
-                @endforeach
-
-            </div>
-            <div class="row">
-                <div class="col-12 mt-2 mt-md-4">
-                    {!! $posts->appends(request()->query())->onEachSide(1)->links() !!}
-                </div>
-            </div>
+<section id="page-title" class="page-title">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">{{__("Home")}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$page->name}}</li>
+            </ol>
+        </nav>
+        <div class="page-header">
+            <h2>{{$page->name}}</h2>
+            {!! $page->description !!}
         </div>
     </div>
-    <!-- END SECTION BLOG -->
-</div>
+</section>
+@if(!empty( $posts))
+  <main id="main">
+      <section id="news" class="news">
+          <div class="container">
+              <div id="news-list" class="news-list row">
+                    @foreach ( $posts as $post)
+                  <div class="col-xl-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="100">
+                      <article class="inner">
+                          <div class="imgbox">
+                              <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image) }}" alt="Lorem ipsum dolor sit amet, consectetuer ipsum dolor sit amet." ></a>
+                          </div>
+                          <div class="date">{{date("m/d/Y",strtotime($post->created_at))}}</div>
+                          <h2 class="title">
+                              <a href="{{$post->url}}">{{$post->name}}</a>
+                          </h2>
+                          <p class="read-more"><a href="{{$post->url}}">{{__("Read more")}}</a></p>
+                      </article>
+                  </div>
+                  @endforeach
+
+              </div>
+              <nav class="mt-5" aria-label="Page navigation example">
+                    {!! $posts->appends(request()->query())->onEachSide(1)->links() !!}
+
+              </nav>
+          </div>
+        </section>
+
+  </main><!-- End #main -->
+@endif
 {!! Theme::partial('footer') !!}

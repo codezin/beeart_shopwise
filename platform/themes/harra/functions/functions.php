@@ -10,6 +10,7 @@ define('base',asset('themes/harra').'/');
 register_page_template([
     'homepage' => __('Homepage'),
     'blog-sidebar' => __('Blog Sidebar'),
+    'blog' => __('Blog'),
     'about-us' => __("AboutUS")
 ]);
 
