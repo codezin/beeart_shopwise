@@ -7,7 +7,7 @@
                 <div class="title">Get in touch</div>
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <img src="assets/img/icon-livechat.svg" alt="">
+                        <img src="{{base}}assets/img/icon-livechat.svg" alt="">
                     </div>
                     <div class="flex-grow-1 ms-3">
                         Livechat 24/7
@@ -15,7 +15,7 @@
                 </div>
                 <div class="mt-3 d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <img src="assets/img/icon-tel.svg" alt="">
+                        <img src="{{base}}assets/img/icon-tel.svg" alt="">
                     </div>
                     <div class="flex-grow-1 ms-lg-3">
                         <a href="">+1 (585) 366 8846</a>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mt-3 d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <img src="assets/img/icon-tel.svg" alt="">
+                        <img src="{{base}}assets/img/icon-tel.svg" alt="">
                     </div>
                     <div class="flex-grow-1 ms-lg-3">
                         <a href="">+1 (844) 976 2696</a>
@@ -32,24 +32,27 @@
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
                 <div class="title">Information</div>
-                <ul>
+                {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
+                {{-- <ul>
                     <li><a href="products.html">Our Products</a></li>
                     <li><a href="blogs.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
                 <div class="title">Policies</div>
-                <ul>
+                {!! Menu::renderMenuLocation('links-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
+                {{-- <ul>
                     <li><a href="policy.html">Privacy Policy</a></li>
                     <li><a href="policy.html">Shipping Policy</a></li>
                     <li><a href="policy.html">Refund Policy</a></li>
                     <li><a href="policy.html">Payment Methods</a></li>
                     <li><a href="policy.html">Terms of Service</a></li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
                 <div class="title">Help</div>
+                {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
                 <ul>
                     <li><a href="#">Help Center</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
@@ -80,7 +83,7 @@
 
 <div id="preloader1"></div>
 
-<div id="popupNewletter" class="modal" tabindex="-1">
+{{-- <div id="popupNewletter" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +110,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div id="popupVoucher" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">

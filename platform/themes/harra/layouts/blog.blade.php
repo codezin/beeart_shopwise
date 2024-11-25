@@ -1,5 +1,4 @@
 {!! Theme::partial('header') !!}
-
 @php
 $posts = get_all_posts();
 @endphp

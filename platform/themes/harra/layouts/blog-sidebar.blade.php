@@ -29,7 +29,7 @@
                           <div class="imgbox">
                               <a href="{{$post->url}}"><img src="{{ RvMedia::getImageUrl($post->image) }}" alt="Lorem ipsum dolor sit amet, consectetuer ipsum dolor sit amet." ></a>
                           </div>
-                          <div class="date">{{date("m/d/Y",strtotime($post->creaed_at))}}</div>
+                          <div class="date">{{date("m/d/Y",strtotime($post->created_at))}}</div>
                           <h2 class="title">
                               <a href="{{$post->url}}">{{$post->name}}</a>
                           </h2>

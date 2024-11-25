@@ -1,6 +1,6 @@
 {!! Theme::partial('header') !!}
 
-<div id="title-page" class="breadcrumb_section  page-title-mini">
+{{-- <div id="title-page" class="breadcrumb_section  page-title-mini">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 {!! Theme::content() !!}
 
