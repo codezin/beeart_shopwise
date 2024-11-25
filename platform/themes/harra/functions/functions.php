@@ -11,7 +11,8 @@ register_page_template([
     'homepage' => __('Homepage'),
     'blog-sidebar' => __('Blog Sidebar'),
     'blog' => __('Blog'),
-    'about-us' => __("AboutUS")
+    'about-us' => __("AboutUS"),
+    'contact' => __("Contact")
 ]);
 
 register_sidebar([

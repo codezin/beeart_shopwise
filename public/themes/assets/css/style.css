@@ -4364,11 +4364,7 @@ body .product_color_switch span.active:before {
 #navCatContent li a.nav-link {
     white-space: normal
 }
-@media only screen and (min-width:1280px) {
-    .container {
-        max-width: 1200px
-   }
-}
+
 .order-tracking-wrapper p {
     margin-bottom: 10px
 }

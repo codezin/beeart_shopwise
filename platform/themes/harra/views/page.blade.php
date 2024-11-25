@@ -1,6 +1,6 @@
 @php Theme::set('pageName', $page->name) @endphp
 @php
-    Theme::set('page', $page);
+Theme::set('page', $page);
 @endphp
 
 
@@ -8,25 +8,24 @@
 
     @if ($page->template === 'homepage')
 
-         {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, Html::tag('div', BaseHelper::clean($page->content), ['class' =>
+    {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, Html::tag('div', BaseHelper::clean($page->content), ['class' =>
 
-'ck-content'])->toHtml(), $page) !!}
+    'ck-content'])->toHtml(), $page) !!}
 
     @else
 
-        <div class="section">
+    <div class="section">
 
-            <div class="container">
+        <div class="container">
 
-                {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, Html::tag('div', BaseHelper::clean($page->content), ['class' =>
+            {!! apply_filters(PAGE_FILTER_FRONT_PAGE_CONTENT, Html::tag('div', BaseHelper::clean($page->content), ['class' =>
 
-'ck-content'])->toHtml(), $page) !!}
-
-            </div>
+            'ck-content'])->toHtml(), $page) !!}
 
         </div>
+
+    </div>
 
     @endif
 
 </div>
-

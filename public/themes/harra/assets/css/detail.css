@@ -57,9 +57,50 @@
 .detail #add-to-cart .input-group{
     width: fit-content;
 }
+.detail .quantity{
+    display: flex;
+}
+.detail .quantity input{
+    border: 1px solid #ccc;
+    text-align: center;
 
+    background: transparent;
+    width: 60px;
 
-.detail #add-to-cart .btnaddcart {
+}
+.detail .quantity .minus{
+    display: flex;
+    align-items: center;
+    padding: .55rem 1.2rem;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+    color: var(--bs-body-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--bs-tertiary-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: 26px 0 0 26px;
+    border-right: 0;
+    background: transparent;
+}
+.detail .quantity  .plus{
+    display: flex;
+    align-items: center;
+    padding: .55rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--bs-tertiary-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: 0 26px 26px 0;
+    border-left: 0;
+    background: transparent;
+}
+.detail .btnaddcart {
     display: block;
     background: #579653;
     box-shadow: 5px 5px 0px 0px #B7EB94;

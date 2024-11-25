@@ -165,7 +165,7 @@
                             @if (EcommerceHelper::isCartEnabled())
                                 <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger btn-shopping-cart" href="#" data-toggle="dropdown">
                                     <i class="linearicons-cart" style="font-size:23px">></i>
-					<span class="cart_count">{{ Cart::instance('cart')->count() }}</span></a>
+					                <span class="cart_count">{{ Cart::instance('cart')->count() }}</span></a>
                                     <div class="cart_box dropdown-menu dropdown-menu-right">
                                         {!! Theme::partial('cart') !!}
                                     </div>

@@ -76,3 +76,59 @@ if (!function_exists('get_blocks_by_id')) {
     }
 }
 
+$links_icon = [];
+if (! function_exists('get_links_icon')) {
+    function get_links_icon($key = null)
+    {
+        global $links_icon;
+        $result = [];
+        // Fetch and process data if $links_icon is empty or needs to be refreshed
+        if (empty($links_icon) || true) {
+            $data = json_decode(theme_option('links_icon'), true); // Decode JSON to array
+
+            foreach ($data as $subArray) {
+                // Remove "social-" prefix from all keys in the sub-array
+                $newArray = json_decode(str_replace("social-", "", json_encode($subArray)), true) ?? [];
+
+                // Merge the processed array and original sub-array, mapping "value" by "key"
+                $obj = (object)\Arr::pluck(array_merge($newArray, $subArray), "value", "key");
+                $result[$obj->slug??$obj->name] = $obj;
+            }
+
+            // Cache the processed result globally
+            $links_icon = $result;
+        }
+
+        // Return either the full cached array or a specific key’s value
+        return $key === null ? $links_icon : ($links_icon[$key] ?? null);
+    }
+}
+
+
+$social_icon = [];
+if (! function_exists('get_social_icon')) {
+    function get_social_icon($key = null)
+    {
+        global $links_icon;
+        $result = [];
+        // Fetch and process data if $links_icon is empty or needs to be refreshed
+        if (empty($links_icon) || true) {
+            $data = json_decode(theme_option('social_links'), true); // Decode JSON to array
+
+            foreach ($data as $subArray) {
+                // Remove "social-" prefix from all keys in the sub-array
+                $newArray = json_decode(str_replace("social-", "", json_encode($subArray)), true) ?? [];
+
+                // Merge the processed array and original sub-array, mapping "value" by "key"
+                $obj = (object)\Arr::pluck(array_merge($newArray, $subArray), "value", "key");
+                $result[$obj->slug??$obj->name] = $obj;
+            }
+
+            // Cache the processed result globally
+            $social_icon = $result;
+        }
+
+        // Return either the full cached array or a specific key’s value
+        return $key === null ? $social_icon : ($social_icon[$key] ?? null);
+    }
+}

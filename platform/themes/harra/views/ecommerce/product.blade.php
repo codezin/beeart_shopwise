@@ -6,8 +6,8 @@ Theme::asset()->usePath()->add('lightGallery-css', 'plugins/lightGallery/css/lig
 Theme::asset()->container('footer')->usePath()
 ->add('lightGallery-js', 'plugins/lightGallery/js/lightgallery.min.js', ['jquery']);
 @endphp
-  <!-- Template Main CSS File -->
-  <link href="{{base}}assets/css/main.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="{{base}}assets/css/detail.css" rel="stylesheet">
 <main id="main">
     <section id="detail" class="detail">
         <div class="container">
@@ -38,13 +38,14 @@ Theme::asset()->container('footer')->usePath()
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-5 mt-lg-0">
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </div>
-                        <h2 class="title mt-3">{{$product->name}}</h2>
-                        <p class="description">{!! $product->description !!}</p>
-                        <form class="add-to-cart-form" method="POST" action="{{ route('public.cart.add-to-cart') }}">
+                </div>
+                <div class="col-md-6 mt-5 mt-lg-0">
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <h2 class="title mt-3">{{$product->name}}</h2>
+                    <p class="description">{!! $product->description !!}</p>
+                    <form class="add-to-cart-form" method="POST" action="{{ route('public.cart.add-to-cart') }}">
                         @if ($product->variations()->count() > 0)
                         <div class="pr_switch_wrap">
                             {!! render_product_swatches($product, [
@@ -70,15 +71,15 @@ Theme::asset()->container('footer')->usePath()
                         @if (EcommerceHelper::isCartEnabled())
                         <div class="cart-product-quantity">
                             <div class="pr_switch_wrap">
-                                <span class="switch_lable">Quantity:</span>
-                                <div class="quantity">
+                                <span class="switch_lable">{{__("Quantity")}}:</span>
+                                <div class="quantity mt-2">
                                     <input type="button" value="-" class="minus" />
                                     <input type="text" name="qty" value="1" title="Qty" class="qty" size="4" />
                                     <input type="button" value="+" class="plus" />
                                 </div>
                                 <div class="float-right number-items-available" style="@if (!$product->isOutOfStock()) display: none; @endif line-height: 45px;">
                                     @if ($product->isOutOfStock())
-                                        <span class="text-danger">({{ __('Out of stock') }})</span>
+                                    <span class="text-danger">({{ __('Out of stock') }})</span>
                                     @endif
                                 </div>
                             </div>
@@ -95,18 +96,36 @@ Theme::asset()->container('footer')->usePath()
                             <p class="mt-3"><span class="price">$250.10</span> <span class="sale-price">$280.12</span></p>
                             <p> <button type="submit" class="btnaddcart">Take me home</button></p>
                         </form> --}}
-                        </form>
-                    </div>
+                        {!! apply_filters(ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML, null, $product) !!}
+                        <p class="mt-3">
+
+                            <span class="price">{{ format_price($product->price_with_taxes) }}</span>
+
+                            @if ($product->front_sale_price !== $product->price)
+                             <span class="sale-price">{{ format_price($product->front_sale_price_with_taxes) }}</span></p>
+                             @endif
+
+
+                        <input type="hidden" name="id" id="hidden-product-id" value="{{ ($product->is_variation || !$product->defaultVariation->product_id) ? $product->id : $product->defaultVariation->product_id }}"/>
+                        <div class="cart_extra">
+                            <div class="cart_btn">
+                                @if (EcommerceHelper::isCartEnabled())
+                                <button class="btn btn-fill-out btn-addtocart btnaddcart @if ($product->isOutOfStock()) btn-disabled @endif" type="submit"  @if ($product->isOutOfStock()) disabled @endif>
+                                    Add to cart
+                                </button>
+
+                                @endif
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
             </div>
-
+        </div>
     </section>
-
     <section id="review-products" class="review">
         <div class="container">
             <div id="title-review-products">
-                <h2>Customer Reviews</h2>
+                <h2>{{__("Customer Reviews")}}</h2>
                 <div class="stars mt-4">
                     <i class="fa-light fa-star"></i> <i class="fa-light fa-star"></i> <i class="fa-light fa-star"></i> <i class="fa-light fa-star"></i> <i class="fa-light fa-star"></i>
                 </div>
@@ -123,7 +142,7 @@ Theme::asset()->container('footer')->usePath()
     <section id="recent-products" class="recent-products">
         <div class="container">
             <header class="section-header text-center" data-aos="fade-top">
-                <h2>More you’ll love</h2>
+                <h2>{{__("More you’ll love")}}</h2>
             </header>
 
             <div id="recent-products-list" class="product-list">
@@ -150,5 +169,5 @@ Theme::asset()->container('footer')->usePath()
     @endif
 </main><!-- End #main -->
 
- <!-- Template Main JS File -->
- <script src="{{base}}assets/js/main.js"></script>
+<!-- Template Main JS File -->
+<script src="{{base}}assets/js/main.js"></script>

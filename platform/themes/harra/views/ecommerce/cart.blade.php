@@ -27,7 +27,7 @@
 
             <form class="form--shopping-cart row shopping_cart_template_2" method="post" action="{{ route('public.cart.update') }}">
                 @csrf
-                <div class="col-md-8">
+                <div class="col-md-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive shop_cart_table">
@@ -137,8 +137,8 @@
                     </div>
                 </div> --}}
                 </div>
-                <div class="col-md-4">
-                    <div class="shop_cart_total border p-3 p-md-4">
+                <div class="col-md-12">
+                    <div class="shop_cart_total border col-md-4 mt-3" style="float:right">
                             <div class="heading_s1 mb-3 ">
                                 <h6>{{ __('Cart Totals') }}</h6>
                             </div>
@@ -204,3 +204,31 @@
         @endif
     </div>
 </div>
+<style type="text/css">
+    .shop_cart_table td, .shop_cart_table th{
+        background: transparent;
+    }
+    .shop_cart_total{
+        width: 320px;
+        background: #FCFBD5;
+        border-radius: 24px;
+        padding: 20px;
+    }
+    .cart_total_label, .cart_total_amount{
+        background: transparent;
+        background-color: transparent !important;
+    }
+    .quantity{
+        gap: 3px;
+    }
+    .quantity input{
+        border: 1px solid #ccc !important;
+        padding: 0 5px;
+        text-align: center;
+    }
+    .minus,.plus{
+        border-radius: 50%;
+        border: 0;
+        height: 27px;
+    }
+</style>

@@ -1,4 +1,3 @@
-
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="container">
@@ -31,7 +30,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
-                <div class="title">Information</div>
+                <div class="title">{{__("Information")}}</div>
                 {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
                 {{-- <ul>
                     <li><a href="products.html">Our Products</a></li>
@@ -40,7 +39,7 @@
                 </ul> --}}
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
-                <div class="title">Policies</div>
+                <div class="title">{{__("Policies")}}</div>
                 {!! Menu::renderMenuLocation('links-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
                 {{-- <ul>
                     <li><a href="policy.html">Privacy Policy</a></li>
@@ -51,19 +50,32 @@
                 </ul> --}}
             </div>
             <div class="col-12 col-md-2 mt-3 mt-lg-0">
-                <div class="title">Help</div>
+                <div class="title">{{__("Help")}}</div>
                 {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.footer', 'options' => ['class' => '']]) !!}
             </div>
             <div class="col-md-4 mt-3 mt-lg-0">
-                <div class="title">Payment methods</div>
-                <div class="payment-logo"><img src="{{base}}assets/img/logo-visa.png" alt=""> <img src="assets/img/logo-master-card.png" alt=""> <img src="assets/img/logo-apple-pay.png" alt=""> <img src="assets/img/paypal.png" alt=""></div>
+                <div class="title">{{__("Payment methods")}}</div>
+                <div class="payment-logo">
+                    <img src="{{base}}assets/img/logo-visa.png" alt="">
+                    <img src="{{base}}assets/img/logo-master-card.png" alt="">
+                    <img src="{{base}}assets/img/logo-apple-pay.png" alt="">
+                    <img src="{{base}}assets/img/paypal.png" alt="">
+                </div>
 
                 <div class="title mt-4">Follow us on</div>
                 <div class="social-links d-flex">
-                    <a href="#" class="twitter"><img src="{{base}}assets/img/icon-facebook.svg" alt=""></a>
-                    <a href="#" class="facebook"><img src="{{base}}assets/img/icon-youtube.svg" alt=""></a>
-                    <a href="#" class="instagram"><img src="{{base}}assets/img/icon-instagram.svg" alt=""></a>
-                    <a href="#" class="linkedin"><img src="{{base}}assets/img/icon-tiktok.svg" alt=""></a>
+                    @if($icon = get_social_icon("facebook"))
+                    <a href="{{$icon->url}}" class="twitter"><img src="{{base}}assets/img/icon-facebook.svg" alt=""></a>
+                    @endif
+                    @if($icon = get_social_icon("youtube"))
+                    <a href="{{$icon->url}}" class="youtube"><img src="{{base}}assets/img/icon-youtube.svg" alt=""></a>
+                    @endif
+                    @if($icon = get_social_icon("instagram"))
+                    <a href="{{$icon->url}}" class="instagram"><img src="{{base}}assets/img/icon-instagram.svg" alt=""></a>
+                    @endif
+                    @if($icon = get_social_icon("tiktok"))
+                    <a href="{{$icon->url}}" class="linkedin"><img src="{{base}}assets/img/icon-tiktok.svg" alt=""></a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -171,6 +183,9 @@
   <!-- Template Main JS File -->
 <script src="{{base}}assets/js/main.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" src="{{ asset('public/themes/assets/js/product_cart.js') }}"></script>
 </body>
 
 </html>

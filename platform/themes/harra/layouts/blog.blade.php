@@ -11,7 +11,7 @@ $posts = get_all_posts();
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">{{__("Home")}}</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('public.index') }}">{{__("Home")}}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$page->name}}</li>
             </ol>
         </nav>

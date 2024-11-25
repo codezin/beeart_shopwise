@@ -243,6 +243,17 @@ app()->booted(function () {
                         ],
                     ],
                     [
+                        'type' => 'text',
+                        'label' => __('Slug'),
+                        'attributes' => [
+                            'name' => 'social-slug',
+                            'value' => null,
+                            'options' => [
+                                'class' => 'form-control',
+                            ],
+                        ],
+                    ],
+                    [
                         'type' => 'themeIcon',
                         'label' => __('Icon'),
                         'attributes' => [
