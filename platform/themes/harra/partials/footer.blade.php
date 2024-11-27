@@ -89,7 +89,8 @@
 
 <div id="preloader1"></div>
 
-{{-- <div id="popupNewletter" class="modal" tabindex="-1">
+@if (is_plugin_active('newsletter') && theme_option('enable_newsletter_popup', 'yes') === 'yes')
+<div id="popupNewletter" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -116,7 +117,8 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+@endif
 
 <div id="popupVoucher" class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -125,7 +127,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div><img src="assets/img/welcome.png" class="img-fluid" alt=""></div>
+                <div><img src="{{base}}assets/img/welcome.png" class="img-fluid" alt=""></div>
                 <h2 class="mt-4">Hi! I'm Ayaan Berry, I Love your smile.</h2>
                 <p class="mt-4"><a href="" id="btnokay">Okay!</a></p>
             </div>

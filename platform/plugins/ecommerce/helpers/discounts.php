@@ -111,3 +111,11 @@ if (! function_exists('get_discount_description')) {
         return $description;
     }
 }
+
+if (! function_exists('get_discount_code')) {
+    function get_discount_code(): string
+    {
+        $discount = Discount::first();
+        return $discount->code;
+    }
+}

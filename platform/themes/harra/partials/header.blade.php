@@ -45,15 +45,17 @@
     <link href="{{ base }}assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/themes/assets/css/style.css?v=1703268762')}}">
     {!! Theme::partial('meta') !!}
+    <scritp>
+        var discount_code = '{{get_discount_code()}}';
+    </script>
 </head>
 
 <body>
-
     <div id="top-bar">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between text-center w-100 py-2">
                 <a href="{{ route('public.index') }}"><i class="fa-sharp fa-thin fa-arrow-left-long"></i></a>
-                $13.50 SHIPPING OR FREE OVER $125 IN CANADA* + USA!
+               {{get_ecommerce_setting('shipping_title')}}
                 <i class="fa-sharp fa-thin fa-arrow-right-long"></i>
             </div>
         </div>
