@@ -243,10 +243,12 @@
                                                 type="hidden"
                                                 value="{{ old('shipping_option', $defaultShippingOption) }}">
                                             <ul class="list-group list_payment_method">
+
+
                                                 @foreach ($shipping as $shippingKey => $shippingItems)
                                                     @foreach ($shippingItems as $shippingOption => $shippingItem)
                                                         @include('plugins/ecommerce::orders.partials.shipping-option', [
-                                                            'shippingItem' => $shippingItem['id'],
+                                                            'shippingItem' => @$shippingItem['id'],
                                                             'attributes' => [
                                                                 'id' => 'shipping-method-' . $shippingKey . '-' . $shippingOption,
                                                                 'name' => 'shipping_method',
@@ -256,8 +258,10 @@
                                                                 'data-option' =>  $shippingKey,
                                                             ],
                                                         ])
+
                                                     @endforeach
                                                 @endforeach
+
                                                 <li></li>
                                             </ul>
                                         </div>

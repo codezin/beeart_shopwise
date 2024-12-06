@@ -45,7 +45,7 @@
     <link href="{{ base }}assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/themes/assets/css/style.css?v=1703268762')}}">
     {!! Theme::partial('meta') !!}
-    <scritp>
+    <script>
         var discount_code = '{{get_discount_code()}}';
     </script>
 </head>
