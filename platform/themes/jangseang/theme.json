@@ -1,0 +1,7 @@
+{
+    "name": "JangSeang",
+    "namespace": "Theme\\JangSeang\\",
+    "description": "JangSeang shopping theme",
+    "author": "BeeArt Technologies",
+    "required_plugins": []
+}
