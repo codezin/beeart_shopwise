@@ -3,7 +3,7 @@
 @endphp
 <!-- ======= Banner Section ======= -->
 <section id="banner" class="banner-home">
-    <div id="banner-home-1"></div>
+    {{-- <div id="banner-home-1"></div> --}}
 
     @php
     $block = get_blocks_by_slug("the-true-meaning");
@@ -29,13 +29,12 @@
 </section>
 
 <main id="main">
-
     <section id="services" class="services_home">
         @php
         $block = get_blocks_by_slug("our-service");
         $items =get_field($block,"our_service");
         @endphp
-        <div class="container" data-aos="fade-up">
+        <div class="container service-container" data-aos="fade-up">
             <div class="section-header swidth">
                 <h3>{!! $block->name !!}</h3>
                 <h2>{!! $block->description !!}</h2>
@@ -44,7 +43,7 @@
             @if(!empty($items))
             <div id="services-grid" class="row mt-3">
                 @foreach( $items as $item)
-                <div class="col-md-3">
+                <div class="col-md-3 service-item">
                     <a href="{{get_sub_field($item,"link")??'#'}}">
                         <div class="row box-service">
                             <div class="col-12 img imgbox">
@@ -57,6 +56,7 @@
                 @endforeach
             </div>
             @endif
+            <div class="swiper-pagination"></div>
         </div>
     </section>
 
@@ -75,7 +75,7 @@
         </div>
     </section>
 
-    <section id="occasions" class="occasions">
+    <section id="occasions" class="occasions d-none d-md-block">
         @php
         $block = get_blocks_by_slug("occasions");
         @endphp
@@ -171,10 +171,20 @@
 
             <div class="row">
                 <div class="col-md-6">
+                    <h3 class="d-block d-md-none text-center">February </h3>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Rose Day - 7th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
+                        <li class="list-group-item">
+                            <a href=""
+                                class="d-flex align-items-center justify-content-between">
+                                <span class="d-flex flex-wrap-sm">
+                                    Rose Day
+                                    <span class="d-block d-md-none">7th</span>
+                                    <span class="d-none d-md-block"> - 7th Feb</span>
+                                </span>
+                                <img src="{{base}}assets/img/arrow.svg" alt="">
+
+                            </a>
+                        </li>
                         <li class="list-group-item"><a href=""
                                 class="d-flex align-items-center justify-content-between">Chocolate Day - 9th Feb <img
                                     src="{{base}}assets/img/arrow.svg" alt=""></a></li>
