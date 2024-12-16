@@ -1443,9 +1443,6 @@ section#banner{ padding: 0;}
   }
   #favourite-month .list-group{
     margin: 0 0px;
-  }
-
-  #favourite-month .list-group{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     flex-wrap: wrap;
@@ -1470,10 +1467,15 @@ section#banner{ padding: 0;}
     }
     #favourite-month .list-group .list-group-item a{
         word-break: break-all;
+
+    }
+    #favourite-month .list-group .list-group-item a span{
+        width: 100%;
+        text-align: center;
     }
     #favourite-month .list-group .list-group-item img{
         display: none;
-    }      
+    }
 	.flex-wrap-sm
 	{
 	     flex-wrap: wrap;

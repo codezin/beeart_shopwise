@@ -15,6 +15,8 @@ class ProductTag extends BaseModel
         'name',
         'description',
         'status',
+        'date',
+        'col'
     ];
 
     protected $casts = [

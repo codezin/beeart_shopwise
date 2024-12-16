@@ -45,6 +45,13 @@ class ProductCollectionForm extends FormAbstract
                     'data-counter' => 400,
                 ],
             ])
+            ->add('date', 'datePicker', [
+                'label' => "Date",
+                'label_attr' => ['class' => 'control-label'],
+                'attr' => [
+                    'data-type' => "date_picker",
+                ],
+            ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],

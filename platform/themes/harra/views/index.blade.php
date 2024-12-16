@@ -171,41 +171,29 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="d-block d-md-none text-center">February </h3>
+                    @php
+                    $collections = get_product_collections();
+                    @endphp
+                    <h3 class="d-block d-md-none text-center">{{ date("F",strtotime( $collections->first()->date)) }} </h3>
                     <ul class="list-group">
+
+                        @if(!empty($collections))
+                        @foreach($collections as $col)
                         <li class="list-group-item">
                             <a href=""
                                 class="d-flex align-items-center justify-content-between">
                                 <span class="d-flex flex-wrap-sm">
-                                    Rose Day
-                                    <span class="d-block d-md-none">7th</span>
-                                    <span class="d-none d-md-block"> - 7th Feb</span>
+                                    {{$col->name}}&nbsp;
+                                    <span class="d-block d-md-none">{{date("jS",strtotime($col->date))}}</span>
+                                    <span class="d-none d-md-block">{{ date(" - jS M",strtotime($col->date)) }}</span>
                                 </span>
                                 <img src="{{base}}assets/img/arrow.svg" alt="">
 
                             </a>
                         </li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Chocolate Day - 9th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Teddy Day - 10th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Promise Day - 11th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Hug Day - 12th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Kiss Day - 13th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Propose Day - 8th Feb <img
-                                    src="{{base}}assets/img/arrow.svg" alt=""></a></li>
-                        <li class="list-group-item"><a href=""
-                                class="d-flex align-items-center justify-content-between">Valentines Day - 14th Feb
-                                <img src="{{base}}assets/img/arrow.svg" alt=""></a></li>
+                        @endforeach
+                        @endif
+
                     </ul>
                 </div>
                 <div class="col-md-6 mt-5 mt-lg-0">

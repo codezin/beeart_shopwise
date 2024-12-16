@@ -3,7 +3,7 @@ var ClassyLeaves = function (l) {
     this.__constructor = function (c) {
         var b = this,
             a = 0;
-        this.settings = $.extend({ leaves: 50, maxY: 100, speed: 3e3, infinite: !0, multiplyOnClick: !0, multiply: 1, folder: "assets/img/leaves/", numImages: 8 }, c);
+        this.settings = $.extend({ leaves: 50, maxY: 100, speed: 3e3, infinite: !0, multiplyOnClick: !0, multiply: 1, folder: "public/themes/harra/assets/img/leaves/", numImages: 8 }, c);
         for (c = 0; c < this.settings.leaves; c++)
             switch (((a = 1 + Math.floor(2 * Math.random())), a)) {
                 case 1:

@@ -32,6 +32,27 @@ class ProductTagForm extends FormAbstract
                     'data-counter' => 400,
                 ],
             ])
+            ->add('col', 'customSelect', [
+                'label' => trans('core/base::forms.col'),
+                'label_attr' => ['class' => 'control-label required'],
+                'attr' => [
+                    'placeholder' => trans('core/base::forms.name_placeholder'),
+                    'data-counter' => 120,
+                ],
+                'choices' => [
+                    '' => "NO",
+                    'col_1' => "Col 1",
+                    'col_2' => "Col 2",
+                    'col_3' => "Col 3",
+                ],
+            ])
+            ->add('date', 'datePicker', [
+                'label' => "Date",
+                'label_attr' => ['class' => 'control-label'],
+                'attr' => [
+                    'data-type' => "date_picker",
+                ],
+            ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],

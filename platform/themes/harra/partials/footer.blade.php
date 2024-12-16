@@ -129,7 +129,7 @@
             <div class="modal-body">
                 <div><img src="{{base}}assets/img/welcome.png" class="img-fluid" alt=""></div>
                 <h2 class="mt-4">Hi! I'm Ayaan Berry, I Love your smile.</h2>
-                <p class="mt-4"><a href="" id="btnokay">Okay!</a></p>
+                <p class="mt-4"><a href="javascript:;" id="btnokay">Okay!</a></p>
             </div>
         </div>
     </div>
@@ -150,7 +150,7 @@
     var tree = new ClassyLeaves({
         leaves: 8,
         infinite: false,
-        speed: 4000
+        speed: 8000
     });
 
     $(document).ready(function(){
@@ -175,9 +175,9 @@
                     else clearInterval(zag);
                 }, 200);
             }
-         });
-
-         $(document).on("click",".ClassyLeafFalling", function (e){
+         }).on("click","#btnokay",function(){
+            $('#popupVoucher').modal('hide');
+         }).on("click",".ClassyLeafFalling", function (e){
              $('#popupVoucher').modal('show');
          });
     });

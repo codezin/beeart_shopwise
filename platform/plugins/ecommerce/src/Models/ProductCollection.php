@@ -19,6 +19,7 @@ class ProductCollection extends BaseModel
         'image',
         'status',
         'is_featured',
+        'date'
     ];
 
     protected $casts = [
