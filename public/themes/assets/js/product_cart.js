@@ -930,7 +930,9 @@
 
         let min = parseFloat($(this).closest(".choose-quantity").find('input').attr("min"));
         let currentVal = parseInt($(this).closest(".choose-quantity").find('input').val(), 10);
-        if ( currentVal > min) {
+
+        if(isNaN(min)) min = 0;
+        if (currentVal > min) {
             $(this).closest(".choose-quantity").find('input').val(currentVal - 1).trigger("input");
         }
 

@@ -112,7 +112,7 @@ class Cart
     protected function createCartItem($id, $name, $qty, $price, array $options)
     {
         if (($productOptions = Arr::get($options, 'options', [])) && is_array($productOptions)) {
-            $price = $this->getPriceByOptions($price, $productOptions);
+            $price = $this->getPriceByOptions(floatVal($price), $productOptions);
         }
 
         if ($id instanceof Buyable) {
@@ -355,7 +355,7 @@ class Cart
         }
 
         return $content->reduce(function ($tax, CartItem $cartItem) {
-            return $tax + ($cartItem->qty * $cartItem->tax);
+            return $tax + ($cartItem->qty *  $cartItem->tax);
         }, 0);
     }
 
@@ -618,10 +618,20 @@ class Cart
         }
 
         $content = $this->getContent();
+        if(!empty(get_ecommerce_setting('minimum_order_vat')))
+        {
+            $subTotal = $content->reduce(function ($subTotal, CartItem $cartItem) {
+                return $subTotal + ($cartItem->qty * $cartItem->price);
+            }, 0);
+            return  ($subTotal / 100 * intval(get_ecommerce_setting('minimum_order_vat')));
+        }
+        else
+        {
+            return $content->reduce(function ($tax, CartItem $cartItem) {
+                return $tax + ($cartItem->qty * $cartItem->tax);
+            }, 0);
+        }
 
-        return $content->reduce(function ($tax, CartItem $cartItem) {
-            return $tax + ($cartItem->qty * $cartItem->tax);
-        }, 0);
     }
 
     /**

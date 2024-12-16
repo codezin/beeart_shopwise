@@ -49,6 +49,10 @@
                                 $rawTotal = Cart::instance('cart')->rawTotal();
                                 $orderAmount = max($rawTotal - $promotionDiscountAmount - $couponDiscountAmount, 0);
                                 $orderAmount += (float) $shippingAmount;
+                                if(!empty(get_ecommerce_setting('minimum_order_vat')))
+                                {
+                                    $orderAmount += ($orderAmount / 100 * intval(get_ecommerce_setting('minimum_order_vat')));
+                                }
                             @endphp
 
                             <div class="mt-2 p-2">

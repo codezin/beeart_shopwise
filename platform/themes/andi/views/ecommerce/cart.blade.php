@@ -167,7 +167,16 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label"><b>{{ __('Total') }} ({{ __('Shipping fees not included') }})</b></td>
-                                        <td class="cart_total_amount"><strong>{{ format_price(Cart::instance('cart')->rawTotal() - $promotionDiscountAmount - $couponDiscountAmount) }}</strong></td>
+                                        <td class="cart_total_amount">
+                                            @php
+                                            $total = Cart::instance('cart')->rawTotal();
+                                            if(!empty(get_ecommerce_setting('minimum_order_vat')))
+                                            {
+                                                $total +=   ($total / 100 * intval(get_ecommerce_setting('minimum_order_vat')));
+                                            }
+                                            @endphp
+                                            <strong>{{ format_price( $total + - $promotionDiscountAmount - $couponDiscountAmount) }}</strong>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

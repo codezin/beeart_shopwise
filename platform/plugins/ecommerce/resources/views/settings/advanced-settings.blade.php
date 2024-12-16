@@ -178,7 +178,13 @@
                         <input type="text" name="minimum_order_amount" class="next-input input-mask-number next-input--invisible" data-thousands-separator="{{ EcommerceHelper::getThousandSeparatorForInputMask() }}" data-decimal-separator="{{ EcommerceHelper::getDecimalSeparatorForInputMask() }}" value="{{ get_ecommerce_setting('minimum_order_amount', 0) }}">
                     </div>
                 </div>
-
+                <div class="form-group mb-3">
+                    <label class="text-title-field" for="minimum_order_vat">{{ trans('plugins/ecommerce::ecommerce.setting.minimum_order_vat', ['currency' => get_application_currency()->title]) }}</label>
+                    <div class="next-input--stylized">
+                        <span class="next-input-add-on next-input__add-on--before unit-item-price-label">{{ get_application_currency()->symbol }}</span>
+                        <input type="text" name="minimum_order_vat" class="next-input input-mask-number next-input--invisible" data-thousands-separator="{{ EcommerceHelper::getThousandSeparatorForInputMask() }}" data-decimal-separator="{{ EcommerceHelper::getDecimalSeparatorForInputMask() }}" value="{{ get_ecommerce_setting('minimum_order_vat', 0) }}">
+                    </div>
+                </div>
                 <x-core-setting::on-off
                     name="make_phone_field_at_the_checkout_optional"
                     :label="trans('plugins/ecommerce::ecommerce.setting.make_phone_field_at_the_checkout_optional')"
@@ -453,6 +459,15 @@
                         :value="EcommerceHelper::allowGuestCheckoutForDigitalProducts()"
                     />
                 </div>
+                <x-core-setting::checkbox
+                    name="product_image_enable"
+                    :label="trans('Enable Product Image Default')"
+                    :value="get_ecommerce_setting('product_image_enable')"
+                />
+                <x-core-setting::form-group>
+                    <label class="text-title-field" for="product_image">Product Image</label>
+                    {!! Form::mediaImage('product_image', get_ecommerce_setting('product_image'), ['allow_thumb' => false]) !!}
+                </x-core-setting::form-group>
             </x-core-setting::section>
 
             <div class="flexbox-annotated-section" style="border: none">
