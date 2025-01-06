@@ -206,6 +206,15 @@
                 {!! Form::error('address.zip_code', $errors) !!}
             </div>
         @endif
+        <div class="form-group mb-3">
+            <label><b>{{ __(' When you want your order delivered') }}</b></label>
+            <div class="form-input-wrapper">
+                <input id="billing_address_delivered_time" type="text" class="form-control" name="delivered_time" value="{{ old('delivered_time', Arr::get($sessionCheckoutData, 'delivered_time')) }}" autocomplete="offf">
+            </div>
+            {!! Form::error('billing_address.delivered_time', $errors) !!}
+        </div>
+
+
     </div>
 
     @if (! auth('customer')->check())

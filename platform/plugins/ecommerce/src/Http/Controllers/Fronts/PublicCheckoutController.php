@@ -272,7 +272,9 @@ class PublicCheckoutController
         if ($request->has('address.address_id')) {
             $sessionData['is_new_address'] = $request->input('address.address_id') == 'new';
         }
-
+        if ($request->has('delivered_time')) {
+            $sessionData['delivered_time'] = $request->input('delivered_time');
+        }
         if ($request->input('address', [])) {
             if (! isset($sessionData['created_account']) && $request->input('create_account') == 1) {
                 $validator = Validator::make($request->input(), [

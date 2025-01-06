@@ -1,4 +1,4 @@
-<li class="list-group-item">
+<li class="list-group-item" data-postcode="{{ @$shippingItem['postcode'] }}" style="{{ @$shippingItem['postcode'] !="0" ?'display:none':'' }}">
     {!! Form::radio(Arr::get($attributes, 'name'), $shippingKey, Arr::get($attributes, 'checked'), $attributes) !!}
     <label for="{{ Arr::get($attributes, 'id') }}">
         <div>
@@ -16,7 +16,7 @@
         </div>
         <div>
             @if ($description = Arr::get($shippingItem, 'description'))
-                <sm@all class="text-secondary">{!! BaseHelper::clean($description) !!}</small>
+                <small class="text-secondary">{!! BaseHelper::clean($description) !!}</small>
             @endif
             @if ($errorMessage = Arr::get($shippingItem, 'error_message'))
                 <small class="text-danger">{!! BaseHelper::clean($errorMessage) !!}</small>

@@ -252,14 +252,15 @@
                                                 @foreach ($shipping as $shippingKey => $shippingItems)
                                                     @foreach ($shippingItems as $shippingOption => $shippingItem)
                                                         @include('plugins/ecommerce::orders.partials.shipping-option', [
-                                                            'shippingItem' => @$shippingItem['id'],
+                                                            'shippingItem' => @$shippingItem,
+                                                            'shippingKey' =>  $shippingItem['id']
                                                             'attributes' => [
                                                                 'id' => 'shipping-method-' . $shippingKey . '-' . $shippingOption,
                                                                 'name' => 'shipping_method',
                                                                 'class' => 'magic-radio shipping_method_input',
-                                                                'checked' => old('shipping_method', $defaultShippingMethod) == $shippingKey && old('shipping_option', $defaultShippingOption) == $shippingKey,
+                                                                'checked' => old('shipping_method', $defaultShippingMethod) == $shippingKey && old('shipping_option', $defaultShippingOption) == $shippingOption,
                                                                 'disabled' => Arr::get($shippingItem, 'disabled'),
-                                                                'data-option' =>  $shippingKey,
+                                                                'data-option' =>  $shippingOption,
                                                             ],
                                                         ])
 
@@ -389,15 +390,15 @@
                                     data-processing-text="{{ __('Processing. Please wait...') }}"
                                     data-error-header="{{ __('Error') }}"
                                     type="submit">
-                                    {{ __('Checkout') }}
+                                    {{ __('Complete Checkout') }}
                                 </button>
                             @else
                                 <span class="btn payment-checkout-btn-step float-end disabled">
-                                    {{ __('Checkout') }}
+                                    {{ __('Complete Checkout') }}
                                 </span>
                             @endif
                             <span class="btn payment-checkout-btn-step float-end disabled">
-                                {{ __('Checkout') }}
+                                {{ __('Complete Checkout') }}
                             </span>
                         </span>
 {{--

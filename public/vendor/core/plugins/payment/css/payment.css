@@ -143,7 +143,10 @@
 .collapse.show, .payment_collapse_wrap.active {
     display: block
 }
-
+.list-group.list_payment_method
+{
+	border-bottom: 1px solid rgba(0, 0, 0, .125)
+}
 .list-group .list-group-item+.list-group-item {
     border-top-width: 1px
 }
@@ -155,7 +158,10 @@
 .list-group .list-group-item:not([style*="display: none"]):last-child {
     border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
-
+.list-group li:last-child{     
+	visibility: hidden;
+    height: 0;
+}
 @media screen and (max-width:768px) {
     .card-checkout .form-group .col-sm-9 {
         margin-bottom: 10px

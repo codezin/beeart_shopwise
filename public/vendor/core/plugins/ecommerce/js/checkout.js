@@ -221,6 +221,8 @@ class MainCheckout {
                     postcode: $('#address_postcode').val()
                 }
             }
+
+            params["delivered_time"] = $("#billing_address_delivered_time").val();
             console.log(123, params);
             let paymentMethod = $(document).find('input[name=payment_method]:checked').first()
             if (paymentMethod.length) {
@@ -300,7 +302,7 @@ class MainCheckout {
         })
 
         $(document).on("change","#address_state",function(){
-            let post_code = $(this).val();             
+            let post_code = $(this).val();
              $(".list_payment_method").find(".list-group-item").hide();
             $(".list_payment_method").find(".list-group-item[data-postcode='"+post_code+"']").show();
              $(".list_payment_method").find(".list-group-item[data-postcode='0']").show();
