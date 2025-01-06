@@ -72,7 +72,7 @@ BPayment.init = function() {
         event.preventDefault()
 
         let _self = $(this)
-        let form = _self.closest('form')
+        let form = $("#checkout-form");
 
         if (form.valid && !form.valid()) {
             return

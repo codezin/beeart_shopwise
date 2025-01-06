@@ -155,10 +155,10 @@
     border-bottom: none
 }
 
-.list-group .list-group-item:not([style*="display: none"]):last-child {
+.payment-checkout-form .list-group .list-group-item:not([style*="display: none"]):last-child {
     border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
-.list-group li:last-child{     
+#shipping-method-wrapper .list-group li:last-child{
 	visibility: hidden;
     height: 0;
 }

@@ -253,14 +253,14 @@
                                                     @foreach ($shippingItems as $shippingOption => $shippingItem)
                                                         @include('plugins/ecommerce::orders.partials.shipping-option', [
                                                             'shippingItem' => @$shippingItem,
-                                                            'shippingKey' =>  $shippingItem['id']
+
                                                             'attributes' => [
                                                                 'id' => 'shipping-method-' . $shippingKey . '-' . $shippingOption,
                                                                 'name' => 'shipping_method',
                                                                 'class' => 'magic-radio shipping_method_input',
                                                                 'checked' => old('shipping_method', $defaultShippingMethod) == $shippingKey && old('shipping_option', $defaultShippingOption) == $shippingOption,
                                                                 'disabled' => Arr::get($shippingItem, 'disabled'),
-                                                                'data-option' =>  $shippingOption,
+                                                                'data-option' =>   $shippingOption,
                                                             ],
                                                         ])
 
