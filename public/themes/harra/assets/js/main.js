@@ -155,11 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    if ($(window).width() < 800 ) {
         var service = $("#services");
         service.find(".service-container").removeClass("container").addClass("swiper");
         service.find("#services-grid").removeClass("row").addClass("swiper-wrapper");
         service.find(".service-item").removeClass("col-md-3").addClass("swiper-slide")
-        new Swiper('#services-grid', {
+        new Swiper('.service-container', {
             speed: 600,
             loop: true,
             autoplay: {
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     spaceBetween: 0
                 },
                 1200: {
-                    slidesPerView: 1,
+                    slidesPerView:1,
                 }
             }
         });
