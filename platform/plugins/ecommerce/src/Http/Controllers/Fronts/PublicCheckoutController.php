@@ -116,12 +116,10 @@ class PublicCheckoutController
 
         $paymentMethod = null;
 
-        if(in_array(request("payment_method"),['apple_paye','google_pay']))
-        {
-            $paymentMethod = $request->input('payment_method', session('selected_payment_method'));
-        }
-        else{
-            if (is_plugin_active('payment') ) {
+        if (in_array(request("payment_method"), ['apple_paye', 'google_pay'])) {
+            $paymentMethod = request("payment_method");
+        } else {
+            if (is_plugin_active('payment')) {
                 $paymentMethod = $request->input('payment_method', session('selected_payment_method') ?: PaymentHelper::defaultPaymentMethod());
             }
         }
@@ -161,33 +159,37 @@ class PublicCheckoutController
             $shippingAmount = 0;
 
             if ($isAvailableShipping) {
-                $origin = EcommerceHelper::getOriginAddress();
-                $shippingData = EcommerceHelper::getShippingData($products, $sessionCheckoutData, $origin, $orderTotal, $paymentMethod);
+                $shipment = \DB::table("ec_shipping_rules")->where("id", $defaultShippingOption)->first();
+                if (@$shipment->postcode > 0) {
+                    $shippingAmount = $shipment->price;
+                } else {
+                    $origin = EcommerceHelper::getOriginAddress();
+                    $shippingData = EcommerceHelper::getShippingData($products, $sessionCheckoutData, $origin, $orderTotal, $paymentMethod);
 
-                $shipping = $shippingFeeService->execute($shippingData);
+                    $shipping = $shippingFeeService->execute($shippingData);
 
-                foreach ($shipping as $key => &$shipItem) {
-                    if (get_shipping_setting('free_ship', $key)) {
-                        foreach ($shipItem as &$subShippingItem) {
-                            Arr::set($subShippingItem, 'price', 0);
+                    foreach ($shipping as $key => &$shipItem) {
+                        if (get_shipping_setting('free_ship', $key)) {
+                            foreach ($shipItem as &$subShippingItem) {
+                                Arr::set($subShippingItem, 'price', 0);
+                            }
                         }
                     }
-                }
 
-                if ($shipping) {
-                    if (! $defaultShippingMethod) {
-                        $defaultShippingMethod = old(
-                            'shipping_method',
-                            Arr::get($sessionCheckoutData, 'shipping_method', Arr::first(array_keys($shipping)))
-                        );
+                    if ($shipping) {
+                        if (! $defaultShippingMethod) {
+                            $defaultShippingMethod = old(
+                                'shipping_method',
+                                Arr::get($sessionCheckoutData, 'shipping_method', Arr::first(array_keys($shipping)))
+                            );
+                        }
+                        if (! $defaultShippingOption) {
+                            $defaultShippingOption = old('shipping_option', Arr::get($sessionCheckoutData, 'shipping_option', $defaultShippingOption));
+                        }
                     }
-                    if (! $defaultShippingOption) {
-                        $defaultShippingOption = old('shipping_option', Arr::get($sessionCheckoutData, 'shipping_option', $defaultShippingOption));
-                    }
+
+                    $shippingAmount = Arr::get($shipping, $defaultShippingMethod . '.' . $defaultShippingOption . '.price', 0);
                 }
-
-                $shippingAmount = Arr::get($shipping, $defaultShippingMethod . '.' . $defaultShippingOption . '.price', 0);
-
                 Arr::set($sessionCheckoutData, 'shipping_method', $defaultShippingMethod);
                 Arr::set($sessionCheckoutData, 'shipping_option', $defaultShippingOption);
                 Arr::set($sessionCheckoutData, 'shipping_amount', $shippingAmount);
@@ -219,6 +221,13 @@ class PublicCheckoutController
         }
 
         $isShowAddressForm = EcommerceHelper::isSaveOrderShippingAddress($products);
+        $origin = EcommerceHelper::getOriginAddress();
+
+        $list_shipping = \DB::table("ec_shipping_rules")->get();
+
+        foreach ($list_shipping as $arr) {
+            $shipping["shippingItems"][] = (array)$arr;
+        }
 
         $data = compact(
             'token',
@@ -274,6 +283,9 @@ class PublicCheckoutController
         }
         if ($request->has('delivered_time')) {
             $sessionData['delivered_time'] = $request->input('delivered_time');
+        }
+        if ($request->has('address_postcode')) {
+            $sessionData['address_postcode'] = $request->input('address_postcode');
         }
         if ($request->input('address', [])) {
             if (! isset($sessionData['created_account']) && $request->input('create_account') == 1) {
@@ -542,7 +554,6 @@ class PublicCheckoutController
         }
 
         $products = Cart::instance('cart')->products();
-
         if (EcommerceHelper::isEnabledSupportDigitalProducts() && ! EcommerceHelper::canCheckoutForDigitalProducts($products)) {
             return $response
                 ->setError()
@@ -556,7 +567,7 @@ class PublicCheckoutController
                 ->setMessage(__('Minimum order amount is :amount, you need to buy more :more to place an order!', [
                     'amount' => format_price(EcommerceHelper::getMinimumOrderAmount()),
                     'more' => format_price(EcommerceHelper::getMinimumOrderAmount() - Cart::instance('cart')
-                            ->rawSubTotal()),
+                        ->rawSubTotal()),
                 ]));
         }
 
@@ -611,18 +622,19 @@ class PublicCheckoutController
             );
 
             $shippingMethod = Arr::first($shippingMethodData);
-            if (! $shippingMethod) {
-                throw ValidationException::withMessages([
-                    'shipping_method' => trans('validation.exists', ['attribute' => trans('plugins/ecommerce::shipping.shipping_method')]),
-                ]);
-            }
+            // if (! $shippingMethod) {
+            //     throw ValidationException::withMessages([
+            //         'shipping_method' => trans('validation.exists', ['attribute' => trans('plugins/ecommerce::shipping.shipping_method')]),
+            //     ]);
+            // }
 
-            $shippingAmount = Arr::get($shippingMethod, 'price', 0);
-
+            // $shippingAmount = Arr::get($shippingMethod, 'price', 0);
+            $shippingAmount = Botble\Ecommerce\Models\ShippingRule::where("id", $request->input('shipping_option'))->first()->price;
             if (get_shipping_setting('free_ship', $shippingMethodInput)) {
                 $shippingAmount = 0;
             }
         }
+
 
         if (session()->has('applied_coupon_code')) {
             $discount = $applyCouponService->getCouponData(session('applied_coupon_code'), $sessionData);
@@ -644,9 +656,10 @@ class PublicCheckoutController
             'amount' => $orderAmount ?: 0,
             'currency' => $request->input('currency', strtoupper(get_application_currency()->title)),
             'user_id' => $currentUserId,
-            'shipping_method' => $isAvailableShipping ? $shippingMethodInput : '',
+            'shipping_method' => 'default', //$isAvailableShipping ? $shippingMethodInput : '',
             'shipping_option' => $isAvailableShipping ? $request->input('shipping_option') : null,
             'shipping_amount' => (float)$shippingAmount,
+            'delivered_time' => $request->input('delivered_time') ,
             'tax_amount' => Cart::instance('cart')->rawTax(),
             'sub_total' => Cart::instance('cart')->rawSubTotal(),
             'coupon_code' => session()->get('applied_coupon_code'),

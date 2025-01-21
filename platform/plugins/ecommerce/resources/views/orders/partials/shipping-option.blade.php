@@ -1,4 +1,4 @@
-<li class="list-group-item" data-postcode="{{ @$shippingItem['postcode'] }}" style="{{ @$shippingItem['postcode'] !="0" ?'display:none':'' }}">
+<li class="list-group-item" data-postcode="{{ @$shippingItem['postcode'] }}" style="{{ @$shippingItem['postcode'] ==  Arr::get($sessionCheckoutData, 'postcode') ||  @$shippingItem['postcode']=="0"  ?'':'display:none' }}">
     {!! Form::radio(Arr::get($attributes, 'name'), $shippingKey, Arr::get($attributes, 'checked'), $attributes) !!}
     <label for="{{ Arr::get($attributes, 'id') }}">
         <div>

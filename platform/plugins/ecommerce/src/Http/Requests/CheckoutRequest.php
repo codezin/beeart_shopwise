@@ -30,7 +30,8 @@ class CheckoutRequest extends Request
 
         $products = Cart::instance('cart')->products();
         if (EcommerceHelper::isAvailableShipping($products)) {
-            $rules['shipping_method'] = 'required|' . Rule::in(ShippingMethodEnum::values());
+            // $rules['shipping_method'] = 'required|' . Rule::in(ShippingMethodEnum::values());
+            // $rules['shipping_method'] = 'required|' . Rule::in(ShippingMethodEnum::values());
             if (auth('customer')->check()) {
                 $rules['address.address_id'] = 'required_without:address.name';
                 if (! $this->has('address.address_id') || $addressId === 'new') {
@@ -110,7 +111,7 @@ class CheckoutRequest extends Request
             'address.name' => __('Name'),
             'address.phone' => __('Phone'),
             'address.email' => __('Email'),
-            'address.state' => __('State'),
+            // 'address.state' => __('State'),
             'address.city' => __('City'),
             'address.country' => __('Country'),
             'address.address' => __('Address'),

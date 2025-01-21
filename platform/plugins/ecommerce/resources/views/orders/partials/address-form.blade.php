@@ -175,13 +175,22 @@
                     {!! Form::error('address.city', $errors) !!}
                 </div>
             </div>
-            <div class="col-sm-6 col-12">
+            {{-- <div class="col-sm-6 col-12">
                 <div class="form-group mb-3 @error('address.state') has-error @enderror">
                     <div class="form-input-wrapper">
-                        <input id="address_state" type="text" class="form-control" required name="address[state_name]" value="{{ old('address.state_name', Arr::get($sessionCheckoutData, 'state')) }}">
+                        <input id="address_state" type="text" class="form-control" required name="address[state_name]" value="{{ old('address.state_name', Arr::get($sessionCheckoutData, 'state_name')) }}">
                         <label for='address_state'>{{ __('Postcode') }}</label>
                     </div>
                     {!! Form::error('address.state', $errors) !!}
+                </div>
+            </div> --}}
+            <div class="col-sm-6 col-12">
+                <div class="form-group mb-3">
+                    <div class="form-input-wrapper">
+                        <input id="address_postcode" type="text" class="form-control"  name="address[postcode]" value="{{ old('address.postcode', Arr::get($sessionCheckoutData, 'postcode')) }}">
+                        <label for='address_state'>{{ __('Postcode') }}</label>
+                    </div>
+
                 </div>
             </div>
         </div>
