@@ -520,8 +520,8 @@ class EcommerceHelper
         $rules = [
             $prefix . 'name' => 'required|min:3|max:120',
             $prefix . 'email' => 'email|nullable|max:60|min:6',
-            $prefix . 'state' => 'required|max:120',
-            $prefix . 'city' => 'required|max:120',
+            // $prefix . 'state' => 'required|max:120',
+            // $prefix . 'city' => 'required|max:120',
             $prefix . 'address' => 'required|max:120',
             $prefix . 'phone' => $this->getPhoneValidationRule(),
         ];
