@@ -66,20 +66,19 @@
             <nav id="navbar" class="navbar">
                 @include(Theme::getThemeNamespace('partials.menus.header-menu'))
             </nav><!-- .navbar -->
-            <div class="d-flex justify-content-center align-items-center right-header">
-                <form id="frmsearch" action="">
+            <div class="d-flex justify-content-between  align-items-center right-header">
+                <label class="site_title">{{ theme_option('site_title') }}</label>
+                {{-- <form id="frmsearch" action="">
                     <div class="input-group">
                         <input type="text" class="form-control txtsearch" placeholder="Search" aria-label="Search" aria-describedby="btnsearch">
                         <button class="input-group-text btnsearch" id="btnsearch"><i class="fa-light fa-magnifying-glass"></i></button>
                     </div>
-                </form>
+                </form> --}}
                 @if (!auth('customer')->check())
                 <a href="{{ route('customer.login') }}" class="mx-2 mx-lg-5"><img src="{{base}}assets/img/user-account.svg" alt="" /></a>
                 @else
                 <a href="{{ route('customer.login') }}" class="mx-2 mx-lg-5"><img src="{{base}}assets/img/user-account.svg" alt="" /></a>
                 {{-- <a href="cart.html"><img src="{{base}}assets/img/shopping-bag.svg" alt="" /></a> --}}
-
-
                 @endif
                 @if (EcommerceHelper::isCartEnabled())
                 <div class="dropdown cart_dropdown">
