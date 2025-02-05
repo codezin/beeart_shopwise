@@ -11,6 +11,7 @@ class Discount extends BaseModel
 
     protected $fillable = [
         'title',
+        'description',
         'code',
         'start_date',
         'end_date',

@@ -121,6 +121,7 @@
 @endif
 
 <div id="popupVoucher" class="modal" tabindex="-1">
+    @php $discount = get_discount(); @endphp
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -128,7 +129,7 @@
             </div>
             <div class="modal-body">
                 <div><img src="{{base}}assets/img/welcome.png" class="img-fluid" alt=""></div>
-                <h2 class="mt-4">Hi! I'm Ayaan Berry, I Love your smile.</h2>
+                <h2 class="mt-4">{!! $discount->description !!}</h2>
                 <p class="mt-4"><a href="javascript:;" id="btnokay">Okay!</a></p>
             </div>
         </div>
@@ -150,7 +151,7 @@
     var tree = new ClassyLeaves({
         leaves: 8,
         infinite: false,
-        speed: 8000
+        speed: 300
     });
 
     $(document).ready(function(){

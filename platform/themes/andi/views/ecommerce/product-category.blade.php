@@ -67,7 +67,7 @@
 		                                ]) !!}
 		                            </div> --}}
                                     {!! render_product_options($product) !!}
-									@else     
+									@else
 									<div class="d-flex item-box-view">
 										{!! render_product_options($product) !!}
                                         @if( intval(@$product->front_sale_price_with_taxes)>0)
@@ -87,7 +87,8 @@
                                         <p class="btn-plus"></p>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a class="btn btn-fill-out staggered-animation animated slideInLeft add-to-cart-button" data-id="{{ $product->id }}" data-quantity="1" href="#" data-url="{{ route('public.cart.add-to-cart') }}">
+                                        <a class="btn btn-fill-out staggered-animation animated slideInLeft add-to-cart-button" data-id="{{ $product->id }}"
+                                            data-quantity="{{!empty($product->minium_order)?$product->minium_order:'1'}}" href="#" data-url="{{ route('public.cart.add-to-cart') }}">
                                             {{__("Add to cart")}}
                                         </a>
                                     </div>

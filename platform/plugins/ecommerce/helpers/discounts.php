@@ -119,3 +119,11 @@ if (! function_exists('get_discount_code')) {
         return $discount->code;
     }
 }
+
+if (! function_exists('get_discount')) {
+    function get_discount(): string
+    {
+        $discount = Discount::first();
+        return $discount;
+    }
+}

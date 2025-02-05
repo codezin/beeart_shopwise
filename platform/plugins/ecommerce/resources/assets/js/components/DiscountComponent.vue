@@ -17,6 +17,7 @@
                         <p class='type-subdued mt5 mb0' v-show='!is_promotion'>
                             {{ __('discount.customers_will_enter_this_coupon_code_when_they_checkout') }}.</p>
                     </div>
+
                 </div>
                 <div class='pd-all-20 border-top-color'>
                     <label class='title-product-main text-no-bold block-display'>{{

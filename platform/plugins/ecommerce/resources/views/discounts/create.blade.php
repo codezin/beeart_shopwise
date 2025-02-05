@@ -4,7 +4,12 @@
         <div id="main-discount">
             <div class="max-width-1200">
                 <discount-component currency="{{ get_application_currency()->symbol }}" date-format="{{ config('core.base.general.date_format.date') }}"></discount-component>
+				<div class='form-group pd-all-20 mb0' style="width:808px">  
+					<label class="title-product-main text-no-bold block-display">Desciption</label>
+	                <textarea class='form-control' name='description'></textarea>
+	            </div>
             </div>
+           
         </div>
     {!! Form::close() !!}
 @stop

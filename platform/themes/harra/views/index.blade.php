@@ -219,6 +219,7 @@
     </div>
     @endif
     <div id="banner-home-4">
+        <label class="tree-title">Tap the green bush to harvest the berries</label>
         <div id="tree-panel">
             <img id="tree" src="{{base}}assets/img/tree.gif" alt="">
         </div>
