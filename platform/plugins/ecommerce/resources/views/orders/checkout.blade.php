@@ -754,8 +754,9 @@
         format: 'Y-m-d H:i', // Định dạng ngày giờ
         minDate: formattedMinDate, // Ngày tối thiểu dựa trên giờ hiện tại
         maxDate: formattedMaxDate, // Ngày tối đa là 3 tháng sau từ ngày đặt hàng
-        minTime: '08:00', // Thời gian tối thiểu là 8:00
-        maxTime: '19:30', // Thời gian tối đa là 19:30
+        minTime: '10:00', // Thời gian tối thiểu là 8:00
+        maxTime: '20:00', // Thời gian tối đa là 19:30
+        pickTime: false,
         step: 30 // Bước nhảy của thời gian là 30 phút
         //  beforeShowDay: function(date) {
         // Vô hiệu hóa ngày Chủ Nhật

@@ -948,17 +948,26 @@
         event.preventDefault();
         event.stopPropagation();
         let currentVal = parseInt($(this).val(), 10);
-        if (currentVal > 0) {
-            $(this).val(currentVal);
-        }
+        let min = parseFloat($(this).attr("min"))??1;
+        if (currentVal > min) {
+            if (currentVal > 0) {
+                $(this).val(currentVal);
+            }
 
-        if (currentVal >= 0) {
-            if ($(this).closest('.form--shopping-cart').length) {
-                console.log($(this).val());
-                $('.btn-shopping-cart span').text($(this).val());
-                ajaxUpdateCart($(this).closest('.quantity'));
+            if (currentVal >= 0) {
+                if ($(this).closest('.form--shopping-cart').length) {
+                    console.log($(this).val());
+                    $('.btn-shopping-cart span').text($(this).val());
+                    ajaxUpdateCart($(this).closest('.quantity'));
+                }
             }
         }
+        else{
+            showError("The qty must be at least "+min+".");
+            $(this).val(min);
+        }
+
+
     });
 
     var menuTime;

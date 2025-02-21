@@ -90,7 +90,7 @@
                                     <span class="switch_lable">Quantity:</span>
                                     <div class="quantity">
                                         <input type="button" value="-" class="minus" />
-                                        <input type="text" name="qty" value="1" title="Qty" class="qty" size="4" />
+                                        <input type="text" name="qty" {{!empty($product->minium_order)?'value='.$product->minium_order.' min='.$product->minium_order:' value=1'}}   title="Qty" class="qty" size="4" />
                                         <input type="button" value="+" class="plus" />
                                     </div>
                                     <div class="float-right number-items-available" style="@if (!$product->isOutOfStock()) display: none; @endif line-height: 45px;">
