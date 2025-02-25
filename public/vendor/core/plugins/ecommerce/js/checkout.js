@@ -320,9 +320,9 @@ class MainCheckout {
             // Tính toán ngày tối thiểu dựa trên giờ hiện tại
             var minDate = new Date(orderDate);
             if (currentHour >= 14) {
-                minDate.setDate(minDate.getDate() + 3); // Sau 14h, cộng thêm 3 ngày
+                minDate.setDate(minDate.getDate() + 1); // Sau 14h, cộng thêm 3 ngày
             } else {
-                minDate.setDate(minDate.getDate() + 2); // Trước 14h, cộng thêm 2 ngày
+                minDate.setDate(minDate.getDate() + 0); // Trước 14h, cộng thêm 2 ngày
             }
 
             // Tính toán ngày tối đa là 3 tháng sau từ ngày đặt hàng
@@ -359,7 +359,7 @@ class MainCheckout {
                 minDate: formattedMinDate, // Ngày tối thiểu dựa trên giờ hiện tại
                 maxDate: formattedMaxDate, // Ngày tối đa là 3 tháng sau từ ngày đặt hàng
                 minTime: '08:00', // Thời gian tối thiểu là 8:00
-                maxTime: '19:30', // Thời gian tối đa là 19:30
+                maxTime: '20:00', // Thời gian tối đa là 19:30
                 step: 30 // Bước nhảy của thời gian là 30 phút
                 //  beforeShowDay: function(date) {
                 // Vô hiệu hóa ngày Chủ Nhật
@@ -370,7 +370,6 @@ class MainCheckout {
             });
         }
         loadDeliveredTime();
-        console.log(373);
         // initMap();
     }
 

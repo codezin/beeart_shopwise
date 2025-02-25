@@ -63,6 +63,7 @@ return [
         'all' => 'All',
         'verify_customer_email' => "Verify customer's email?",
         'minimum_order_amount' => 'Minimum order amount to place an order (:currency).',
+        'when_you_want_your_order_delivered' => 'When you want your order delivered',
         'enable_guest_checkout' => 'Enable guest checkout?',
         'show_number_of_products' => 'Show number of products in the product single',
         'payment_method_cod_minimum_amount' => 'Minimum order amount - :currency (Optional)',

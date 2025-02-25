@@ -185,6 +185,29 @@
                         <input type="text" name="minimum_order_vat" class="next-input input-mask-number next-input--invisible" data-thousands-separator="{{ EcommerceHelper::getThousandSeparatorForInputMask() }}" data-decimal-separator="{{ EcommerceHelper::getDecimalSeparatorForInputMask() }}" value="{{ get_ecommerce_setting('minimum_order_vat', 0) }}">
                     </div>
                 </div>
+
+                <div class="form-group mb-3">
+                    <label class="text-title-field" for="when_you_want_your_order_delivered">
+                        {{ trans('plugins/ecommerce::ecommerce.setting.when_you_want_your_order_delivered', ['currency' => get_application_currency()->title]) }}
+                    </label>
+                    <div class="d-flex">
+                        <label class="me-2">
+                            <input type="radio" name="order_delivered" value="1" {{ get_ecommerce_setting('order_delivered') == "1"?'checked':'' }} class="trigger-input-option" data-setting-container=".recently-viewed-products-settings-container">Yes
+                        </label>
+                        <label class="me-2">
+                            <input type="radio" name="order_delivered" value="0" {{ get_ecommerce_setting('order_delivered', "0") == "0"?'checked':'' }} class="trigger-input-option" data-setting-container=".recently-viewed-products-settings-container">No
+                        </label>
+
+                        <label class="d-flex">
+                            Start &nbsp;
+                            <input type="text" name="order_delivered_time_start" class="form-control" value="{{ get_ecommerce_setting('order_delivered_time_start') }}">
+                        </label>
+                        <label class="d-flex">
+                            End   &nbsp;
+                            <input type="text" name="order_delivered_time_end" class="form-control"   value="{{ get_ecommerce_setting('order_delivered_time_end') }}">
+                        </label>
+                    </div>
+                </div>
                 <x-core-setting::on-off
                     name="make_phone_field_at_the_checkout_optional"
                     :label="trans('plugins/ecommerce::ecommerce.setting.make_phone_field_at_the_checkout_optional')"
