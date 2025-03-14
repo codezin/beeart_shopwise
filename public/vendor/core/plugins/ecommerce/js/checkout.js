@@ -320,14 +320,14 @@ class MainCheckout {
             // Tính toán ngày tối thiểu dựa trên giờ hiện tại
             var minDate = new Date(orderDate);
             if (currentHour >= 14) {
-                minDate.setDate(minDate.getDate() + 1); // Sau 14h, cộng thêm 3 ngày
+                minDate.setDate(minDate.getDate() + 2); // Sau 14h, cộng thêm 3 ngày
             } else {
-                minDate.setDate(minDate.getDate() + 0); // Trước 14h, cộng thêm 2 ngày
+                minDate.setDate(minDate.getDate() + 1); // Trước 14h, cộng thêm 2 ngày
             }
 
-            // Tính toán ngày tối đa là 3 tháng sau từ ngày đặt hàng
+            // Tính toán ngày tối đa là 1 tháng sau từ ngày đặt hàng
             var maxDate = new Date(orderDate);
-            maxDate.setMonth(maxDate.getMonth() + 3);
+            maxDate.setMonth(maxDate.getMonth() + 1);
 
             // Hàm để kiểm tra nếu một ngày là Chủ Nhật
             function isSunday(date) {
@@ -358,16 +358,24 @@ class MainCheckout {
                 format: 'Y-m-d H:i', // Định dạng ngày giờ
                 minDate: formattedMinDate, // Ngày tối thiểu dựa trên giờ hiện tại
                 maxDate: formattedMaxDate, // Ngày tối đa là 3 tháng sau từ ngày đặt hàng
-                minTime: '08:00', // Thời gian tối thiểu là 8:00
-                maxTime: '20:00', // Thời gian tối đa là 19:30
-                step: 30 // Bước nhảy của thời gian là 30 phút
+                minTime: '10:00', // Thời gian tối thiểu là 8:00
+                maxTime: '20:15', // Thời gian tối đa là 19:30
+                step: 15, // Bước nhảy của thời gian là 30 phút
                 //  beforeShowDay: function(date) {
                 // Vô hiệu hóa ngày Chủ Nhật
                 //     var day = date.getDay();
                 //     return [(day != 0)];
                 // },
                 // value: formattedDefaultDate // Đặt ngày mặc định
+
+              	value: formattedMinDate + " 10:00"
             });
+
+            if($("select#address_city").length>0)
+                {
+                    $("select#address_city").select2();
+                }
+
         }
         loadDeliveredTime();
         // initMap();

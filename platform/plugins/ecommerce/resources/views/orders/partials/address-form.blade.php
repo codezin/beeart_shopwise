@@ -138,7 +138,7 @@
 
 
 
-{{--
+
             <div class="col-sm-6 col-12">
                 <div class="form-group  @error('address.city') has-error @enderror">
                     @if (EcommerceHelper::loadCountriesStatesCitiesFromPluginLocation())
@@ -162,9 +162,8 @@
                     @endif
                     {!! Form::error('address.city', $errors) !!}
                 </div>
-            </div> --}}
-
-            <div class="col-sm-6 col-12">
+            </div>
+            {{-- <div class="col-sm-6 col-12">
                 <div class="form-group  @error('address.city') has-error @enderror">
 
                     <div class="form-input-wrapper">
@@ -174,7 +173,7 @@
 
                     {!! Form::error('address.city', $errors) !!}
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="col-sm-6 col-12">
                 <div class="form-group mb-3 @error('address.state') has-error @enderror">
                     <div class="form-input-wrapper">
@@ -218,7 +217,7 @@
         <div class="form-group mb-3">
             <label><b>{{ __(' When you want your order delivered') }}</b></label>
             <div class="form-input-wrapper">
-                <input id="billing_address_delivered_time" type="text" class="form-control" name="delivered_time" value="{{ old('delivered_time', Arr::get($sessionCheckoutData, 'delivered_time')) }}" autocomplete="offf">
+                <input id="billing_address_delivered_time" type="text" class="form-control" readonly name="delivered_time" value="{{ old('delivered_time', Arr::get($sessionCheckoutData, 'delivered_time')) }}" autocomplete="offf">
             </div>
             {!! Form::error('billing_address.delivered_time', $errors) !!}
         </div>

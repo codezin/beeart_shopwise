@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Dotenv\Dotenv;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,11 +19,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if($_SERVER['HTTP_HOST'] == "jangseang.beeart.vn")
-        {
-            $this->switchDatabase();
+        // if($_SERVER['HTTP_HOST'] == "jangseang.beeart.vn")
+        // {
+        //     $this->switchDatabase();
+        // }
+        $domain = request()->getHost(); // Lấy domain từ request
+        $envFile = '.env'; // Mặc định là .env
+
+        if ($domain === 'andi.beeart.info') {
+            $envFile = '.env_andi';
         }
- 
+
+        $dotenv = Dotenv::createImmutable(base_path(), $envFile);
+        $dotenv->load();
     }
 
     public function switchDatabase(){

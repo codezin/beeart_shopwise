@@ -67,6 +67,7 @@ return [
         'enable_guest_checkout' => 'Enable guest checkout?',
         'show_number_of_products' => 'Show number of products in the product single',
         'payment_method_cod_minimum_amount' => 'Minimum order amount - :currency (Optional)',
+		'minimum_order_vat' => 'Minimum Order VAT/GST',
         'review' => [
             'max_file_size' => 'Review max file size (MB)',
             'max_file_number' => 'Review max file number',
@@ -107,8 +108,7 @@ return [
         'facebook_pixel_id' => 'Facebook Pixel ID',
         'facebook_pixel_helper' => 'Go to https://developers.facebook.com/docs/meta-pixel to create Facebook Pixel.',
         'enable_google_tag_manager' => 'Enable Google Tag Manager?',
-        'google_tag_manager_code' => 'Google Tag Mana
-        ger code',
+        'google_tag_manager_code' => 'Google Tag Manager code',
         'google_tag_manager_helper' => 'Go to https://ads.google.com/aw/conversions to create Google Ads Conversions.',
         'webhook' => 'Webhook',
         'webhook_description' => 'Send webhook when order placed.',

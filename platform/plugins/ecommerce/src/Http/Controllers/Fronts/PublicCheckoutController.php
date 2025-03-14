@@ -628,8 +628,9 @@ class PublicCheckoutController
             //     ]);
             // }
 
-            // $shippingAmount = Arr::get($shippingMethod, 'price', 0);
-            $shippingAmount = Botble\Ecommerce\Models\ShippingRule::where("id", $request->input('shipping_option'))->first()->price;
+            // $shippingAmount = Arr::get($shippingMethod, 'price', 0);  
+			$ship_price = \Botble\Ecommerce\Models\ShippingRule::where("id", $request->input('shipping_option'))->first();
+            $shippingAmount = intval(@$ship_price->price);
             if (get_shipping_setting('free_ship', $shippingMethodInput)) {
                 $shippingAmount = 0;
             }

@@ -944,6 +944,32 @@
             }
         }
     });
+    $(document).on('change', '.choose-quantity input', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        let currentVal = parseInt($(this).val(), 10);
+        let min = $(this).attr("min")!=undefined?parseFloat($(this).attr("min")):1;
+        if (currentVal > min) {
+            if (currentVal > 0) {
+                $(this).val(currentVal);
+            }
+
+            if (currentVal >= 0) {
+                if ($(this).closest('.form--shopping-cart').length) {
+                    console.log($(this).val());
+                    $('.btn-shopping-cart span').text($(this).val());
+                    ajaxUpdateCart($(this).closest('.quantity'));
+                }
+            }
+        }
+        else{
+            if($(this).attr("min")!=undefined)
+                showError("The qty must be at least "+min+".");
+            $(this).val(min);
+        }
+
+
+    });
     $(document).on('change', '.quantity .qty', function (event) {
         event.preventDefault();
         event.stopPropagation();
