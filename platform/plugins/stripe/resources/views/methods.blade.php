@@ -6,4 +6,9 @@
             @include('plugins/stripe::methods.template_2')
         @endif
     </li>
+    <li class="list-group-item">
+
+            @include('plugins/stripe::methods.apple_pay')
+
+    </li>
 @endif
