@@ -73,6 +73,23 @@ BPayment.init = function() {
 
         let _self = $(this)
         let form = $("#checkout-form");
+        const fields = ['address_postcode'];
+        $.each(fields, function(index, field){
+            let $input = $(`#${field}`);
+            let item = "This is required";
+            var attr = $input.attr('required');
+            if (typeof attr !== 'undefined' && attr !== false && $input.val()=="") {
+                if ($input.hasClass('form-control')) {
+
+                    if (!$input.hasClass('is-invalid')) {
+                        $input.after('<div class="invalid-feedback">' + item + '</div>')
+                    }
+                    $input.addClass('is-invalid')
+                    return
+                }
+            }
+
+        })
 
         if (form.valid && !form.valid()) {
             return

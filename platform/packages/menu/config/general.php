@@ -2,6 +2,7 @@
 
 return [
     'locations' => [
+        'header-menu-mobile' => "Menu Mobile",
         'header-top' => 'Header Top',
         'main-menu' => 'Main Navigation',
         'footer-menu'=> 'Footer menu',

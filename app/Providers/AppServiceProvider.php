@@ -19,19 +19,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // if($_SERVER['HTTP_HOST'] == "jangseang.beeart.vn")
-        // {
-        //     $this->switchDatabase();
-        // }
-        $domain = request()->getHost(); // Lấy domain từ request
-        $envFile = '.env'; // Mặc định là .env
+
+        $domain = request()->getHost();
+        $envFile = '.env';
 
         if ($domain === 'andi.beeart.info') {
             $envFile = '.env_andi';
+            //symlink(base_path("public/storage_andi"), base_path('public/storage'));
         }
 
         $dotenv = Dotenv::createImmutable(base_path(), $envFile);
         $dotenv->load();
+        // if($_SERVER['HTTP_HOST'] == "jangseang.beeart.vn")
+        // {
+        //     $this->switchDatabase();
+        // }
+
     }
 
     public function switchDatabase(){

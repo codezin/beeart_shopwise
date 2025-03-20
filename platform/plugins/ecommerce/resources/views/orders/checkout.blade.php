@@ -187,7 +187,7 @@
                                                     id="contact_company"
                                                     name="address[contact_company]"
                                                     type="tel"
-                                                    value="{{ old('address.phone', Arr::get($sessionCheckoutData, 'contact_company')) }}">
+                                                    value="{{ old('address.contact_company', Arr::get($sessionCheckoutData, 'contact_company')) }}">
                                                 <label for='contact_company'>{{ __('Contact company') }}</label>
                                             </div>
                                         </div>
@@ -397,9 +397,8 @@
                                     {{ __('Complete Checkout') }}
                                 </span>
                             @endif
-                            <span class="btn payment-checkout-btn-step float-end disabled">
-                                {{ __('Complete Checkout') }}
-                            </span>
+
+
                         </span>
 {{--
                         <span id="apple_pay_checkout"

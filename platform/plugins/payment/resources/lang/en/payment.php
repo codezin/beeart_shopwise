@@ -32,6 +32,7 @@ return [
     'transactions' => 'Transactions',
     'payment_methods_description' => 'Setup payment methods for website',
     'paypal_description' => 'Customer can buy product and pay directly via PayPal',
+    'afterpay_description' => 'The hottest deals. The best brands. Curated round-ups. There’s a reason the Afterpay app has over 700k 5-star reviews.',
     'use' => 'Use',
     'stripe_description' => 'Customer can buy product and pay directly using Visa, Credit card via Stripe',
     'edit' => 'Edit',

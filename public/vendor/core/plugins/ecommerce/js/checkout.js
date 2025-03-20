@@ -65,6 +65,7 @@ class MainCheckout {
         return splittedStr.length === 1 ? str : (splittedStr[0] + '[' + splittedStr.splice(1).join('][') + ']')
     }
     static handleValidationError(errors, $container) {
+
         if (!errors.length) {
             return
         }
@@ -126,8 +127,8 @@ class MainCheckout {
             $(shippingForm).load(url, () => {
                 $('.shipping-info-loading').hide()
                 enablePaymentMethodsForm();
-              //  $("#address_state").trigger("change");
-               //$("#address_postcode").trigger("change");
+                //$("#address_state").trigger("change");
+                //$("#address_postcode").trigger("change");
 
             })
         }
@@ -219,6 +220,12 @@ class MainCheckout {
             }
             else {
                 params["address"] = {
+                    email: $('#address_email').val(),
+                    phone: $('#address_phone').val(),
+                    contact_company: $('#contact_company').val(),
+                    name: $('#address_name').val(),
+                    address: $('#address_address').val(),
+                    postcode: $('#address_postcode').val(),
                     city: $('#address_city').val(),
                     state: $('#address_state').val(),
                     postcode: $('#address_postcode').val()
@@ -255,44 +262,74 @@ class MainCheckout {
             })
             return validated
         }
-        $(document).on('change', customerShippingAddressForm + ' .form-control', event => {
-            // setTimeout(function () {
-                let _self = $(event.currentTarget)
-                _self.closest('.form-group').find('.text-danger').remove()
-                let $form = $("#checkout-form");//_self.closest('form')
-                if (validatedFormFields() && $form.valid && $form.valid()) {
-                    $.ajax({
-                        type: 'POST',
-                        cache: false,
-                        url: $('#save-shipping-information-url').val(),
-                        data: new FormData($form[0]),
-                        contentType: false,
-                        processData: false,
-                        success: res => {
-                            if (!res.error) {
-                                disablePaymentMethodsForm()
-                                let $wrapper = $(shippingForm)
-                                if ($wrapper.length) {
-                                    $('.shipping-info-loading').show()
-                                    $wrapper.load(window.location.href + ' ' + shippingForm + ' > *', () => {
-                                        $('.shipping-info-loading').hide()
-                                        const isChecked = $wrapper.find('input[name=shipping_method]:checked')
-                                        if (!isChecked) {
-                                            $wrapper.find('input[name=shipping_method]:first-child').trigger('click') // need to check again
-                                        }
-                                        enablePaymentMethodsForm()
-                                    })
-                                }
-                                loadShippingFeeAtTheSecondTime(); // marketplace
-                            }
 
-                        },
-                        error: res => {
-                            MainCheckout.handleError(res, $form)
-                        },
-                    })
+        $(document).on('submit',"#checkout-form", function(e){
+            let validated = false
+            const fields = ['address_postcode'];
+            $.each(fields, function(index, field){
+                let $input = $(`#${field}`);
+                let item = "This is required";
+                var attr = $input.attr('required');
+                if (typeof attr !== 'undefined' && attr !== false && $input.val()=="") {
+                    if ($input.hasClass('form-control')) {
+                        if (!$input.hasClass('is-invalid')) {
+                            $input.after('<div class="invalid-feedback">' + item + '</div>')
+                        }
+                        $input.addClass('is-invalid')
+                        validated = true;
+                    }
                 }
-            // }, 1000)
+
+            })
+
+            //Handel check shipping_method
+            let shipping_method = $(document).find('input[name=shipping_method]:checked').first();
+            if (!shipping_method.length) {
+                validated = true
+                MainCheckout.showError("Shipping method Required")
+            }
+            if(validated)
+            {
+                e.preventDefault();
+            }
+        })
+
+        $(document).on('change', customerShippingAddressForm + ' .form-control', event => {
+            let _self = $(event.currentTarget)
+            _self.closest('.form-group').find('.text-danger').remove()
+            let $form = $("#checkout-form");//_self.closest('form')
+            if (validatedFormFields() && $form.valid && $form.valid()) {
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    url: $('#save-shipping-information-url').val(),
+                    data: new FormData($form[0]),
+                    contentType: false,
+                    processData: false,
+                    success: res => {
+                        if (!res.error) {
+                            disablePaymentMethodsForm()
+                            let $wrapper = $(shippingForm)
+                            if ($wrapper.length) {
+                                $('.shipping-info-loading').show()
+                                $wrapper.load(window.location.href + ' ' + shippingForm + ' > *', () => {
+                                    $('.shipping-info-loading').hide()
+                                    const isChecked = $wrapper.find('input[name=shipping_method]:checked')
+                                    if (!isChecked) {
+                                        $wrapper.find('input[name=shipping_method]:first-child').trigger('click') // need to check again
+                                    }
+                                    enablePaymentMethodsForm()
+                                })
+                            }
+                            loadShippingFeeAtTheSecondTime(); // marketplace
+                        }
+
+                    },
+                    error: res => {
+                        MainCheckout.handleError(res, $form)
+                    },
+                })
+            }
         })
         $(document).on('change', customerBillingAddressForm + ' #billing_address_same_as_shipping_address', event => {
             let _self = $(event.currentTarget)
@@ -311,10 +348,7 @@ class MainCheckout {
             $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']").show();
         })
         let loadDeliveredTime = () => {
-            // Ngày đặt hàng là ngày hôm nay
             var orderDate = new Date();
-
-            // Kiểm tra giờ hiện tại
             var currentHour = orderDate.getHours();
 
             // Tính toán ngày tối thiểu dựa trên giờ hiện tại
@@ -367,7 +401,6 @@ class MainCheckout {
                 //     return [(day != 0)];
                 // },
                 // value: formattedDefaultDate // Đặt ngày mặc định
-
               	value: formattedMinDate + " 10:00"
             });
 
@@ -378,16 +411,19 @@ class MainCheckout {
 
         }
         loadDeliveredTime();
+         $(document).on("mouseover", "#billing_address_delivered_time", function () {
+            if(!$(this).hasClass('load'))
+                loadDeliveredTime();
+         });
+
         // initMap();
     }
 
 
 }
 
-
 var map;
 var marker;
-
 function initMap() {
     const center = { lat: 50.064192, lng: -130.605469 };
     // Create a bounding box with sides ~10km away from the center point
