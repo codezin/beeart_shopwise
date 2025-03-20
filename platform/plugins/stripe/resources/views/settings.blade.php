@@ -54,6 +54,20 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="payment-preview">
+                            <label>Preview</label>
+                            <img class="preview_payment" data-val="template_1" src="{{ url('vendor/core/plugins/stripe/images/stripe_api_charge_template_1.png') }}" style="width: 100%;{{get_payment_setting('payment_template', STRIPE_PAYMENT_METHOD_NAME, 'stripe_api_charge')=="template_1"?'':'display:none;'}}" />
+
+                            <img class="preview_payment" data-val="template_2" src="{{ url('vendor/core/plugins/stripe/images/stripe_api_charge_template_2.png') }}" style="width: 100%;{{get_payment_setting('payment_template', STRIPE_PAYMENT_METHOD_NAME, 'stripe_api_charge')=="template_2"?'':'display:none;'}}" />
+                            <script>
+                                $(document).on("change","#payment_stripe_payment_template",function(){
+                                    payment = $(this).val();
+                                    $(".preview_payment").hide();
+                                    $(`.preview_payment[data-val='${payment}']`).show();
+
+                                })
+                            </script>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-6">

@@ -23,7 +23,7 @@
                                        type="text" id="stripe-cvc" data-stripe="cvc" autocomplete="off" style="max-width: 70px">
                             </div>
                             <div  class="d-flex mt-1" style="border:1px solid #ccc;    padding: 5px;border-radius: 8px;">
-                                <input placeholder="{{ trans('plugins/payment::payment.full_name') }}" class="form-control @if ($errors->has('name')) has-error @endif" id="stripe-name" type="text" data-stripe="name" autocomplete="off">
+                                <input placeholder="Card holder name" class="form-control @if ($errors->has('name')) has-error @endif" id="stripe-name" type="text" data-stripe="name" autocomplete="off">
                             </div>
                         </div>
                     </div>
