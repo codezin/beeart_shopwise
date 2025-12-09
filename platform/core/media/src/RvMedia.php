@@ -729,17 +729,18 @@ class RvMedia
     {
         return str_replace('/index.php', '', $this->getConfig('default_upload_url'));
     }
-
+    /* Region Handel Customer path upload */
     public function setUploadPathAndURLToPublic(): void
     {
         add_action('init', function () {
             config([
-                'filesystems.disks.public.root' => $this->getUploadPath(),
+
+                // 'filesystems.disks.public.root' => $this->getUploadPath(),
                 'filesystems.disks.public.url' => $this->getUploadURL(),
             ]);
         }, 124);
     }
-
+    /* Region End */
     public function getMimeType(string $url): ?string
     {
         if (! $url) {

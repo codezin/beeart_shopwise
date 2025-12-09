@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn - May Mặc CTH</title>
+    <link href="../../../../https@fonts.googleapis.com/css2@family=Archivo_3Awght_40400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../../https@unpkg.com/boxicons_402.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/thankyou.css">
+</head>
+
+<body>
+    <!-- Top Header -->
+    <div class="top-header bg-white border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown me-4">
+                        <button class="btn btn-sm p-0 text-muted d-flex align-items-center" type="button"
+                            aria-expanded="false">
+
+                            <img src="../../assets/images/vietnam-flag.png" id="currentFlag"
+                                style="width: 20px; height: 20px; object-fit: cover; border-radius: 3px;">
+                            <span id="currentLang" class="ms-1">VN</span>
+                        </button>
+
+                        <!-- <ul class="dropdown-menu" aria-labelledby="languageDropdown" style="min-width: 120px;">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center choose-lang" data-lang="VN"
+                                    data-flag="asset/images/vietnam-flag.png" href="#">
+                                    <img src="asset/images/vietnam-flag.png"
+                                        style="width: 22px; height: 22px; object-fit: cover; border-radius: 3px;">
+                                    <span class="ms-2">VN</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center choose-lang" data-lang="EN"
+                                    data-flag="asset/images/us-flag.png" href="#">
+                                    <img src="asset/images/us-flag.png"
+                                        style="width: 22px; height: 22px; object-fit: cover; border-radius: 3px;">
+                                    <span class="ms-2">EN</span>
+                                </a>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <span class="text-muted me-3"></span>
+                    <!-- <a href="tel:+0783157988" class="text-muted me-4">
+                        <i class="bx bx-phone-call me-1"></i> 0783 157 988
+                    </a> -->
+                    <span class="text-muted me-4">
+                        <i class="bx bx-phone-call me-1"></i> 0783 157 988
+                    </span>
+                </div>
+                <!-- <a href="#" class="text-muted">
+                    <i class="bx bx-git-compare me-1"></i> So sánh
+                </a> -->
+                <!--<span class="text-muted">-->
+                <!--    <i class="bx bx-git-compare me-1"></i> So sánh-->
+                <!--</span>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar bg-white py-2">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+
+                <a href="index.html">
+                    <img src="../../assets/images/logo.png" alt="Logo" height="60" class="me-32">
+                </a>
+
+                <div class="d-flex align-items-center bg-white border rounded px-2"
+                    style="height: 45px; position: relative;">
+
+                    <div class="search-dropdown-wrap h-100 d-flex align-items-center position-relative">
+                        <input type="hidden" id="categorySelectValue" value="">
+
+                        <div class="search-trigger d-flex align-items-center cursor-pointer pe-3 border-end"
+                            style="cursor: pointer; min-width: 130px; justify-content: space-between; height: 100%;">
+                            <span id="categoryDisplayText" class="fw-bold text-dark" style="font-size: 14px;">Tất
+                                cả</span>
+                            <i class='bx bx-chevron-down ms-2 text-muted'></i>
+                        </div>
+
+                        <ul class="search-dropdown-list" id="searchCategoryUl">
+                            <li><a href="javascript:void(0)" onclick="selectSearchCategory('', 'Tất cả')">Tất cả</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
+                        <input type="text" class="form-control border-0 shadow-none search-input" id="searchInput"
+                            placeholder="Tìm kiếm sản phẩm..." aria-label="Search" style="font-size: 14px;">
+                        <button class="btn border-0" type="button" id="btnSearch">
+                            <i class='bx bx-search fs-5 text-primary'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <a href="tel_3A+0783157988" class="btn btn-outline-primary px-4">
+                    <i class="bx bx-phone-call me-1"></i> 0783 157 988
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto align-items-center">
+                    <!-- Custom dropdown danh mục -->
+                    <li class="nav-item dropdown-custom me-4">
+                        <a href="#" class="nav-link text-warning d-flex align-items-center">
+                            <i class="bx bx-menu me-2"></i> TẤT CẢ DANH MỤC
+                        </a>
+                        <ul class="dropdown-menu-custom">
+                            <li><a href="#">Áo đồng phục</a></li>
+                            <li><a href="#">Áo thể thao</a></li>
+                            <li><a href="#">Áo + Logo áo</a></li>
+                            <li><a href="#">BST + Logo áo</a></li>
+                            <li><a href="#">Đồng phục công giáo</a></li>
+                            <li><a href="#">Đồng phục công sở</a></li>
+                            <li><a href="#">Đồng phục học tập</a></li>
+                            <li><a href="#">Đồng phục mùa non</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Các mục menu khác -->
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">Về chúng tôi</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="guide.html">Hướng dẫn</a></li>
+                    <li class="nav-item dropdown-custom">
+                        <a href="news.html" class="nav-link text-warning d-flex align-items-center">
+                            Tin tức <i class='bx bx-chevron-down' style="font-size: 20px;"></i>
+                        </a>
+                        <ul class="dropdown-menu-custom" id="newsCategoryDropdown">
+                            <li class="text-center py-3"><small class="text-muted">Đang tải danh mục...</small></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                </ul>
+
+                <!-- Icon bên phải -->
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item" style="margin-right: 90px;">
+                        <a class="nav-link" href="cart.html"
+                            style="display: flex; align-items: center; justify-content: center;">
+
+                            <div
+                                style="position: relative; width: 24px !important; height: 24px !important; line-height: 24px;">
+
+                                <i class="bx bx-cart" style="font-size: 24px; position: absolute; top: 0; left: 0;"></i>
+
+                                <span id="cartCount" class="badge rounded-pill bg-danger"
+                                    style="position: absolute; top: -6px; right: -8px; font-size: 9px; padding: 2px 4px; border: 2px solid #fff; display: none;">
+                                    0
+                                    <span class="visually-hidden">sản phẩm</span>
+                                </span>
+                            </div>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Thank You Section -->
+    <section class="thankyou-section py-5">
+        <div class="container">
+            <div class="thankyou-card text-center p-4 p-md-5">
+                <div class="check-icon mb-4">
+                    <i class='bx bxs-check-circle'></i>
+                </div>
+                <h1 class="thankyou-title mb-3">CẢM ƠN BẠN ĐÃ ĐẶT HÀNG!</h1>
+                <p class="thankyou-text mb-4 lead">
+                    Đơn hàng của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ xác nhận trong vòng <strong>15
+                        phút</strong>.
+                </p>
+
+                <div class="order-info-card p-4 mb-4">
+                    <h5 class="mb-4 text-primary fw-bold">Thông tin đơn hàng</h5>
+                    <div class="row text-start g-3">
+                        <div class="col-md-6">
+                            <strong>Mã đơn hàng:</strong>
+                            <span id="orderCode" class="">Đang tải...</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Thời gian đặt:</strong>
+                            <span id="orderTime">Đang tải...</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Phương thức thanh toán:</strong>
+                            <span id="paymentMethod">Đang tải...</span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Tổng tiền:</strong>
+                            <span id="totalAmount" class="text-primary fw-bold fs-4">Đang tải...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="thankyou-actions d-flex flex-column flex-md-row gap-3 justify-content-center mt-4">
+                    <a href="index.html" class="btn btn-outline-primary px-5 py-3">
+                        <i class='bx bx-home me-2'></i> VỀ TRANG CHỦ
+                    </a>
+                    <a href="products.html" class="btn btn-warning px-5 py-3 text-dark fw-bold">
+                        <i class='bx bx-shopping-bag me-2'></i> TIẾP TỤC MUA SẮM
+                    </a>
+                </div>
+
+                <div class="mt-5">
+                    <small class="text-muted">
+                        <i class='bx bx-support'></i> Cần hỗ trợ? Gọi ngay:
+                        <a href="tel_3A0783157988" class="text-primary fw-bold">0783 157 988</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-primary text-white py-5">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <a href="index.html"><img src="../../assets/images/logo2.png" alt="Logo"
+                            class="footer-logo mb-3"></a>
+                    <p class="footer-slogan">MAY MẶC CTH lắng nghe bạn!</p>
+                    <p class="footer-desc">
+                        Chúng tôi luôn trân trọng mọi ý kiến đóng góp của khách hàng,
+                        không ngừng cải thiện để mang đến sản phẩm và dịch vụ tốt nhất.
+                    </p>
+                    <a href="contact.html#feedbackForm" class="btn btn-warning footer-btn">
+                        ĐÓNG GÓP Ý KIẾN →
+                    </a>
+                    <p class="footer-tax mt-3"><strong>MÃ SỐ THUẾ:</strong> 0202167805</p>
+                </div>
+
+                <!-- Về chúng tôi -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <p class="footer-title">VỀ CHÚNG TÔI</p>
+                    <ul class="footer-links">
+                        <li><a href="about-us.html">Giới thiệu MAY MẶC CTH</a></li>
+                        <li><a href="guide.html">Hướng dẫn mua hàng</a></li>
+                        <li><a href="guide.html">Hướng dẫn chọn size</a></li>
+                        <li><a href="guide.html">Chính sách đổi trả</a></li>
+                        <li><a href="guide.html">Chính sách giao hàng</a></li>
+                        <li><a href="guide.html">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sản phẩm -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <p class="footer-title">SẢN PHẨM</p>
+                    <ul class="footer-links" id="footerProductsCategories">
+                        <li class="text-muted small">Đang tải...</li>
+                    </ul>
+                </div>
+
+                <!-- Tin tức -->
+                <div class="col-6 col-md-6 col-lg-2">
+                    <p class="footer-title">TIN TỨC</p>
+                    <ul class="footer-links" id="footerNewsCategories">
+                        <li class="text-muted small">Đang tải...</li>
+                    </ul>
+                </div>
+
+                <!-- Thông tin liên hệ + Nút liên hệ -->
+                <div class="col-12 col-md-12 col-lg-3">
+                    <p class="footer-title">THÔNG TIN LIÊN HỆ</p>
+                    <p>📍 73/202 Miếu Hai Xã, Lê Chân, Hải Phòng, Việt Nam</p>
+                    <p>🌐 <a href="../../../../https@www.indohaiphong.com/default.htm"
+                            class="text-white text-decoration-none">www.indohaiphong.com</a></p>
+                    <p>☎ 078315798 - 083435093 - 083919999</p>
+
+                    <div class="footer-contact-btns mt-3">
+                        <a href="../../../../https@zalo.me/078315798" class="contact-card">
+                            <div class="contact-icon"><img src="../../assets/images/zalo.png" alt="Zalo"></div>
+                            <div class="contact-text"><span class="contact-label">TƯ VẤN QUA</span><span
+                                    class="contact-value">ZALO</span></div>
+                        </a>
+                        <a href="tel_3A+078315798" class="contact-card">
+                            <div class="contact-icon"><img src="../../assets/images/hotline.png" alt="Hotline"></div>
+                            <div class="contact-text"><span class="contact-label">HOTLINE</span><span
+                                    class="contact-value">0783 157 98</span></div>
+                        </a>
+                        <a href="#" class="contact-card">
+                            <div class="contact-icon"><img src="../../assets/images/hotline.png" alt="Mẫu vải"></div>
+                            <div class="contact-text"><span class="contact-label">0783159798</span><span
+                                    class="contact-value">TẠI CỬA HÀNG</span></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <!-- Thanh toán -->
+            <div class="row">
+                <div class="col text-center">
+                    <p class="mb-2 footer-title">PHƯƠNG THỨC THANH TOÁN</p>
+                    <div class="d-flex justify-content-center align-items-center gap-3">
+                        <img src="../../assets/images/cash.png" height="30" alt="Cash">
+                        <img src="../../assets/images/mastercard.png" height="30" alt="Mastercard">
+                        <img src="../../assets/images/visa.png" height="30" alt="Visa">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <p class="text-center mt-4 small mb-0">&copy; 2025 MAY MẶC CTH. All rights reserved.</p> -->
+        </div>
+    </footer>
+
+    <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedOrder = localStorage.getItem('currentOrder');
+            
+            if (savedOrder) {
+                const order = JSON.parse(savedOrder);
+                
+                document.getElementById('orderCode').textContent = order.order_code || 'N/A';
+                document.getElementById('orderTime').textContent = order.time || new Date().toLocaleString('vi-VN');
+                document.getElementById('paymentMethod').textContent = order.payment || 'Thanh toán khi nhận hàng (COD)';
+                document.getElementById('totalAmount').textContent = order.total || '0đ';
+            } else {
+                document.getElementById('orderCode').textContent = 'Không tìm thấy đơn hàng';
+                document.getElementById('orderTime').textContent = new Date().toLocaleString('vi-VN');
+                document.getElementById('paymentMethod').textContent = 'N/A';
+                document.getElementById('totalAmount').textContent = '0đ';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', async () => {
+            const dropdownMenu = document.querySelector('.dropdown-menu-custom');
+
+            if (!dropdownMenu) return;
+
+            dropdownMenu.innerHTML = '';
+            
+            try {
+                const response = await fetch('../../../api/category/get_category.php@t=' + Date.now());
+
+                if (!response.ok) {
+                    throw new Error('Lỗi mạng: ' + response.status);
+                }
+
+                const result = await response.json();
+
+                if (!result.success || !Array.isArray(result.data) || result.data.length === 0) {
+                    dropdownMenu.innerHTML = '<li><a href="#" class="dropdown-item text-muted">Chưa có danh mục</a></li>';
+                    return;
+                }
+
+                const activeCategories = result.data.filter(cat =>
+                    cat.is_active === undefined || cat.is_active == 1 || cat.is_active === '1'
+                );
+
+                if (activeCategories.length === 0) {
+                    dropdownMenu.innerHTML = '<li><a href="#" class="dropdown-item text-muted">Không có danh mục nào hiển thị</a></li>';
+                    return;
+                }
+
+                activeCategories.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+
+                activeCategories.forEach(category => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+
+                    a.href = `../../../public/views/client/products.html?category=${category.category_id}`;
+                    a.textContent = category.name.trim();
+                    a.className = 'dropdown-item';
+
+                    li.appendChild(a);
+                    dropdownMenu.appendChild(li);
+                });
+            } catch (err) {
+                console.error('Lỗi load danh mục:', err);
+                dropdownMenu.innerHTML = '<li><a href="#" class="dropdown-item text-danger">Lỗi tải danh mục</a></li>';
+            }
+            
+            await loadSearchCategories();
+
+            const searchWrap = document.querySelector('.search-dropdown-wrap');
+            const searchTrigger = document.querySelector('.search-trigger');
+            const searchList = document.getElementById('searchCategoryUl');
+
+            if (searchWrap && searchTrigger && searchList) {
+                searchTrigger.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    searchList.classList.toggle('show');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!searchWrap.contains(e.target)) {
+                        searchList.classList.remove('show');
+                    }
+                });
+            }
+            const btnSearch = document.getElementById('btnSearch');
+            const searchInput = document.getElementById('searchInput');
+
+            const performSearch = () => {
+                const keyword = searchInput.value.trim();
+                const categoryId = document.getElementById('categorySelectValue').value;
+
+                let url = 'products.html';
+                const params = new URLSearchParams();
+
+                if (keyword) params.append('q', keyword);
+                if (categoryId) params.append('category', categoryId);
+
+                if (params.toString()) url += '?' + params.toString();
+                window.location.href = url;
+            };
+
+            if (btnSearch) btnSearch.addEventListener('click', performSearch);
+            if (searchInput) searchInput.addEventListener('keypress', e => {
+                if (e.key === 'Enter') performSearch();
+            });
+            updateCartCount();
+        });
+        function selectSearchCategory(id, name) {
+            document.getElementById('categoryDisplayText').innerText = name;
+            document.getElementById('categorySelectValue').value = id;
+
+            const searchList = document.getElementById('searchCategoryUl');
+            if (searchList) searchList.classList.remove('show');
+        }
+        async function loadSearchCategories() {
+            const ulList = document.getElementById('searchCategoryUl');
+            if (!ulList) return;
+            ulList.innerHTML = '<li><a href="javascript:void(0)" onclick="selectSearchCategory(\'\', \'Tất cả\')">Tất cả</a></li>';
+
+            try {
+                const response = await fetch('../../../api/category/get_category.php@t=' + Date.now());
+
+                if (!response.ok) throw new Error('Lỗi kết nối API');
+
+                const result = await response.json();
+
+                if (result.success && Array.isArray(result.data)) {
+                    let categories = result.data;
+                    categories.sort((a, b) => a.name.localeCompare(b.name));
+
+                    categories.forEach(category => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = "javascript:void(0)";
+                        const catName = category.name.trim();
+                        a.textContent = catName;
+                        a.onclick = () => selectSearchCategory(category.category_id, catName);
+
+                        li.appendChild(a);
+                        ulList.appendChild(li);
+                    });
+                } else {
+                    console.warn("API trả về thành công nhưng không có dữ liệu danh mục nào.");
+                }
+            } catch (err) {
+                console.error('Lỗi load danh mục:', err);
+            }
+        }
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const totalItems = cart.length;
+
+            const el = document.getElementById('cartCount');
+            if (el) {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'block' : 'none';
+            }
+        }
+        async function loadFooterNewsCategories() {
+            const container = document.getElementById('footerNewsCategories');
+            if (!container) return;
+
+            try {
+                const res = await fetch('../../../api/news/get_news_categories.php');
+                const result = await res.json();
+
+                // Xóa nội dung cũ
+                container.innerHTML = '';
+
+                if (result.success && result.data && result.data.length > 0) {
+                    result.data.forEach(cat => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+
+                        a.href = `/public/views/client/news.html?id=${cat.id}`;
+                        a.textContent = cat.name;
+                        li.appendChild(a);
+                        container.appendChild(li);
+                    });
+                } else {
+                    container.innerHTML = '<li class="text-muted small">Chưa có danh mục</li>';
+                }
+            } catch (err) {
+                console.error('Lỗi load danh mục footer:', err);
+                container.innerHTML = '<li class="text-danger small">Lỗi tải danh mục</li>';
+            }
+        }
+        async function loadFooterProductsCategories() {
+            const container = document.getElementById('footerProductsCategories');
+            if (!container) return;
+
+            try {
+                const res = await fetch('../../../api/category/get_category.php@t=' + Date.now());
+                const result = await res.json();
+
+                // Xóa nội dung cũ
+                container.innerHTML = '';
+
+                if (result.success && Array.isArray(result.data) && result.data.length > 0) {
+                    
+                    let categories = result.data;
+                    categories.sort((a, b) => a.name.localeCompare(b.name));
+
+                    categories.forEach(cat => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = `/public/views/client/products.html?category=${cat.category_id}`;
+                        a.textContent = cat.name.trim();
+                        li.appendChild(a);
+                        container.appendChild(li);
+                    });
+                } else {
+                    container.innerHTML = '<li class="text-muted small">Chưa có danh mục</li>';
+                }
+            } catch (err) {
+                console.error('Lỗi load danh mục footer:', err);
+                container.innerHTML = '<li class="text-danger small">Lỗi tải danh mục</li>';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFooterNewsCategories();
+            loadNewsCategoriesDropdown();
+            loadFooterProductsCategories();
+        });
+        async function loadNewsCategoriesDropdown() {
+            const dropdown = document.getElementById('newsCategoryDropdown');
+            if (!dropdown) return;
+
+            try {
+                const res = await fetch('../../../api/news/get_news_categories.php');
+                const result = await res.json();
+
+                // Xóa loading
+                dropdown.innerHTML = '';
+
+                if (result.success && result.data && result.data.length > 0) {
+                    result.data.forEach(cat => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+
+                        a.href = `/public/views/client/news.html?id=${cat.id}`;
+                        a.textContent = cat.name;
+                        li.appendChild(a);
+                        dropdown.appendChild(li);
+                    });
+                } else {
+                    dropdown.innerHTML = '<li class="text-center py-3"><small class="text-muted">Chưa có danh mục tin tức</small></li>';
+                }
+            } catch (err) {
+                console.error('Lỗi load danh mục tin tức:', err);
+                dropdown.innerHTML = '<li class="text-center py-3 text-danger"><small>Lỗi tải dữ liệu</small></li>';
+            }
+        }
+    </script>
+</body>
+
+</html>
