@@ -46,7 +46,7 @@
                         </div>
                         <div class="info">
                             <h4 class="text-truncate"><a href="{{ $product->url }}">{{$product->name}}</a></h4>
-                            <div><a class="btnaddcart  add-to-cart-button" href="#">{{__("Take me home")}}</a></div>
+                            <div><a class="btnaddcart btn-fill-out  add-to-cart-button" href="#" data-id="{{ $product->id }}" data-url="{{ route('public.cart.add-to-cart') }}">{{__("Take me home")}}</a></div>
                         </div>
                     </div>
                 </div>

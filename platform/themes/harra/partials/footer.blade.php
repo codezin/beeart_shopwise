@@ -129,7 +129,7 @@
             </div>
             <div class="modal-body">
                 <div><img src="{{base}}assets/img/welcome.png" class="img-fluid" alt=""></div>
-                <h2 class="mt-4">{!! $discount->description !!}</h2>
+                <h2 class="mt-4" id="discount_desc">{!! $discount->description !!}</h2>
                 <p class="mt-4"><a href="javascript:;" id="btnokay">Okay!</a></p>
             </div>
         </div>
@@ -178,11 +178,41 @@
             }
          }).on("click","#btnokay",function(){
             $('#popupVoucher').modal('hide');
+            $.ajax({
+                url: "{{route('public.ajax.discount.new')}}",
+                context: document.body
+            }).done(function(res) {
+                $("#discount_desc").html(res.data);
+            });
          }).on("click",".ClassyLeafFalling", function (e){
              $('#popupVoucher').modal('show');
          });
     });
+
+
 </script>
+<!-- END FOOTER -->
+@if (is_plugin_active('ecommerce') && EcommerceHelper::isCartEnabled())
+<div id="remove-item-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ __('Warning') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{ __('Are you sure you want to remove this product from cart?') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-fill-out" data-modal="close" data-dismiss="modal">{{ __('Cancel') }}</button>
+                <button type="button" class="btn btn-fill-line confirm-remove-item-cart">{{ __('Yes, remove it!') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
   <!-- Template Main JS File -->
 <script src="{{base}}assets/js/main.js"></script>
 

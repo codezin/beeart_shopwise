@@ -1,0 +1,96 @@
+.coaching{
+    width: 850px; margin: 0 auto;
+}
+
+.coaching .progresses{
+    display: flex;
+    align-items: center;
+}
+.coaching .line{
+    width: 120px;
+    height: 6px;
+    background: #EBEBEB;
+    color: #333;
+}
+.coaching .steps{
+    display: flex;
+    background-color: #EBEBEB;
+    color: #333;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
+.coaching .steps.active {
+    border: 3px solid #FFC986;
+    background: #FFE8CB;
+}
+
+.coaching .box-level{
+    padding: 24px;
+    border-radius: 8px;
+    background: #F8F8F8;
+    cursor: pointer;
+    color: #333;
+}
+
+.coaching .box-level.active{
+    background: #F4F6DA;
+}
+.coaching .box-level i{
+    font-size: 30px;
+}
+.coaching .box-level h3{
+    margin-top: 15px;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+.coaching .box-level p{
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+
+#calendar{ }
+
+#calendar .tab-content > .tab-pane{
+    background: #F4F6DA;
+    padding: 24px;
+    text-align: center;
+}
+
+#calendar .tab-content > .tab-pane .btn-hour{
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#calendar .tab-content > .tab-pane .bg-dark{
+    color: #fff;
+}
+#calendar .nav-tabs .nav-link{
+    background: #F8F8F8;
+    color: #333;
+    border-color: #EBEBEB;
+}
+
+#calendar .nav-tabs .nav-link.active{
+    background: #F4F6DA;
+    border: none;
+}
+
+#frmbooking{ width: 50%;}
+
+@media (max-width: 575px) {
+    .coaching{
+        width: 100%;
+    }
+    #calendar .btn-day{
+        padding: 8px 5px;
+        font-size: 15px;
+    }
+    #frmbooking{ width:80%;}
+}

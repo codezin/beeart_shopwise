@@ -3,8 +3,8 @@ use Theme\Harra\Http\Controllers\MainController;
 Route::group(['controller' => MainController::class, 'middleware' => ['web', 'core']], function () {
     Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
         Route::group(['prefix' => 'ajax', 'as' => 'public.ajax.'], function () {
-            Route::get('products', 'ajaxGetProducts')
-                ->name('products');
+            Route::get('products', 'ajaxGetProducts') ->name('products');
+            Route::get('discount', 'ajaxGetDiscount') ->name('discount.new');
             Route::get('featured-product-categories', 'getFeaturedProductCategories')
                 ->name('featured-product-categories');
             Route::get('trending-products', 'ajaxGetTrendingProducts')

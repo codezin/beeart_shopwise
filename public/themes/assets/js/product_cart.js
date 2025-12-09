@@ -307,6 +307,10 @@
             $('.confirm-remove-item-cart').data('url', $(this).prop('href'));
             $('#remove-item-modal').modal('show');
         });
+        $(document).on('click', 'button[data-modal="close"]', function (event) {
+            event.preventDefault();
+            $(this).closest('.modal').modal("hide");
+        });
 
         $(document).on('click', 'button.close', function (event) {
                 $(this).closest(".modal").modal("hide");
@@ -885,6 +889,7 @@
         event.stopPropagation();
         let currentVal = parseInt($(this).next('.qty').val(), 10);
         let min = parseFloat($(this).next('.qty').attr("min"))??1;
+        if(isNaN(min)) min = 1;
         if (currentVal > min) {
             $(this).next('.qty').val(currentVal - 1);
             if ($(this).closest('.form--shopping-cart').length) {

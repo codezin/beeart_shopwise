@@ -375,4 +375,15 @@ class MainController extends PublicController
             ->setData(Theme::partial('ajax-search-results', compact('products', 'queries')))
             ->setMessage($message);
     }
+
+    public function ajaxGetDiscount(Request $request, BaseHttpResponse $response)
+    {
+        if (! $request->ajax() || ! $request->wantsJson()) {
+            return $response->setNextUrl(route('public.index'));
+        }
+
+        $data = get_discount();
+
+        return $response->setData($data);
+    }
 }

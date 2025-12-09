@@ -6,17 +6,18 @@
     {{-- <div id="banner-home-1"></div> --}}
     <div class="banner-text">
         <div class="content">
+            @php
+                $block = get_blocks_by_slug("gift-shop");
+            @endphp
             <p class="content__container__text">
-                A Gift Shop that Brings You
+                {{ $block->name }}
             </p>
             <div class="content__container">
 
                 <ul class="content__container__list">
-                    <li class="content__container__list__item">Joy in Every Package</li>
-                    <li class="content__container__list__item">Thoughtful Surprises</li>
-                    <li class="content__container__list__item">Moments to Treasure</li>
-                    <li class="content__container__list__item">Smiles, Just Because</li>
-                    <li class="content__container__list__item">Heartfelt Connections</li>
+                    @foreach (get_field($block,"items") as $item)
+                    <li class="content__container__list__item">{{get_sub_field($item,"title")}}</li>
+                    @endforeach
                 </ul>
             </div>
             <style type="text/css">
@@ -219,7 +220,10 @@
     </div>
     @endif
     <div id="banner-home-4">
-        <label class="tree-title">Tap the green bush to harvest the berries</label>
+        @php
+        $block = get_blocks_by_slug("harvest");
+        @endphp
+        <label class="tree-title">{{ $block->name }}</label>
         <div id="tree-panel">
             <img id="tree" src="{{base}}assets/img/tree.gif" alt="">
         </div>
@@ -273,7 +277,7 @@
         </div>
     </section>
 
-    <section id="occasions" class="occasions d-none d-md-block">
+    <section id="occasions" class="occasions d-none d-md-block" style="display: none">
         @php
         $block = get_blocks_by_slug("occasions");
         @endphp
@@ -410,8 +414,10 @@
                         <h3>Say Hi</h3>
                         <h2>IT'S OUR PLEASURE TO ASSIST YOU</h2>
                     </div>
-                    <div id="btn-send"><a href="https://www.instagram.com/lilharra.blooms/"><i
-                                class="fa-brands fa-instagram"></i> Send message</a></div>
+                    <div id="btn-send">
+                        <a href="https://www.instagram.com/lilharra.blooms/"><i
+                                class="fa-brands fa-instagram"></i> Send message</a>
+                            </div>
                 </div>
             </div>
         </div>
@@ -484,13 +490,8 @@
                         <label for="sloccasions" class="col-form-label">Type of Occasions:</label>
                     </div>
                     <div class="col-auto flex-fill">
-                        <select id="sloccasions" class="form-select form-basic"
-                            aria-label="e.g, Birthday,Anniversary, Holiday">
-                            <option selected>e.g, Birthday,Anniversary, Holiday</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input id="sloccasions" name="name" class="form-control form-basic"  placeholder="e.g, Birthday,Anniversary, Holiday" />
+
                     </div>
                 </div>
 
@@ -499,13 +500,7 @@
                         <label for="sldate" class="col-form-label">Date of Occasion:</label>
                     </div>
                     <div class="col-auto flex-fill">
-                        <select id="sldate" class="form-select form-basic"
-                            aria-label="e.g, Birthday,Anniversary, Holiday">
-                            <option selected>(mm/dd/yyyy)</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <input id="sldate" name="sldate" class="form-control form-basic"  placeholder="e.g Date of Occasion" />
                     </div>
                 </div>
 
@@ -531,5 +526,4 @@
 
         </div>
     </section>
-
-</main><!-- End #main -->
+</main>

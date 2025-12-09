@@ -1,0 +1,116 @@
+
+.detail .stars i{
+    color: #563A86;
+    margin-right: 5px;
+}
+
+.detail .price {
+    font-size: 16px;
+    font-weight: bold;
+}
+.detail .sale-price {
+    font-size: 14px;
+    text-decoration: line-through;
+    margin-right: 15px;
+}
+
+.detail .btnrad {
+   background: #fff;
+    border: 1px solid #ccc;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.btn-check:checked + .btnrad {
+    background: #E5D1E6;
+    border: 1px solid #A95AA3;
+}
+
+#title-review-products{ background:#F1ECF8; padding:40px 0; text-align: center;}
+#title-review-products h2{ text-align: center; color:#A95AA3; font-size: 48px;font-family: "Chonburi", serif;}
+
+#title-review-products .stars i{
+    color: #563A86;
+    margin-right: 5px;
+}
+#title-review-products .btn-write{ border: 1px solid #A95AA3; color: #A95AA3; padding: 12px 24px;}
+
+
+
+@media screen and (max-width: 768px) {
+    .detail .products-list article{ text-align: center;}
+    .products-list .item-img{text-align: center;}
+}
+
+
+#list-review h4{ font-size: 18px;}
+#list-review h3{ font-size: 20px;}
+#list-review .stars i{
+    color: #563A86;
+    margin-right: 5px;
+}
+
+.detail .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.detail .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail .swiper {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail .swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+.detail .mySwiper2 {
+    height: 100%;
+    width: 80%;
+    float: right;
+}
+
+.detail .mySwiper {
+    float: left;
+    width: 20%;
+    box-sizing: border-box;
+}
+
+.detail .mySwiper .swiper-slide {
+    width: 80px;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.detail .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.detail .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+}
