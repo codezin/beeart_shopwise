@@ -12,6 +12,7 @@
                     :label="trans('core/setting::setting.media.driver')"
                     :options="[
                         'public' => 'Local disk',
+                        'theme' => 'Theme disk',
                         's3' => 'Amazon S3',
                         'do_spaces' => 'DigitalOcean Spaces',
                         'wasabi' => 'Wasabi',

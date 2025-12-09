@@ -111,6 +111,11 @@ class MainCheckout {
             $('.payment-info-loading').hide()
             $('.payment-checkout-btn').prop('disabled', false)
             document.dispatchEvent(new CustomEvent('payment-form-reloaded'))
+            if ($("#shipping-method-wrapper").find(".list-group-item[data-postcode!='0'] input:checked").length > 0) {
+                $("#tag_ship_delivery").addClass('checked');
+            } else {
+                $("#tag_ship_delivery").removeClass('checked');
+            }
         }
         let getBaseUrl = () => {
             let baseUrl = window.location.href
@@ -345,7 +350,44 @@ class MainCheckout {
             let post_code = $(this).val();
             $("#shipping-method-wrapper").find(".list-group-item").hide();
             $("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").show();
+            console.log(348, $("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").length);
+            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").length > 0){$("#tag_ship_delivery").show();
+            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "'] input:checked").length > 0)    $("#tag_ship_delivery").addClass('checked');
             $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']").show();
+        }).on("change","#check_delivery", function(){
+            let check = $(this).attr("checked");
+            if(check == "checked")
+            {
+                $(this).attr("checked", "checked");
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0'] input").prop("checked", false)
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']:not(#tag_ship_delivery) input").prop("disabled", true)
+            }
+            else{
+                $(this).attr("checked", "");
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']:not(#tag_ship_delivery) input").prop("disabled", false)
+            }
+        }).on("click","label[for=check_delivery]", function(){
+            let tag = $(this).parent().find("input");
+            let check = tag.attr("checked");
+            if (check == "checked") {
+                tag.attr("checked", "");
+                $(this).parent().removeClass("checked");
+                $(this).parent().html(`<input id="check_delivery" name="shipping_method_delivery" class="magic-radio shipping_method_delivery" type="radio">
+                 <label for="check_delivery" id="label_check_delivery">
+                  <div> <span>DELIVERY</span></div>
+                 </label>`);
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0'] input").prop("disabled", false)
+            }
+            else {
+                tag.attr("checked", "checked");
+                $(this).parent().addClass("checked");
+                $(this).parent().html(`<input id="check_delivery" name="shipping_method_delivery" class="magic-radio shipping_method_delivery" checked="checked" type="radio">
+                                <label for="check_delivery" id="label_check_delivery">
+                                    <div> <span>DELIVERY</span></div>
+                                </label>`);
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0'] input").prop("checked", false)
+                $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']:not(#tag_ship_delivery) input").prop("disabled", true)
+            }
         })
         let loadDeliveredTime = () => {
             var orderDate = new Date();

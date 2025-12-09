@@ -123,7 +123,7 @@ if (! function_exists('get_discount_code')) {
 if (! function_exists('get_discount')) {
     function get_discount(): string
     {
-        $discount = Discount::first();
+        $discount = Discount::inRandomOrder()->first();
         return $discount;
     }
 }
