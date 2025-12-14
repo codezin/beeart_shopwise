@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <script src="./js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/flipbook.style.css">
+    <script src="./js/flipbook.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#container").flipBook({
+                pdfUrl:"./profile.pdf",
+                assets: {
+                    flipMp3 : "./turnPage.mp3"
+                },
+                singlePageModeIfMobile: true,
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="container" style="width:600px;max-width: 600px;min-height: 600px;"></div>
+</body>
+</html>
