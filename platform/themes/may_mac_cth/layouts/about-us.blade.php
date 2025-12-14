@@ -1,160 +1,55 @@
 {!! Theme::partial('header') !!}
 @php
 
-$page = get_page_by_id(4);
-$mission = get_field($page,"mission");
+    $page = get_page_by_id(4);
+    $core_value = get_field($page, 'core_value');
 @endphp
-
-<div id="title-page" class="breadcrumb_section  page-title-mini">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="page-title">
-                    <h2>{{ $page->name }}</h2>
-                </div>
-            </div>
-            <div class="col-md-6">
-                {!! Theme::partial('breadcrumbs') !!}
-            </div>
+<link rel="stylesheet" href="{{ base }}assets/css/about.css">
+<section class="about-us">
+    <div class="title-section">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div class="page-title">{{ $page->name }}</div>
+            <div class="breadcrumb-nav" id="breadcrumb"></div>
         </div>
     </div>
-</div>
-<main id="main">
-    <section class="about-info">
-        <div class="container">
-            <div class="row mt-5">
-
-                <div class="col-md-6">
-                    <img src="{{ RvMedia::getImageUrl($page->image) }}" alt="{{ $page->name }}" class="img-fluid" loading="lazy"/>
-
+    <div class="container">
+        <div class="text-center fade-element" id="bannerImageSection">
+            <img src="{{ RvMedia::getImageUrl($page->image) }}" alt="Team CTH" class="img-fluid rounded" style="max-width: 100%;">
+        </div>
+        <div class="brand-story-card mt-5 fade-in" id="headerStorySection">
+            <div class="card about-card brand-card">
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ get_field($page, 'about_branch') }}</h4>
+                    <p class="card-text">{{ get_field($page, 'about_branch_content') }}</p>
                 </div>
-                <div class="col-md-6 p-5 d-flex align-items-center">
-                    <div class="section-header">
-                        <img class="img-bottom-about-us-detail-section" src="{{base}}asset/images/Frame.png" alt="" srcset="" />
-                        <h2 class="mt-xl-2 mt-lg-0">{!! strip_tags($page->description) !!}</h2>
-                        <div class="caption-about-us-detail">{!! $page->content !!}</div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            @if (!empty($core_value))
+                @foreach ($core_value as $item)
+                    <div class="col-12 col-md-4 mb-4 fade-element" data-grid="1">
+                        <div class="card about-card">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">{{ get_sub_field($item, 'core_value_title') }}</h4>
+                                <p class="card-text">{{ get_sub_field($item, 'core_value_description') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+
+
+
+            <div class="brand-story-card mt-5 fade-element" id="footerSection">
+                <div class="card about-card brand-card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">{{ get_field($page, 'history') }}</h4>
+                        <p class="card-text">{{ get_field($page, 'history_description') }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <style type="text/css">
-            .about-info{
-                position: relative;
-                top: 70px;
-            }
-            .caption-about-us-detail{
-                text-align: justify;
-            }
-            @media (max-width: 767px){
-                .about-info{
-                    position: unset;
-                }
-            }
-        </style>
-    </section>
-    <section class="about-us-detail-section">
-        <div class="container">
-            <div class="section-header text-center">
-                <img class="img-bottom-about-us-detail-section" src="{{base}}asset/images/Frame.png" alt="" srcset="" />
-                <h2 class="mt-5 mt-lg-0">{{get_field($page,"mission_title")}}</h2>
-            </div>
-            @foreach($mission as $item)
-            @if($loop->index %2 == 0)
-            <div class="about-us-detail-section-row">
-                <div class="about-us-detail-section-col">
-                    <h3>{{ get_sub_field($item,"title") }}</h3>
-                    <p>
-                        {{ get_sub_field($item,"description") }}
-                    </p>
-                </div>
-                <div class="about-us-detail-section-col">
-                    <img class="img-about-us-detail-section" src="{{ RvMedia::getImageUrl(get_sub_field($item,"image")) }}" alt="" srcset="" />
-                </div>
+</section>
 
-            </div>
-
-            @else
-            <div class="about-us-detail-section-row">
-                <div class="about-us-detail-section-col">
-                    <img class="img-about-us-detail-section" src="{{ RvMedia::getImageUrl(get_sub_field($item,"image")) }}" alt="" srcset="" />
-                </div>
-                <div class="about-us-detail-section-col">
-                    <h3>{{ get_sub_field($item,"title") }}</h3>
-                    <p>
-                        {{ get_sub_field($item,"description") }}
-                    </p>
-                </div>
-            </div>
-            @endif
-            @endforeach
-        </div>
-
-        <style type="text/css">
-        .about-us-detail-section{
-            background: url('{{base}}asset/images/bgmission.png');
-            position: relative;
-            top: 170px;
-            z-index: -1;
-            padding-bottom: 150px;
-        }
-        .about-us-detail-section .section-header{
-            padding: 150px 0 80px 0;
-        }
-        .about-us-detail-section-row {
-            display: flex;
-            align-items: center;
-            gap: 72px;
-            margin-bottom: 52px;
-        }
-        .about-us-detail-section-col {
-            width: 50%;
-        }
-        .about-us-detail-section-col h3{
-            color: #A95AA3;
-        }
-
-        @media (max-width: 767px){
-            .about-us-detail-section{
-                top: 65px;
-                background-size: 100% 100%;
-            }
-            .about-us-detail-section-row {
-                flex-direction: column;
-            }
-            .about-us-detail-section-col {
-                width: 100%;
-            }
-            .about-us-detail-section-col img{
-                width: 100%;
-            }
-        }
-
-        </style>
-    </section>
-
-    <section class="history-section">
-        <div class="container">
-            <div class="history-section-head">
-                <h3>{{get_field($page,"history_title")}}</h3>
-                <p>
-                    {{get_field($page,"history_description")}}
-                </p>
-            </div>
-            <div class="history-section-row">
-                @if(!empty($history = get_field($page,"history")))
-                @foreach ($history as $r)
-                <div class="history-section-col">
-                    <h4>{{get_sub_field($r,"history_year")}}</h4>
-                    <p>
-                        {{get_sub_field($r,"history_description")}}
-                    </p>
-                </div>
-                @endforeach
-                @endif
-            </div>
-        </div>
-    </section>
-
-</main>
-{{-- {!! Theme::content() !!} --}}
 {!! Theme::partial('footer') !!}

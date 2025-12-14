@@ -18,6 +18,7 @@
     <meta property="og:description" content="" />
     <meta property="og:image" content="{{ RvMedia::getImageUrl(theme_option('seo_og_image')) }}" />
     <meta property="og:site_name" content="{{theme_option('site_title')}}" />
+    <base href="{{base}}" />
     <!-- SITE TITLE -->
     <title>{{theme_option('site_title')}}</title>
     <!-- Favicon Icon -->
@@ -28,10 +29,10 @@
     @endif
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
-   <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ base }}assets/css/style.css">
-
-    <link rel="stylesheet" href="{{asset('public/themes/assets/css/style.css?v=1703268762')}}">
+    <link rel="stylesheet" href="{{ base }}assets/css/custom.css">
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     {!! Theme::partial('meta') !!}
 </head>
 
@@ -45,7 +46,7 @@
                         <button class="btn btn-sm p-0 text-muted d-flex align-items-center" type="button"
                             aria-expanded="false">
 
-                            <img src="../../assets/images/vietnam-flag.png" id="currentFlag"
+                            <img src="assets/images/vietnam-flag.png" id="currentFlag"
                                 style="width: 20px; height: 20px; object-fit: cover; border-radius: 3px;">
                             <span id="currentLang" class="ms-1">VN</span>
                         </button>
@@ -75,7 +76,7 @@
                         <i class="bx bx-phone-call me-1"></i> 0783 157 988
                     </a> -->
                     <span class="text-muted me-4">
-                        <i class="bx bx-phone-call me-1"></i> 0783 157 988
+                        <i class="bx bx-phone-call me-1"></i> {{theme_option('hotline')}}
                     </span>
                 </div>
                 <!-- <a href="#" class="text-muted">
@@ -89,12 +90,12 @@
     </div>
 
     <!-- Search Bar -->
-    <div class="search-bar bg-white py-2">
+    <div class="search-bar bg-white py-2 bottom_header">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
 
-                <a href="index.html">
-                    <img src="../../assets/images/logo.png" alt="Logo" height="60" class="me-32">
+                <a href="{{ route('public.index') }}">
+                    <img src="{{ RvMedia::getImageUrl(theme_option('logo')) }}" alt="Logo" height="60" class="me-32">
                 </a>
 
                 <div class="d-flex align-items-center bg-white border rounded px-2"
@@ -109,11 +110,11 @@
                                 cả</span>
                             <i class='bx bx-chevron-down ms-2 text-muted'></i>
                         </div>
+                        {!! Menu::renderMenuLocation('categories-menu', [
+                            'view' => 'menus.sub-menu',
+                            'options' => ['id'=>'searchCategoryUl', 'class' => 'search-dropdown-list'],
+                        ]) !!}
 
-                        <ul class="search-dropdown-list" id="searchCategoryUl">
-                            <li><a href="javascript:void(0)" onclick="selectSearchCategory('', 'Tất cả')">Tất cả</a>
-                            </li>
-                        </ul>
                     </div>
 
                     <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
@@ -146,33 +147,12 @@
                         <a href="#" class="nav-link text-warning d-flex align-items-center">
                             <i class="bx bx-menu me-2"></i> TẤT CẢ DANH MỤC
                         </a>
-                        <ul class="dropdown-menu-custom">
-                            <li><a href="#">Áo đồng phục</a></li>
-                            <li><a href="#">Áo thể thao</a></li>
-                            <li><a href="#">Áo + Logo áo</a></li>
-                            <li><a href="#">BST + Logo áo</a></li>
-                            <li><a href="#">Đồng phục công giáo</a></li>
-                            <li><a href="#">Đồng phục công sở</a></li>
-                            <li><a href="#">Đồng phục học tập</a></li>
-                            <li><a href="#">Đồng phục mùa non</a></li>
-                        </ul>
+                         {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.sub-menu', 'options' => ['class' => 'dropdown-menu-custom']]) !!}
+
                     </li>
 
-                    <!-- Các mục menu khác -->
-                    <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html">Về chúng tôi</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="products.html">Sản phẩm</a></li>
-                    <li class="nav-item"><a class="nav-link" href="guide.html">Hướng dẫn</a></li>
-                    <li class="nav-item dropdown-custom">
-                        <a href="news.html" class="nav-link text-warning d-flex align-items-center">
-                            Tin tức <i class='bx bx-chevron-down' style="font-size: 20px;"></i>
-                        </a>
-                        <ul class="dropdown-menu-custom" id="newsCategoryDropdown">
-                            <li class="text-center py-3"><small class="text-muted">Đang tải danh mục...</small></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+                    {!! Menu::renderMenuLocation('main-menu', ['view' => 'menus.main', 'options' => ['class' => '']]) !!}
+
                 </ul>
 
                 <!-- Icon bên phải -->

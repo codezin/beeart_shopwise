@@ -1,31 +1,42 @@
-@if ($posts->count() > 0)
-    @foreach ($posts as $post)
-        <div class="row blog_thumbs">
-            <div class="col-12">
-                <div class="blog_post blog_style2">
-                    <div class="blog_img">
-                        <a href="{{ $post->url }}"><img src="{{ RvMedia::getImageUrl($post->image, 'small', false, RvMedia::getDefaultImage()) }}" alt="{{ $post->name }}" loading="lazy" /></a>
+@php Theme::set('pageName', __('News')) @endphp
+
+<link rel="stylesheet" href="{{ base }}assets/css/about.css">
+<section class="about-us">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="homeNewsContainer">
+            @if ($posts->count() > 0)
+                @foreach ($posts as $post)
+                    <div class="col news-item">
+                        <div class="card h-100 news-card shadow-sm border-0">
+                            <div style="overflow: hidden; height: 220px;">
+                                <img src="{{ RvMedia::getImageUrl($post->image) }}" class="card-img-top" alt=" {{ $post->name }}" style="height: 100%; width: 100%; object-fit: cover;">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title mb-2">
+                                    <a href="/MayMacCTH/tin-tuc/Top 10 xu hướng Xuân Hè 2025" class="news-title-link fw-bold text-decoration-none">
+                                        {{ $post->name }}
+                                    </a>
+                                </h5>
+                                <p class="text-muted small mb-3">
+                                    <i class="bi bi-calendar3"></i>
+                                    {{ date('d/m/Y', strtotime($post->created_at)) }}
+                                    | Admin CTH
+                                </p>
+                                <p class="card-text text-muted flex-grow-1">
+                                    {{ $post->description }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="blog_content bg-white">
-                        <div class="blog_text">
-                            <h6 class="blog_title"><a href="{{ $post->url }}">{{ $post->name }}</a></h6>
-                            <ul class="list_none blog_meta">
-                                <li><i class="ti-calendar"></i> {{ $post->created_at->translatedFormat('M d, Y') }}</li>
-                                <li><i class="ti-eye"></i> {{ number_format($post->views) }} {{ __('Views') }}</li>
-                            </ul>
-                            <p>{{ Str::limit($post->description, 110) }}</p>
-                            <a href="{{ $post->url }}" class="btn btn-fill-line border-2 btn-xs rounded-0">{{ __('Read More') }}</a>
+                @endforeach
+                <div class="row">
+                    <div class="col-12 mt-2 mt-md-4">
+                        <div class="pagination_style1 justify-content-center">
+                            {!! $posts->appends(request()->query())->links() !!}
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    @endforeach
-    <div class="row">
-        <div class="col-12 mt-2 mt-md-4">
-            <div class="pagination_style1 justify-content-center">
-                {!! $posts->appends(request()->query())->links() !!}
-            </div>
+            @endif
         </div>
     </div>
-@endif
+</section>

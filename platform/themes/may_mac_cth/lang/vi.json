@@ -75,7 +75,7 @@
     "Buy": "Buy",
     "Buy now": "Buy now",
     "By": "By",
-    "By Price": "By Price",
+    "By Price": "Mức giá",
     "Can't send message on this time, please try again later!": "Can't send message on this time, please try again later!",
     "Cancel": "Cancel",
     "Cancel order": "Cancel order",
@@ -642,5 +642,6 @@
     "to write review!": "to write review!",
     "version :version required": "version :version required",
     "when shipping fee less than or equal": "when shipping fee less than or equal",
-    "✅ Purchased :time": "✅ Purchased :time"
+    "✅ Purchased :time": "✅ Purchased :time",
+    "Filter" : "Bộ lọc"
 }
