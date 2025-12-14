@@ -1,0 +1,144 @@
+.breadcrumb-nav {
+    font-size: 1rem;
+    color: #333;
+}
+
+.breadcrumb-nav a {
+    color: #174DAF;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.breadcrumb-nav a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-nav span {
+    color: #333;
+}
+.guide-card {
+    border: none;
+    border-radius: 8px;
+    background-color: #003087;
+    transition: transform 0.3s, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.guide-card .card-body {
+    padding: 1.5rem;
+    background-color: transparent !important;
+    border: none;
+}
+
+.guide-card .card-text {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 560;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.guide-image {
+    width: 50px;
+    height: 50px;
+    margin-left: 8px;
+    vertical-align: middle;
+    transition: transform 0.3s;
+}
+
+.guide-card:hover .guide-image {
+    transform: scale(1.2);
+}
+
+.guide-card .bx-down-arrow-alt {
+    display: block;
+    margin-top: 8px;
+}
+
+.guide-content-area {
+    transition: all 0.3s ease;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guide-content {
+    display: none;
+}
+
+.guide-content.active {
+    display: block;
+}
+
+.guide-content .about-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #EFF1FF;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.guide-content .about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.guide-content .about-card .card-body {
+    background-color: transparent !important;
+    padding: 1.5rem;
+}
+
+.guide-content .about-card .card-title {
+   font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+    max-width: 100% !important;
+}
+
+.guide-content .about-card .card-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.guide-card.active-card {
+    background-color: #FFD000;
+}
+
+.guide-card.active-card .card-text {
+    color: #174DAF;
+}
+
+.guide-card.active-card .bx {
+    color: #174DAF !important;
+}
+
+.guide-card .bx {
+    transition: transform 0.4s ease, color 0.4s ease !important;
+    transform: rotate(0deg);
+}
+
+.guide-card.active-card .bx {
+    transform: rotate(180deg);
+}
+
+.guide-content-wrapper {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.guide-content-wrapper .guide-content {
+    display: block !important;
+}

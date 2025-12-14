@@ -1,0 +1,19 @@
+.breadcrumb_section   {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+.breadcrumb_section .page-title h2{
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}

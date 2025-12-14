@@ -1,0 +1,191 @@
+.about-us {
+    margin-top: 0;
+    padding: 0;
+}
+
+.title-section {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.page-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.breadcrumb-nav {
+    font-size: 1rem;
+    color: #333;
+}
+
+.breadcrumb-nav a {
+    color: #174DAF;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.breadcrumb-nav a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-nav span {
+    color: #333;
+}
+
+.about-us .text-center img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.about-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #EFF1FF;
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+.brand-card {
+    background-color: #EFF1FF;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-card .card-body {
+    padding: 1.5rem;
+}
+
+.brand-card .card-body {
+    padding: 2rem;
+}
+
+.about-card .card-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.brand-card .card-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.about-card .card-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* fade-in/fade-out */
+.fade-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.about-us .lead {
+    font-size: 1.25rem;
+    color: #666;
+}
+
+.brand-story-card:last-child {
+    margin-bottom: 5rem;
+}
+
+.about-us {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-us::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("http://localhost:81/MayMacCTH/public/assets/images/background.png") no-repeat center center;
+    background-size: contain;
+    opacity: 0.08;
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.about-us > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    .title-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .breadcrumb-nav {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .about-us .text-center img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .brand-card .card-title {
+        font-size: 1.3rem;
+    }
+
+    .about-card .card-title {
+        font-size: 1.1rem;
+    }
+
+    .about-us .lead {
+        font-size: 1rem;
+    }
+
+    .about-card .card-body {
+        padding: 1rem;
+    }
+
+    .brand-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .brand-story-card:last-child {
+        margin-bottom: 3rem;
+    }
+}
