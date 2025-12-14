@@ -9,8 +9,9 @@ use Theme\MayMacCTH\Fields\ThemeIconField;
 define('base',asset('themes/may_mac_cth').'/');
 register_page_template([
     'homepage' => __('Homepage'),
-    'blog-sidebar' => __('Blog Sidebar'),
+
     'about-us' => __("AboutUS"),
+    'guide' => __('Guide'),
     'blog' => __("Blog"),
     'contact' => 'Contact'
 ]);

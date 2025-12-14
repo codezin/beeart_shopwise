@@ -64,6 +64,20 @@ app()->booted(function () {
                 ],
             ],
         ])
+         ->setField([
+            'id' => 'website',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'text',
+            'label' => __('Website'),
+            'attributes' => [
+                'name' => 'website',
+                'value' => null,
+                'options' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'website'
+                ],
+            ],
+        ])
         ->setField([
             'id' => 'address',
             'section_id' => 'opt-text-subsection-general',

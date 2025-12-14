@@ -14,6 +14,7 @@ class FaqCategory extends BaseModel
     protected $fillable = [
         'name',
         'order',
+        'icon',
         'status',
     ];
 

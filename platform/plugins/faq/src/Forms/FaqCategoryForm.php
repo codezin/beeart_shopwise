@@ -36,6 +36,14 @@ class FaqCategoryForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label required'],
                 'choices' => BaseStatusEnum::labels(),
             ])
+              ->add('icon', 'mediaImage', [
+                'label' => trans('core/base::forms.icon'),
+                'label_attr' => ['class' => 'control-label'],
+                'attr' => [
+                    'placeholder' => 'Ex: fa fa-home',
+                    'data-counter' => 60,
+                ],
+            ])
             ->setBreakFieldPoint('status');
     }
 }
