@@ -17,3 +17,14 @@
     color: #333;
     margin: 0;
 }
+
+
+.cart_count{
+        position: absolute;
+    top: -6px;
+    right: -8px;
+    font-size: 9px;
+    padding: 2px 4px;
+    border: 2px solid rgb(255, 255, 255);
+    display: block;
+}

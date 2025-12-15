@@ -100,34 +100,35 @@
 
                 <div class="d-flex align-items-center bg-white border rounded px-2"
                     style="height: 45px; position: relative;">
+                    <form action="{{ route('public.products') }}" data-ajax-url="{{ route('public.ajax.search-products') }}" method="GET">
+                        <div class="search-dropdown-wrap h-100 d-flex align-items-center position-relative">
+                            <input type="hidden" id="categorySelectValue" value="">
 
-                    <div class="search-dropdown-wrap h-100 d-flex align-items-center position-relative">
-                        <input type="hidden" id="categorySelectValue" value="">
+                            <div class="search-trigger d-flex align-items-center cursor-pointer pe-3 border-end"
+                                style="cursor: pointer; min-width: 130px; justify-content: space-between; height: 100%;">
+                                <span id="categoryDisplayText" class="fw-bold text-dark" style="font-size: 14px;">Tất
+                                    cả</span>
+                                <i class='bx bx-chevron-down ms-2 text-muted'></i>
+                            </div>
+                            {!! Menu::renderMenuLocation('categories-menu', [
+                                'view' => 'menus.sub-menu',
+                                'options' => ['id'=>'searchCategoryUl', 'class' => 'search-dropdown-list'],
+                            ]) !!}
 
-                        <div class="search-trigger d-flex align-items-center cursor-pointer pe-3 border-end"
-                            style="cursor: pointer; min-width: 130px; justify-content: space-between; height: 100%;">
-                            <span id="categoryDisplayText" class="fw-bold text-dark" style="font-size: 14px;">Tất
-                                cả</span>
-                            <i class='bx bx-chevron-down ms-2 text-muted'></i>
                         </div>
-                        {!! Menu::renderMenuLocation('categories-menu', [
-                            'view' => 'menus.sub-menu',
-                            'options' => ['id'=>'searchCategoryUl', 'class' => 'search-dropdown-list'],
-                        ]) !!}
 
-                    </div>
-
-                    <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
-                        <input type="text" class="form-control border-0 shadow-none search-input" id="searchInput"
-                            placeholder="Tìm kiếm sản phẩm..." aria-label="Search" style="font-size: 14px;">
-                        <button class="btn border-0" type="button" id="btnSearch">
-                            <i class='bx bx-search fs-5 text-primary'></i>
-                        </button>
-                    </div>
+                        <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
+                            <input type="text" class="form-control border-0 shadow-none search-input" id="searchInput"
+                                placeholder="Tìm kiếm sản phẩm..." aria-label="Search" style="font-size: 14px;">
+                            <button class="btn border-0" type="button" id="btnSearch">
+                                <i class='bx bx-search fs-5 text-primary'></i>
+                            </button>
+                        </div>
+                     </form>
                 </div>
 
                 <a href="tel_3A+0783157988" class="btn btn-outline-primary px-4">
-                    <i class="bx bx-phone-call me-1"></i> 0783 157 988
+                    <i class="bx bx-phone-call me-1"></i> {{theme_option("hotline")}}
                 </a>
             </div>
         </div>
@@ -158,22 +159,43 @@
                 <!-- Icon bên phải -->
                <ul class="navbar-nav ms-3">
                     <li class="nav-item" style="margin-right: 90px;">
-                        <a class="nav-link" href="cart.html"
-                            style="display: flex; align-items: center; justify-content: center;">
+                        {{-- <a class="nav-link" href="cart.html" style="display: flex; align-items: center; justify-content: center;"> --}}
 
                             <div
                                 style="position: relative; width: 24px !important; height: 24px !important; line-height: 24px;">
 
-                                <i class="bx bx-cart" style="font-size: 24px; position: absolute; top: 0; left: 0;"></i>
 
-                                <span id="cartCount" class="badge rounded-pill bg-danger"
+
+                                  @if (is_plugin_active('ecommerce'))
+                                        <ul class="navbar-nav attr-nav align-items-center">
+                                            {{-- <li><a href="@if (!auth('customer')->check()) {{ route('customer.overview') }} @else {{ route('customer.login') }} @endif" class="nav-link"><i class="linearicons-user"></i></a></li> --}}
+                                            @if (EcommerceHelper::isWishlistEnabled())
+                                                {{-- <li><a href="{{ route('public.wishlist') }}" class="nav-link btn-wishlist"><i class="linearicons-heart"></i><span class="wishlist_count">{{ !auth('customer')->check() ? Cart::instance('wishlist')->count() : auth('customer')->user()->wishlist()->count() }}</span></a></li> --}}
+                                            @endif
+
+                                            @if (EcommerceHelper::isCartEnabled())
+                                                <li class="dropdown cart_dropdown">
+                                                    <a class="nav-link cart_trigger btn-shopping-cart" href="javascript:;" data-toggle="dropdown">
+                                                        {{-- <i class="linearicons-cart"></i> --}}
+                                                        <i class="bx bx-cart" style="font-size: 24px; position: absolute; top: 0; left: 0;"></i>
+                                                        <span class="cart_count">{{ Cart::instance('cart')->count() }}</span>
+                                                    </a>
+                                                    <div class="cart_box dropdown-menu dropdown-menu-right">
+                                                        {!! Theme::partial('cart') !!}
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    @endif
+
+                                {{-- <span id="cartCount" class="badge rounded-pill bg-danger"
                                     style="position: absolute; top: -6px; right: -8px; font-size: 9px; padding: 2px 4px; border: 2px solid #fff; display: none;">
                                     0
                                     <span class="visually-hidden">sản phẩm</span>
-                                </span>
+                                </span> --}}
                             </div>
 
-                        </a>
+                        {{-- </a> --}}
                     </li>
                 </ul>
             </div>

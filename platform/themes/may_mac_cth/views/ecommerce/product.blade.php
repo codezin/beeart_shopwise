@@ -9,6 +9,7 @@
         ->add('lightGallery-js', 'plugins/lightGallery/js/lightgallery.min.js', ['jquery']);
 @endphp
 <link rel="stylesheet" href="{{ base }}assets/css/product-detail.css" />
+
 <section class="product-detail">
     {{-- <div class="title-section">
         <div class="container d-flex justify-content-between align-items-center flex-wrap">
@@ -31,10 +32,9 @@
                     <img src="{{ RvMedia::getImageUrl($product->image, 'thumb') }}" alt="Áo len" id="main-product-image" class="w-100" style="min-height:400px; object-fit:contain;">
                     <div class="thumbnail-images mt-3 d-flex gap-2 flex-wrap" id="thumbnailContainer">
 
-                          @if(!empty($productImages))
-                            <img  src="{{ RvMedia::getImageUrl($productImages[0]) }}" data-zoom-image="{{ RvMedia::getImageUrl($productImages[0]) }}"
-                                 class="thumbnail active" style="width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid rgb(238, 238, 238); border-radius: 8px;"/>
-                            @endif
+                        @if (!empty($productImages))
+                            <img src="{{ RvMedia::getImageUrl($productImages[0]) }}" data-zoom-image="{{ RvMedia::getImageUrl($productImages[0]) }}" class="thumbnail active" style="width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 2px solid rgb(238, 238, 238); border-radius: 8px;" />
+                        @endif
                     </div>
                 </div>
 
@@ -47,7 +47,37 @@
                         </h2>
                         <div id="collapseDetails" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                Áo len cho mùa đông
+                                {!! $product->content !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqs">
+                                Câu hỏi thường gặp
+                            </button>
+                        </h2>
+                        <div id="collapseFaqs" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                @if (is_plugin_active('faq'))
+                                    @if (count($product->faq_items) > 0)
+                                        @foreach ($product->faq_items as $faq)
+                                            <div class="item">
+                                                <div class="card-header" id="heading-faq-{{ $loop->index }}">
+                                                    <h5 class="mb-0">
+                                                        {!! BaseHelper::clean($faq[0]['value']) !!}
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapse-faq-{{ $loop->index }}" class="collapse pt-1 @if ($loop->first) show @endif" aria-labelledby="heading-faq-{{ $loop->index }}" data-parent="#faq-accordion">
+                                                    <div class="card-body" style="color: #757575">
+                                                        {!! BaseHelper::clean($faq[1]['value']) !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -67,41 +97,68 @@
 
                         </span>
                     </div>
-                    <div class="color-options mb-4 text-start" id="colorOptions" style="display: block;">
+                    @if ($product->variations()->count() > 0)
+                        <div class="pr_switch_wrap">
+                            {!! render_product_swatches($product, [
+                                'selected' => $selectedAttrs,
+                                'view' => Theme::getThemeNamespace() . '::views.ecommerce.attributes.swatches-renderer',
+                            ]) !!}
+                        </div>
+                    @endif
+                    {!! render_product_options($product) !!}
+                    {{-- <div class="color-options mb-4 text-start" id="colorOptions" style="display: block;">
                         <h6 class="fw-bold mb-2">Màu sắc</h6>
 
                         <div class="color-swatches d-inline-flex flex-wrap gap-2 p-2 rounded" id="colorSwatches" style="background-color: #fffaf0;">
                             <button type="button" class="btn btn-color-circle position-relative active" title="Trắng" style="background-color: rgb(255, 255, 255);"></button><button type="button" class="btn btn-color-circle position-relative" title="Đen" style="background-color: rgb(0, 0, 0);"></button>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- KÍCH THƯỚC -->
-                    <div class="size-options mb-4">
+                    {{-- <div class="size-options mb-4">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h6 class="fw-bold mb-0">Kích thước</h6>
-                            <a href="#" class="size-guide text-primary small">Hướng dẫn chọn size</a>
+                            <a href="#" class="size-guide text-primary small"  data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Hướng dẫn chọn size</a>
                         </div>
                         <div class="size-buttons d-flex gap-2 flex-wrap" id="sizeButtons">
                             <button type="button" class="btn btn-outline-secondary btn-size active">S</button>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="quantity mb-4">
-                        <h6 class="fw-bold mb-2 text-start">Số lượng</h6>
-                        <div class="input-group quantity-group">
-                            <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                    @if (EcommerceHelper::isCartEnabled())
+                        <div class="quantity mb-4">
+                            <h6 class="fw-bold mb-2 text-start">Số lượng</h6>
+                            <div class="input-group quantity-group quantity">
+
+                                {{-- <div class="quantity"> --}}
+                                <input type="button" value="-" class="minus btn btn-outline-secondary" />
+                                <input type="text" name="qty" {{ !empty($product->minium_order) ? 'value=' . $product->minium_order . ' min=' . $product->minium_order : ' value=1' }} title="Qty" class="qty form-control fw-bold" size="4" />
+                                <input type="button" value="+" class="plus btn btn-outline-secondary" />
+                                {{-- </div> --}}
+                                {{-- <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
                             <input type="text" class="form-control fw-bold" value="1" readonly="" id="quantityInput">
-                            <button class="btn btn-outline-secondary" type="button" id="increase">+</button>
+                            <button class="btn btn-outline-secondary" type="button" id="increase">+</button> --}}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="action-buttons mb-3">
-                        <button class="btn btn-add-cart" id="addToCartBtn">Thêm vào giỏ hàng</button>
-                        <button class="btn btn-buy" id="orderBtn">Mua ngay</button>
-                    </div>
-
+                        <div class="action-buttons mb-3">
+                            <button class="btn btn-add-cart btn-fill-out btn-addtocart " id="addToCartBtn">Thêm vào giỏ hàng</button>
+                            <button class="btn btn-buy" id="orderBtn">Mua ngay</button>
+                        </div>
+                    @endif
                     <div class="product-meta mb-4 text-muted small text-start">
-                        <div><strong>Mã sản phẩm:</strong> SP0021</div>
-                        <div><strong>Danh mục:</strong> Áo mùa đông</div>
+                        <div><strong>Mã sản phẩm:</strong> {{ $product->sku }}</div>
+                        <div><strong>{{ __('Category') }}:</strong>
+                            @if ($product->categories()->exists())
+                                <span>
+                                    @foreach ($product->categories()->get() as $category)
+                                        <a href="{{ $category->url }}" style="color: inherit">{{ $category->name }}</a>
+                                        @if (!$loop->last)
+                                            ,
+                                        @endif
+                                    @endforeach
+                                </span>
+                            @endif
+                        </div>
                     </div>
 
                     <!-- Dịch vụ -->
@@ -164,7 +221,7 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideLabel" aria-hidden="true">
+<div class="modal fade" id="sizeGuideModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -179,6 +236,7 @@
 </div>
 <section class="product-reviews-section">
     <div class="container">
+
         <div class="reviews-header">
             <h2 class="reviews-main-title">Đánh giá sản phẩm</h2>
             <div class="overall-rating">
@@ -186,13 +244,13 @@
                 <div class="rating-stars text-warning" id="avgStars"><i class="bx bxs-star" style="font-size:1.5rem;"></i></div>
                 <span class="review-count-text" id="reviewCountText">Chưa có đánh giá</span>
             </div>
-            <div class="my-4">
+            <div class="my-4" style="display: none">
                 <button class="btn btn-review px-4" data-bs-toggle="collapse" data-bs-target="#writeReviewCollapse">
                     <i class="bx bxs-edit-alt"></i> Viết đánh giá
                 </button>
             </div>
         </div>
-        <div class="collapse mt-4" id="writeReviewCollapse">
+        <div class="collapse mt-4" id="writeReviewCollapse" style="display: none">
             <div class="p-4 border rounded bg-light">
                 <h5 class="fw-bold mb-3">Viết đánh giá của bạn</h5>
 
@@ -296,7 +354,99 @@
 
             <div class="col-12 col-lg-8 mt-4 mt-lg-0">
                 <div class="review-list" id="reviewList">
-                    <div class="text-center text-muted py-5">Không tìm thấy đánh giá nào phù hợp.</div>
+    @if (EcommerceHelper::isReviewEnabled())
+            <div id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <div id="list-reviews">
+                    @if (count($product->review_images))
+                        <div class="my-3">
+                            <h5>{{ __('Images from customer (:count)', ['count' => count($product->review_images)]) }}</h5>
+                            <div class="block--review">
+                                <div class="block__images row m-0 block__images_total">
+                                    @foreach ($product->review_images as $img)
+                                        <a href="{{ RvMedia::getImageUrl($img) }}" class="col-lg-1 col-sm-2 col-3 more-review-images @if ($loop->iteration > 12) d-none @endif">
+                                            <div class="border position-relative rounded">
+                                                <img src="{{ RvMedia::getImageUrl($img, 'thumb') }}" alt="{{ $product->name }}" class="img-responsive rounded h-100" loading="lazy" />
+                                                @if ($loop->iteration == 12 && count($product->review_images) - $loop->iteration > 0)
+                                                    <span>+{{ count($product->review_images) - $loop->iteration }}</span>
+                                                @endif
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="comments block--product-reviews">
+                        <h5 class="product_tab_title">{{ __(':count Reviews For :product', ['count' => $product->reviews_count, 'product' => $product->name]) }}</h5>
+                        <product-reviews-component url="{{ route('public.ajax.product-reviews', $product->id) }}"></product-reviews-component>
+                    </div>
+                </div>
+                <div class="review_form field_form mt-3">
+                    <h5>{{ __('Add a review') }}</h5>
+                    @if (!auth('customer')->check())
+                        <p class="text-danger">{{ __('Please') }} <a href="{{ route('customer.login') }}">{{ __('login') }}</a> {{ __('to write review!') }}</p>
+                    @endif
+                    {!! Form::open(['route' => 'public.reviews.create', 'method' => 'post', 'class' => 'row form-review-product', 'files' => true]) !!}
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="star" value="1">
+                    <div class="form-group col-12">
+                        <div class="star_rating">
+                            <span data-value="1"><i class="ion-star"></i></span>
+                            <span data-value="2"><i class="ion-star"></i></span>
+                            <span data-value="3"><i class="ion-star"></i></span>
+                            <span data-value="4"><i class="ion-star"></i></span>
+                            <span data-value="5"><i class="ion-star"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <textarea class="form-control" name="comment" id="txt-comment" rows="4" placeholder="{{ __('Write your review') }}" @if (!auth('customer')->check()) disabled @endif></textarea>
+                    </div>
+                    <div class="form-group col-12">
+                        <script type="text/x-custom-template" id="review-image-template">
+                    <span class="image-viewer__item" data-id="__id__">
+                            <img src="{{ RvMedia::getDefaultImage() }}" alt="Preview" class="img-responsive d-block" loading="lazy" />
+                            <span class="image-viewer__icon-remove">
+                                <i class="ion-close"></i>
+                            </span>
+                        </span>
+                        </script>
+                        <div class="image-upload__viewer d-flex">
+                            <div class="image-viewer__list position-relative">
+                                <div class="image-upload__uploader-container">
+                                    <div class="d-table">
+                                        <div class="image-upload__uploader">
+                                            <i class="ion-image image-upload__icon"></i>
+                                            <div class="image-upload__text">{{ __('Upload photos') }}</div>
+                                            <input type="file" name="images[]" data-max-files="{{ EcommerceHelper::reviewMaxFileNumber() }}" class="image-upload__file-input" accept="image/png,image/jpeg,image/jpg" multiple="multiple" data-max-size="{{ EcommerceHelper::reviewMaxFileSize(true) }}" data-max-size-message="{{ trans('validation.max.file', ['attribute' => '__attribute__', 'max' => '__max__']) }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="loading">
+                                    <div class="half-circle-spinner">
+                                        <div class="circle circle-1"></div>
+                                        <div class="circle circle-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="help-block d-inline-block">
+                                {{ __('You can upload up to :total photos, each photo maximum size is :max kilobytes', [
+                                    'total' => EcommerceHelper::reviewMaxFileNumber(),
+                                    'max' => EcommerceHelper::reviewMaxFileSize(true),
+                                ]) }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <button type="submit" class="btn btn-fill-out @if (!auth('customer')->check()) btn-disabled @endif" @if (!auth('customer')->check()) disabled @endif name="submit" value="Submit">Submit Review</button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        @endif
+                    {{-- <div class="text-center text-muted py-5">Không tìm thấy đánh giá nào phù hợp.</div> --}}
                 </div>
 
                 <nav aria-label="Page navigation">
