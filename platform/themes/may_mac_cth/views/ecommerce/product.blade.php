@@ -105,7 +105,7 @@
                             ]) !!}
                         </div>
                     @endif
-                    {!! render_product_options($product) !!}
+                    {{-- {!! render_product_options($product) !!} --}}
                     {{-- <div class="color-options mb-4 text-start" id="colorOptions" style="display: block;">
                         <h6 class="fw-bold mb-2">Màu sắc</h6>
 
@@ -354,98 +354,98 @@
 
             <div class="col-12 col-lg-8 mt-4 mt-lg-0">
                 <div class="review-list" id="reviewList">
-    @if (EcommerceHelper::isReviewEnabled())
-            <div id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <div id="list-reviews">
-                    @if (count($product->review_images))
-                        <div class="my-3">
-                            <h5>{{ __('Images from customer (:count)', ['count' => count($product->review_images)]) }}</h5>
-                            <div class="block--review">
-                                <div class="block__images row m-0 block__images_total">
-                                    @foreach ($product->review_images as $img)
-                                        <a href="{{ RvMedia::getImageUrl($img) }}" class="col-lg-1 col-sm-2 col-3 more-review-images @if ($loop->iteration > 12) d-none @endif">
-                                            <div class="border position-relative rounded">
-                                                <img src="{{ RvMedia::getImageUrl($img, 'thumb') }}" alt="{{ $product->name }}" class="img-responsive rounded h-100" loading="lazy" />
-                                                @if ($loop->iteration == 12 && count($product->review_images) - $loop->iteration > 0)
-                                                    <span>+{{ count($product->review_images) - $loop->iteration }}</span>
-                                                @endif
+                    @if (EcommerceHelper::isReviewEnabled())
+                        <div id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                            <div id="list-reviews">
+                                @if (count($product->review_images))
+                                    <div class="my-3">
+                                        <h5>{{ __('Images from customer (:count)', ['count' => count($product->review_images)]) }}</h5>
+                                        <div class="block--review">
+                                            <div class="block__images row m-0 block__images_total">
+                                                @foreach ($product->review_images as $img)
+                                                    <a href="{{ RvMedia::getImageUrl($img) }}" class="col-lg-1 col-sm-2 col-3 more-review-images @if ($loop->iteration > 12) d-none @endif">
+                                                        <div class="border position-relative rounded">
+                                                            <img src="{{ RvMedia::getImageUrl($img, 'thumb') }}" alt="{{ $product->name }}" class="img-responsive rounded h-100" loading="lazy" />
+                                                            @if ($loop->iteration == 12 && count($product->review_images) - $loop->iteration > 0)
+                                                                <span>+{{ count($product->review_images) - $loop->iteration }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </a>
+                                                @endforeach
                                             </div>
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    <div class="comments block--product-reviews">
-                        <h5 class="product_tab_title">{{ __(':count Reviews For :product', ['count' => $product->reviews_count, 'product' => $product->name]) }}</h5>
-                        <product-reviews-component url="{{ route('public.ajax.product-reviews', $product->id) }}"></product-reviews-component>
-                    </div>
-                </div>
-                <div class="review_form field_form mt-3">
-                    <h5>{{ __('Add a review') }}</h5>
-                    @if (!auth('customer')->check())
-                        <p class="text-danger">{{ __('Please') }} <a href="{{ route('customer.login') }}">{{ __('login') }}</a> {{ __('to write review!') }}</p>
-                    @endif
-                    {!! Form::open(['route' => 'public.reviews.create', 'method' => 'post', 'class' => 'row form-review-product', 'files' => true]) !!}
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="hidden" name="star" value="1">
-                    <div class="form-group col-12">
-                        <div class="star_rating">
-                            <span data-value="1"><i class="ion-star"></i></span>
-                            <span data-value="2"><i class="ion-star"></i></span>
-                            <span data-value="3"><i class="ion-star"></i></span>
-                            <span data-value="4"><i class="ion-star"></i></span>
-                            <span data-value="5"><i class="ion-star"></i></span>
-                        </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <textarea class="form-control" name="comment" id="txt-comment" rows="4" placeholder="{{ __('Write your review') }}" @if (!auth('customer')->check()) disabled @endif></textarea>
-                    </div>
-                    <div class="form-group col-12">
-                        <script type="text/x-custom-template" id="review-image-template">
-                    <span class="image-viewer__item" data-id="__id__">
-                            <img src="{{ RvMedia::getDefaultImage() }}" alt="Preview" class="img-responsive d-block" loading="lazy" />
-                            <span class="image-viewer__icon-remove">
-                                <i class="ion-close"></i>
-                            </span>
-                        </span>
-                        </script>
-                        <div class="image-upload__viewer d-flex">
-                            <div class="image-viewer__list position-relative">
-                                <div class="image-upload__uploader-container">
-                                    <div class="d-table">
-                                        <div class="image-upload__uploader">
-                                            <i class="ion-image image-upload__icon"></i>
-                                            <div class="image-upload__text">{{ __('Upload photos') }}</div>
-                                            <input type="file" name="images[]" data-max-files="{{ EcommerceHelper::reviewMaxFileNumber() }}" class="image-upload__file-input" accept="image/png,image/jpeg,image/jpg" multiple="multiple" data-max-size="{{ EcommerceHelper::reviewMaxFileSize(true) }}" data-max-size-message="{{ trans('validation.max.file', ['attribute' => '__attribute__', 'max' => '__max__']) }}">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="loading">
-                                    <div class="half-circle-spinner">
-                                        <div class="circle circle-1"></div>
-                                        <div class="circle circle-2"></div>
-                                    </div>
+                                @endif
+                                <div class="comments block--product-reviews">
+                                    <h5 class="product_tab_title">{{ __(':count Reviews For :product', ['count' => $product->reviews_count, 'product' => $product->name]) }}</h5>
+                                    <product-reviews-component url="{{ route('public.ajax.product-reviews', $product->id) }}"></product-reviews-component>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <span class="help-block d-inline-block">
-                                {{ __('You can upload up to :total photos, each photo maximum size is :max kilobytes', [
-                                    'total' => EcommerceHelper::reviewMaxFileNumber(),
-                                    'max' => EcommerceHelper::reviewMaxFileSize(true),
-                                ]) }}
+                            <div class="review_form field_form mt-3">
+                                <h5>{{ __('Add a review') }}</h5>
+                                @if (!auth('customer')->check())
+                                    <p class="text-danger">{{ __('Please') }} <a href="{{ route('customer.login') }}">{{ __('login') }}</a> {{ __('to write review!') }}</p>
+                                @endif
+                                {!! Form::open(['route' => 'public.reviews.create', 'method' => 'post', 'class' => 'row form-review-product', 'files' => true]) !!}
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="star" value="1">
+                                <div class="form-group col-12">
+                                    <div class="star_rating">
+                                        <span data-value="1"><i class="ion-star"></i></span>
+                                        <span data-value="2"><i class="ion-star"></i></span>
+                                        <span data-value="3"><i class="ion-star"></i></span>
+                                        <span data-value="4"><i class="ion-star"></i></span>
+                                        <span data-value="5"><i class="ion-star"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <textarea class="form-control" name="comment" id="txt-comment" rows="4" placeholder="{{ __('Write your review') }}" @if (!auth('customer')->check()) disabled @endif></textarea>
+                                </div>
+                                <div class="form-group col-12">
+                                    <script type="text/x-custom-template" id="review-image-template">
+                            <span class="image-viewer__item" data-id="__id__">
+                                <img src="{{ RvMedia::getDefaultImage() }}" alt="Preview" class="img-responsive d-block" loading="lazy" />
+                                <span class="image-viewer__icon-remove">
+                                    <i class="ion-close"></i>
+                                </span>
                             </span>
-                        </div>
-                    </div>
+                        </script>
+                                    <div class="image-upload__viewer d-flex">
+                                        <div class="image-viewer__list position-relative">
+                                            <div class="image-upload__uploader-container">
+                                                <div class="d-table">
+                                                    <div class="image-upload__uploader">
+                                                        <i class="ion-image image-upload__icon"></i>
+                                                        <div class="image-upload__text">{{ __('Upload photos') }}</div>
+                                                        <input type="file" name="images[]" data-max-files="{{ EcommerceHelper::reviewMaxFileNumber() }}" class="image-upload__file-input" accept="image/png,image/jpeg,image/jpg" multiple="multiple" data-max-size="{{ EcommerceHelper::reviewMaxFileSize(true) }}" data-max-size-message="{{ trans('validation.max.file', ['attribute' => '__attribute__', 'max' => '__max__']) }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="loading">
+                                                <div class="half-circle-spinner">
+                                                    <div class="circle circle-1"></div>
+                                                    <div class="circle circle-2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="help-block d-inline-block">
+                                            {{ __('You can upload up to :total photos, each photo maximum size is :max kilobytes', [
+                                                'total' => EcommerceHelper::reviewMaxFileNumber(),
+                                                'max' => EcommerceHelper::reviewMaxFileSize(true),
+                                            ]) }}
+                                        </span>
+                                    </div>
+                                </div>
 
-                    <div class="form-group col-12">
-                        <button type="submit" class="btn btn-fill-out @if (!auth('customer')->check()) btn-disabled @endif" @if (!auth('customer')->check()) disabled @endif name="submit" value="Submit">Submit Review</button>
-                    </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        @endif
+                                <div class="form-group col-12">
+                                    <button type="submit" class="btn btn-fill-out @if (!auth('customer')->check()) btn-disabled @endif" @if (!auth('customer')->check()) disabled @endif name="submit" value="Submit">Submit Review</button>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    @endif
                     {{-- <div class="text-center text-muted py-5">Không tìm thấy đánh giá nào phù hợp.</div> --}}
                 </div>
 
