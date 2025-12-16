@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentPage = location.pathname.split('/').pop();
 
     if (currentPage === 'product-detail.php') {
-        return; 
+        return;
     }
 
     if (currentPage === 'product-detail.html') {

@@ -87,79 +87,84 @@
             <!-- Thông tin sản phẩm -->
             <div class="col-12 col-md-6">
                 <div class="product-info">
-                    <h1 class="product-title mb-0 text-start">{{ $product->name }}</h1>
-                    <div class="price-range mb-4 text-start">
-                        <span class="price h3 fw-bold">
-                            @if ($product->front_sale_price !== $product->price)
-                                <span class="sale-price">{{ format_price($product->price_with_taxes) }}</span>
-                            @endif
-                            <span class="price">{{ format_price($product->front_sale_price_with_taxes) }}</span>
+                    <form class="add-to-cart-form" method="POST" action="{{ route('public.cart.add-to-cart') }}">
+                        @csrf
+                        <h1 class="product-title mb-0 text-start">{{ $product->name }}</h1>
+                        <div class="price-range mb-4 text-start">
+                            <span class="price h3 fw-bold">
+                                @if ($product->front_sale_price !== $product->price)
+                                    <span class="sale-price">{{ format_price($product->price_with_taxes) }}</span>
+                                @endif
+                                <span class="price">{{ format_price($product->front_sale_price_with_taxes) }}</span>
 
-                        </span>
-                    </div>
-                    @if ($product->variations()->count() > 0)
-                        <div class="pr_switch_wrap">
-                            {!! render_product_swatches($product, [
-                                'selected' => $selectedAttrs,
-                                'view' => Theme::getThemeNamespace() . '::views.ecommerce.attributes.swatches-renderer',
-                            ]) !!}
+                            </span>
                         </div>
-                    @endif
-                    {{-- {!! render_product_options($product) !!} --}}
-                    {{-- <div class="color-options mb-4 text-start" id="colorOptions" style="display: block;">
-                        <h6 class="fw-bold mb-2">Màu sắc</h6>
+                        @if ($product->variations()->count() > 0)
+                            <div class="pr_switch_wrap">
+                                {!! render_product_swatches($product, [
+                                    'selected' => $selectedAttrs,
+                                    'view' => Theme::getThemeNamespace() . '::views.ecommerce.attributes.swatches-renderer',
+                                ]) !!}
+                            </div>
+                        @endif
+                        {{-- {!! render_product_options($product) !!} --}}
+                        {{-- <div class="color-options mb-4 text-start" id="colorOptions" style="display: block;">
+                                    <h6 class="fw-bold mb-2">Màu sắc</h6>
 
-                        <div class="color-swatches d-inline-flex flex-wrap gap-2 p-2 rounded" id="colorSwatches" style="background-color: #fffaf0;">
-                            <button type="button" class="btn btn-color-circle position-relative active" title="Trắng" style="background-color: rgb(255, 255, 255);"></button><button type="button" class="btn btn-color-circle position-relative" title="Đen" style="background-color: rgb(0, 0, 0);"></button>
-                        </div>
-                    </div> --}}
-                    <!-- KÍCH THƯỚC -->
-                    {{-- <div class="size-options mb-4">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="fw-bold mb-0">Kích thước</h6>
-                            <a href="#" class="size-guide text-primary small"  data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Hướng dẫn chọn size</a>
-                        </div>
-                        <div class="size-buttons d-flex gap-2 flex-wrap" id="sizeButtons">
-                            <button type="button" class="btn btn-outline-secondary btn-size active">S</button>
-                        </div>
-                    </div> --}}
+                                    <div class="color-swatches d-inline-flex flex-wrap gap-2 p-2 rounded" id="colorSwatches" style="background-color: #fffaf0;">
+                                        <button type="button" class="btn btn-color-circle position-relative active" title="Trắng" style="background-color: rgb(255, 255, 255);"></button><button type="button" class="btn btn-color-circle position-relative" title="Đen" style="background-color: rgb(0, 0, 0);"></button>
+                                    </div>
+                                </div> --}}
+                        <!-- KÍCH THƯỚC -->
+                        {{-- <div class="size-options mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Kích thước</h6>
+                                        <a href="#" class="size-guide text-primary small"  data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Hướng dẫn chọn size</a>
+                                    </div>
+                                    <div class="size-buttons d-flex gap-2 flex-wrap" id="sizeButtons">
+                                        <button type="button" class="btn btn-outline-secondary btn-size active">S</button>
+                                    </div>
+                                </div> --}}
+                                {!! apply_filters(ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML, null, $product) !!}
+                                <input type="hidden" name="id" id="hidden-product-id" value="{{ ($product->is_variation || !$product->defaultVariation->product_id) ? $product->id : $product->defaultVariation->product_id }}" />
 
-                    @if (EcommerceHelper::isCartEnabled())
-                        <div class="quantity mb-4">
-                            <h6 class="fw-bold mb-2 text-start">Số lượng</h6>
-                            <div class="input-group quantity-group quantity">
+                        @if (EcommerceHelper::isCartEnabled())
+                            <div class="quantity mb-4">
+                                <h6 class="fw-bold mb-2 text-start">Số lượng</h6>
+                                <div class="input-group quantity-group quantity">
 
-                                {{-- <div class="quantity"> --}}
-                                <input type="button" value="-" class="minus btn btn-outline-secondary" />
-                                <input type="text" name="qty" {{ !empty($product->minium_order) ? 'value=' . $product->minium_order . ' min=' . $product->minium_order : ' value=1' }} title="Qty" class="qty form-control fw-bold" size="4" />
-                                <input type="button" value="+" class="plus btn btn-outline-secondary" />
-                                {{-- </div> --}}
-                                {{-- <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
-                            <input type="text" class="form-control fw-bold" value="1" readonly="" id="quantityInput">
-                            <button class="btn btn-outline-secondary" type="button" id="increase">+</button> --}}
+                                    {{-- <div class="quantity"> --}}
+                                    <input type="button" value="-" class="minus btn btn-outline-secondary" />
+                                    <input type="text" name="qty" {{ !empty($product->minium_order) ? 'value=' . $product->minium_order . ' min=' . $product->minium_order : ' value=1' }} title="Qty" class="qty form-control fw-bold" size="4" />
+                                    <input type="button" value="+" class="plus btn btn-outline-secondary" />
+                                    {{-- </div> --}}
+                                    {{-- <button class="btn btn-outline-secondary" type="button" id="decrease">-</button>
+                                        <input type="text" class="form-control fw-bold" value="1" readonly="" id="quantityInput">
+                                        <button class="btn btn-outline-secondary" type="button" id="increase">+</button> --}}
+                                </div>
+                            </div>
+
+                            <div class="action-buttons mb-3">
+                                <button class="btn btn-add-cart btn-fill-out btn-addtocart " id="addToCartBtn" type="submit">Thêm vào giỏ hàng</button>
+                                <button class="btn btn-buy cart-buy-now-button" id="orderBtn" type="submit">Mua ngay</button>
+                            </div>
+                        @endif
+                        <div class="product-meta mb-4 text-muted small text-start">
+                            <div><strong>Mã sản phẩm:</strong> {{ $product->sku }}</div>
+                            <div><strong>{{ __('Category') }}:</strong>
+                                @if ($product->categories()->exists())
+                                    <span>
+                                        @foreach ($product->categories()->get() as $category)
+                                            <a href="{{ $category->url }}" style="color: inherit">{{ $category->name }}</a>
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    </span>
+                                @endif
                             </div>
                         </div>
-
-                        <div class="action-buttons mb-3">
-                            <button class="btn btn-add-cart btn-fill-out btn-addtocart " id="addToCartBtn">Thêm vào giỏ hàng</button>
-                            <button class="btn btn-buy" id="orderBtn">Mua ngay</button>
-                        </div>
-                    @endif
-                    <div class="product-meta mb-4 text-muted small text-start">
-                        <div><strong>Mã sản phẩm:</strong> {{ $product->sku }}</div>
-                        <div><strong>{{ __('Category') }}:</strong>
-                            @if ($product->categories()->exists())
-                                <span>
-                                    @foreach ($product->categories()->get() as $category)
-                                        <a href="{{ $category->url }}" style="color: inherit">{{ $category->name }}</a>
-                                        @if (!$loop->last)
-                                            ,
-                                        @endif
-                                    @endforeach
-                                </span>
-                            @endif
-                        </div>
-                    </div>
+                    </form>
 
                     <!-- Dịch vụ -->
                     <div class="product-description-wrapper mt-4 pt-3 border-bottom">

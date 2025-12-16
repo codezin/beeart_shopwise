@@ -117,8 +117,13 @@
   <script src="{{ asset('assets/js/jquery.elevatezoom.js') }}"></script>
 
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
 
+  <!-- Cart -->
+  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
+  <div id="globalToast" class="global-toast">
+        <i id="toastIcon" class='bx'></i>
+        <span id="toastMessage">Thông báo</span>
+    </div>
   <script>
       document.addEventListener('DOMContentLoaded', function() {
           const BASE_URL = '/MayMacCTH';
@@ -443,41 +448,41 @@
           }
       }
 
-      document.addEventListener('DOMContentLoaded', async () => {
-          const addressEl = document.getElementById('footerAddress');
-          const websiteEl = document.getElementById('footerWebsite');
-          const phoneEl = document.getElementById('footerPhone');
+    //   document.addEventListener('DOMContentLoaded', async () => {
+    //       const addressEl = document.getElementById('footerAddress');
+    //       const websiteEl = document.getElementById('footerWebsite');
+    //       const phoneEl = document.getElementById('footerPhone');
 
-          if (!addressEl && !websiteEl && !phoneEl) return;
+    //       if (!addressEl && !websiteEl && !phoneEl) return;
 
-          try {
-              const res = await fetch(`https://demo9.sibic.vn/api/contact/get_contact.php?t=${Date.now()}`);
-              const data = await res.json();
+    //       try {
+    //           const res = await fetch(`https://demo9.sibic.vn/api/contact/get_contact.php?t=${Date.now()}`);
+    //           const data = await res.json();
 
-              if (data.success && data.data && data.data.length > 0) {
-                  const c = data.data[0];
+    //           if (data.success && data.data && data.data.length > 0) {
+    //               const c = data.data[0];
 
-                  if (addressEl) {
-                      addressEl.textContent = c.address || 'Chưa cập nhật địa chỉ';
-                  }
+    //               if (addressEl) {
+    //                   addressEl.textContent = c.address || 'Chưa cập nhật địa chỉ';
+    //               }
 
-                  if (websiteEl) {
-                      if (c.website && c.website.trim()) {
-                          const url = c.website.match(/^https?:\/\//i) ? c.website : '../../../../https@/' + c.website;
-                          websiteEl.outerHTML = `<a href="${url}" target="_blank" class="text-white text-decoration-none">${c.website}</a>`;
-                      } else {
-                          websiteEl.textContent = 'Chưa có website';
-                      }
-                  }
+    //               if (websiteEl) {
+    //                   if (c.website && c.website.trim()) {
+    //                       const url = c.website.match(/^https?:\/\//i) ? c.website : '../../../../https@/' + c.website;
+    //                       websiteEl.outerHTML = `<a href="${url}" target="_blank" class="text-white text-decoration-none">${c.website}</a>`;
+    //                   } else {
+    //                       websiteEl.textContent = 'Chưa có website';
+    //                   }
+    //               }
 
-                  if (phoneEl) {
-                      phoneEl.textContent = c.phone_number || 'Chưa cập nhật số điện thoại';
-                  }
-              }
-          } catch (err) {
-              console.error('Lỗi load footer contact:', err);
-          }
-      });
+    //               if (phoneEl) {
+    //                   phoneEl.textContent = c.phone_number || 'Chưa cập nhật số điện thoại';
+    //               }
+    //           }
+    //       } catch (err) {
+    //           console.error('Lỗi load footer contact:', err);
+    //       }
+    //   });
 
       function getExcerpt(contentJson, maxLength = 130) {
           try {

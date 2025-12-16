@@ -1,6 +1,6 @@
 (function ($) {
     'use strict';
-
+const BASE_URL = window.location.origin + '/';
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -62,6 +62,28 @@
 
     var showSuccess = message => {
         window.showAlert('alert-success', message);
+    }
+    function showToast(message, type = 'success') {
+        const toast = document.getElementById('globalToast');
+        const icon = document.getElementById('toastIcon');
+        const msg = document.getElementById('toastMessage');
+
+        toast.classList.remove('success', 'error', 'show');
+
+        msg.textContent = message;
+
+        if (type === 'success') {
+            toast.classList.add('success');
+            icon.className = 'bx bxs-check-circle';
+        } else {
+            toast.classList.add('error');
+            icon.className = 'bx bxs-error';
+        }
+
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, type === 'error' ? 5000 : 3000);
     }
 
     // var handleError = data => {
@@ -245,7 +267,7 @@
             let _self = $(this);
 
             _self.prop('disabled', true).addClass('button-loading');
-            let item = $(this).closest('.item ');
+            let item = $(this).closest('.item');
 
             let data = {
                 id: _self.data('id'),
@@ -291,6 +313,7 @@
                                     $('.btn-shopping-cart span').text(response.data.count);
                                 }
                                 showSuccess(res.message);
+
                             }
                         });
                     }
@@ -300,7 +323,42 @@
                 }
             });
         });
+        /* Region Nav Button Buy Now */
+        $(document).on('click', '.cart-buy-now-button', function (event) {
+            event.preventDefault();
+            let _self = $(this);
 
+            _self.prop('disabled', true).addClass('button-loading');
+            let item = $(this).closest('.item ');
+            let href = $(this).data('href');
+            let data = {
+                id: _self.data('id'),
+                qty: _self.attr('data-quantity'),
+                checkout: 0
+            };
+            let option = item.find('.product-option-item-values').find("input[type=hidden]").attr("name");
+            let option_value = item.find('.product-option-item-values').find("input[type=hidden]").val();
+            data[option] = option_value;
+
+            let option_select = item.find('.product-option-item-values').find(".form-select").attr("name");
+            let option_select_value = item.find('.product-option-item-values').find(".form-select").val();
+            data[option_select] = option_select_value;
+            $.ajax({
+                url: _self.data('url'),
+                method: 'POST',
+                data: data,
+                dataType: 'json',
+                success: res => {
+                    _self.prop('disabled', false).removeClass('button-loading').addClass('active');
+
+                    window.location =  BASE_URL + 'cart'
+                },
+                error: () => {
+                    _self.prop('disabled', false).removeClass('button-loading');
+                }
+            });
+        });
+        /* End Region Nav Button Buy Now */
         $(document).on('click', '.remove-cart-button', function (event) {
             event.preventDefault();
 
@@ -546,7 +604,7 @@
                 data: $.param(data),
                 success: res => {
                     _self.prop('disabled', false).removeClass('btn-disabled').removeClass('button-loading');
-
+                    showToast(`Đã thêm vào giỏ hàng: ${res.message}`, 'success');
                     if (res.error) {
                         $form.find('.error-message').html(res.message).show();
 

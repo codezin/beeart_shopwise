@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ base }}assets/css/style.css">
-    <link rel="stylesheet" href="{{ base }}assets/css/custom.css">
+    <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v=1">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     {!! Theme::partial('meta') !!}
 </head>
@@ -168,7 +168,7 @@
 
                                   @if (is_plugin_active('ecommerce'))
                                         <ul class="navbar-nav attr-nav align-items-center">
-                                            {{-- <li><a href="@if (!auth('customer')->check()) {{ route('customer.overview') }} @else {{ route('customer.login') }} @endif" class="nav-link"><i class="linearicons-user"></i></a></li> --}}
+                                            <li><a href="@if (!auth('customer')->check()) {{ route('customer.overview') }} @else {{ route('customer.login') }} @endif" class="nav-link"><i class="linearicons-user"></i></a></li>
                                             @if (EcommerceHelper::isWishlistEnabled())
                                                 {{-- <li><a href="{{ route('public.wishlist') }}" class="nav-link btn-wishlist"><i class="linearicons-heart"></i><span class="wishlist_count">{{ !auth('customer')->check() ? Cart::instance('wishlist')->count() : auth('customer')->user()->wishlist()->count() }}</span></a></li> --}}
                                             @endif
@@ -176,7 +176,6 @@
                                             @if (EcommerceHelper::isCartEnabled())
                                                 <li class="dropdown cart_dropdown">
                                                     <a class="nav-link cart_trigger btn-shopping-cart" href="javascript:;" data-toggle="dropdown">
-                                                        {{-- <i class="linearicons-cart"></i> --}}
                                                         <i class="bx bx-cart" style="font-size: 24px; position: absolute; top: 0; left: 0;"></i>
                                                         <span class="cart_count">{{ Cart::instance('cart')->count() }}</span>
                                                     </a>

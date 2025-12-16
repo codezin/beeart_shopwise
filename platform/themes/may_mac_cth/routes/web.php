@@ -1,13 +1,13 @@
 <?php
-use Theme\AnDi\Http\Controllers\ShopwiseController;
+use Theme\MayMacCTH\Http\Controllers\ShopwiseController;
 Route::group(['controller' => ShopwiseController::class, 'middleware' => ['web', 'core']], function () {
     Route::get('create_folder_storage',function(){
-        // $target =  base_path("platform/themes/may_mac_cth/public/storage");
-        // $short_cut = base_path("public/storage");
-        // symlink($target, $short_cut);
-        $target =  base_path("platform/themes/may_mac_cth/public");
-        $short_cut = base_path("public/themes/may_mac_cth");
+        $target =  base_path("platform/themes/may_mac_cth/public/storage");
+        $short_cut = base_path("public/storage");
         symlink($target, $short_cut);
+        // $target =  base_path("platform/themes/may_mac_cth/public");
+        // $short_cut = base_path("public/themes/may_mac_cth");
+        // symlink($target, $short_cut);
     });
     Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
         Route::group(['prefix' => 'ajax', 'as' => 'public.ajax.'], function () {

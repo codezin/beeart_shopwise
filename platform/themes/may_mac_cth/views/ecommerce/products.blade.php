@@ -118,7 +118,7 @@
 </section>
 <style type="text/css">
 
-.list_brand, .ps-list--categories{
+.list_brand, .ps-list--categories, ul.text-swatch{
     list-style: none;
     padding: 0;
 }
