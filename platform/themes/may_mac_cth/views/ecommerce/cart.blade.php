@@ -1,6 +1,6 @@
 @php Theme::set('pageName', __('Shopping Cart')); @endphp
-
-<div class="section">
+<link rel="stylesheet" href="{{ base }}assets/css/cart.css" />
+<div class="section cart-section">
     <div class="container">
         @if (Cart::instance('cart')->count() > 0)
         @if (session()->has('success_msg'))
@@ -22,7 +22,7 @@
             @endforeach
         </div>
         @endif
-        <h1>{{__("Products in the shopping cart")}}</h1>
+        <h1 class="cart-title">{{__("Products in the shopping cart")}}</h1>
         <div class="row">
 
             <form class="form--shopping-cart row " method="post" action="{{ route('public.cart.update') }}">
@@ -175,14 +175,12 @@
                                             <input type="hidden" name="items[{{ $key }}][rowId]" value="{{ $cartItem->rowId }}">
                                         </p>
 
-                                        <div class="input-group quantity-group w-20">
-                                            <div class="product-quantity" data-title="{{ __('Quantity') }}">
-                                                <div class="quantity">
-                                                    <input type="button" value="-" class="minus">
-                                                    <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" min="{{$product->minium_order}}" name="items[{{ $key }}][values][qty]">
-                                                    <input type="button" value="+" class="plus">
-                                                </div>
-                                            </div>
+                                        <div class="input-group quantity-group w-20 d-flex quantity product-quantity">
+
+                                                <input type="button" value="-" class="minus btn btn-outline-secondary">
+                                                <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty quantity-input" size="4" min="{{$product->minium_order}}" name="items[{{ $key }}][values][qty]" style="    padding: 0;">
+                                                <input type="button" value="+" class="plus btn btn-outline-secondary">
+
                                         </div>
                                     </div>
                                     <a href="{{ route('public.cart.remove', $cartItem->rowId) }}" class="remove-cart-button">
@@ -252,7 +250,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="submit" class="btn btn-fill-out" name="checkout">{{ __('CheckOut') }}</button>
+                        <button type="submit" class="btn btn-fill-out btn-checkout" name="checkout" style="    width: 100%;">{{ __('Checkout') }}</button>
                     </div>
                 </div>
         </div>
