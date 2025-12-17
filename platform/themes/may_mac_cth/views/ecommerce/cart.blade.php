@@ -3,163 +3,234 @@
 <div class="section">
     <div class="container">
         @if (Cart::instance('cart')->count() > 0)
-            @if (session()->has('success_msg'))
-                <div class="alert alert-success">
-                    <span>{{ session('success_msg') }}</span>
-                </div>
-            @endif
+        @if (session()->has('success_msg'))
+        <div class="alert alert-success">
+            <span>{{ session('success_msg') }}</span>
+        </div>
+        @endif
 
-            @if (session()->has('error_msg'))
-                <div class="alert alert-warning">
-                    <span>{{ session('error_msg') }}</span>
-                </div>
-            @endif
+        @if (session()->has('error_msg'))
+        <div class="alert alert-warning">
+            <span>{{ session('error_msg') }}</span>
+        </div>
+        @endif
 
-            @if (isset($errors) && count($errors->all()) > 0)
-                <div class="alert alert-warning">
-                    @foreach ($errors->all() as $error)
-                        <p>{{ $error }}</p>
-                    @endforeach
-                </div>
-            @endif
-            <h1>Shopping cart</h1>
-            <div class="row">
+        @if (isset($errors) && count($errors->all()) > 0)
+        <div class="alert alert-warning">
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
+        <h1>{{__("Products in the shopping cart")}}</h1>
+        <div class="row">
 
-            <form class="form--shopping-cart row shopping_cart_template_2" method="post" action="{{ route('public.cart.update') }}">
+            <form class="form--shopping-cart row " method="post" action="{{ route('public.cart.update') }}">
                 @csrf
                 <div class="col-md-8">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table-responsive shop_cart_table">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th class="product-thumbnail">{{ __('Image') }}</th>
-                                    <th class="product-name">{{ __('Product') }}</th>
-                                    <th class="product-price">{{ __('Price') }}</th>
-                                    <th class="product-quantity">{{ __('Quantity') }}</th>
-                                    <th class="product-subtotal">{{ __('Total') }}</th>
-                                    <th class="product-remove">{{ __('Remove') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if (isset($products) && $products)
-                                    @foreach(Cart::instance('cart')->content() as $key => $cartItem)
+                    <div class="row">
+                        <div class="col-12">
+                            @if(@$type == "table")
+                            <div class="table-responsive shop_cart_table">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-thumbnail">{{ __('Image') }}</th>
+                                            <th class="product-name">{{ __('Product') }}</th>
+                                            <th class="product-price">{{ __('Price') }}</th>
+                                            <th class="product-quantity">{{ __('Quantity') }}</th>
+                                            <th class="product-subtotal">{{ __('Total') }}</th>
+                                            <th class="product-remove">{{ __('Remove') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (isset($products) && $products)
+                                        @foreach(Cart::instance('cart')->content() as $key => $cartItem)
                                         @php
-                                            $product = $products->where('id', $cartItem->id)->first();
+                                        $product = $products->where('id', $cartItem->id)->first();
                                         @endphp
 
                                         @if (!empty($product))
-                                            <tr>
-                                                <td class="product-thumbnail">
-                                                    <a href="{{ $product->original_product->url }}">
-                                                        <img src="{{ RvMedia::getImageUrl($cartItem->options['image'], 'thumb', false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}" loading="lazy" />
-                                                    </a>
-                                                </td>
-                                                <td class="product-name" data-title="{{ __('Product') }}">
-                                                    <a href="{{ $product->original_product->url }}" title="{{ $product->name }}">{{ $product->name }}  @if ($product->isOutOfStock()) <span class="stock-status-label">({!! $product->stock_status_html !!})</span> @endif</a>
-                                                    <p style="margin-bottom: 0">
-                                                        <small>{{ $cartItem->options['attributes'] ?? '' }}</small>
-                                                    </p>
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="{{ $product->original_product->url }}">
+                                                    <img src="{{ RvMedia::getImageUrl($cartItem->options['image'], 'thumb', false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}" loading="lazy" />
+                                                </a>
+                                            </td>
+                                            <td class="product-name" data-title="{{ __('Product') }}">
+                                                <a href="{{ $product->original_product->url }}" title="{{ $product->name }}">{{ $product->name }} @if ($product->isOutOfStock()) <span class="stock-status-label">({!! $product->stock_status_html !!})</span> @endif</a>
+                                                <p style="margin-bottom: 0">
+                                                    <small>{{ $cartItem->options['attributes'] ?? '' }}</small>
+                                                </p>
 
-                                                    {{-- @if (!empty($cartItem->options['options']))
-                                                        {!! render_product_options_info($cartItem->options['options'], $product, true) !!}
+                                                {{-- @if (!empty($cartItem->options['options']))
+                                                {!! render_product_options_info($cartItem->options['options'], $product, true) !!}
+                                                @endif
+
+                                                @if (!empty($cartItem->options['extras']) && is_array($cartItem->options['extras']))
+                                                @foreach($cartItem->options['extras'] as $option)
+                                                @if (!empty($option['key']) && !empty($option['value']))
+                                                <p style="margin-bottom: 0;"><small>{{ $option['key'] }}: <strong> {{ $option['value'] }}</strong></small></p>
+                                                @endif
+                                                @endforeach
+                                                @endif --}}
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <div class="product__price @if ($product->front_sale_price != $product->price) sale @endif">
+                                                    <span>{{ format_price($cartItem->price) }}</span>
+                                                    @if ($product->front_sale_price != $product->price)
+                                                    <small><del>{{ format_price($product->price) }}</del></small>
                                                     @endif
-
-                                                    @if (!empty($cartItem->options['extras']) && is_array($cartItem->options['extras']))
-                                                        @foreach($cartItem->options['extras'] as $option)
-                                                            @if (!empty($option['key']) && !empty($option['value']))
-                                                                <p style="margin-bottom: 0;"><small>{{ $option['key'] }}: <strong> {{ $option['value'] }}</strong></small></p>
-                                                            @endif
-                                                        @endforeach
-                                                    @endif --}}
-                                                </td>
-                                                <td class="product-price" data-title="Price">
-                                                    <div class="product__price @if ($product->front_sale_price != $product->price) sale @endif">
-                                                        <span>{{ format_price($cartItem->price) }}</span>
-                                                        @if ($product->front_sale_price != $product->price)
-                                                            <small><del>{{ format_price($product->price) }}</del></small>
-                                                        @endif
-                                                    </div>
-                                                    <input type="hidden" name="items[{{ $key }}][rowId]" value="{{ $cartItem->rowId }}">
-                                                </td>
-                                                <td class="product-quantity" data-title="{{ __('Quantity') }}">
-                                                    <div class="quantity">
-                                                        <input type="button" value="-" class="minus">
-                                                        <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" min="{{$product->minium_order}}"  name="items[{{ $key }}][values][qty]">
-                                                        <input type="button" value="+" class="plus">
-                                                    </div>
-                                                </td>
-                                                <td class="product-subtotal" data-title="{{ __('Total') }}">{{ format_price($cartItem->price * $cartItem->qty) }}</td>
-                                                <td class="product-remove" data-title="{{ __('Remove') }}"><a href="{{ route('public.cart.remove', $cartItem->rowId) }}" class="remove-cart-button">
-                                                    <i class="fa fa-trash"></i></a></td>
-                                            </tr>
+                                                </div>
+                                                <input type="hidden" name="items[{{ $key }}][rowId]" value="{{ $cartItem->rowId }}">
+                                            </td>
+                                            <td class="product-quantity" data-title="{{ __('Quantity') }}">
+                                                <div class="quantity">
+                                                    <input type="button" value="-" class="minus">
+                                                    <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" min="{{$product->minium_order}}" name="items[{{ $key }}][values][qty]">
+                                                    <input type="button" value="+" class="plus">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="{{ __('Total') }}">{{ format_price($cartItem->price * $cartItem->qty) }}</td>
+                                            <td class="product-remove" data-title="{{ __('Remove') }}">
+                                                <a href="{{ route('public.cart.remove', $cartItem->rowId) }}" class="remove-cart-button">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         @endif
-                                    @endforeach
-                                @endif
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="6" class="px-0">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
-                                                @if (!session()->has('applied_coupon_code'))
-                                                    <div class="coupon field_form input-group form-coupon-wrapper">
-                                                        <input type="text" name="coupon_code" value="{{ old('coupon_code') }}" class="form-control form-control-sm coupon-code" placeholder="{{ __('Enter Coupon Code...') }}">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-fill-out btn-sm btn-apply-coupon-code" type="button" data-url="{{ route('public.coupon.apply') }}">{{ __('Apply Coupon') }}</button>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" class="px-0">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
+                                                        @if (!session()->has('applied_coupon_code'))
+                                                        <div class="coupon field_form input-group form-coupon-wrapper">
+                                                            <input type="text" name="coupon_code" value="{{ old('coupon_code') }}" class="form-control form-control-sm coupon-code" placeholder="{{ __('Enter Coupon Code...') }}">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-fill-out btn-sm btn-apply-coupon-code" type="button" data-url="{{ route('public.coupon.apply') }}">{{ __('Apply Coupon') }}</button>
+                                                            </div>
+                                                        </div>
+                                                        @endif
+                                                        @if (session('applied_coupon_code'))
+                                                        <div class="mt-2 text-left">
+                                                            <small><strong>{{ __('Coupon code: :code', ['code' => session('applied_coupon_code')]) }}</strong> <a class="btn-remove-coupon-code text-danger" data-url="{{ route('public.coupon.remove') }}" href="javascript:void(0)">
+                                                                    <i class="fa fa-trash"></i></a></small>
+                                                        </div>
+                                                        @endif
+                                                        <div class="coupon-error-msg text-left">
+                                                            <small><span class="text-danger"></span></small>
                                                         </div>
                                                     </div>
-                                                @endif
-                                                @if (session('applied_coupon_code'))
-                                                    <div class="mt-2 text-left">
-                                                        <small><strong>{{ __('Coupon code: :code', ['code' => session('applied_coupon_code')]) }}</strong> <a class="btn-remove-coupon-code text-danger" data-url="{{ route('public.coupon.remove') }}" href="javascript:void(0)">
-                                                            <i class="fa fa-trash"></i></a></small>
-                                                    </div>
-                                                @endif
-                                                <div class="coupon-error-msg text-left">
-                                                    <small><span class="text-danger"></span></small>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            @else
+                            <div class="cart-list" id="cartList">
+                                @if (isset($products) && $products)
+                                @foreach(Cart::instance('cart')->content() as $key => $cartItem)
+                                @php
+                                $product = $products->where('id', $cartItem->id)->first();
+                                @endphp
+
+                                @if (!empty($product))
+                                <div class="cart-item d-flex align-items-center p-3 mb-3 border rounded" data-index="0">
+                                    <img src="{{ RvMedia::getImageUrl($cartItem->options['image'], 'thumb', false, RvMedia::getDefaultImage()) }}" alt="Áo len" class="cart-item-img me-3" style="width:80px; height:120px; object-fit:cover; border-radius:8px;" onerror="this.src='../../assets/images/no-image.jpg'">
+
+                                    <div class="cart-item-details flex-grow-1">
+                                        <h5 class="cart-item-name mb-1">
+                                            <a href="{{ $product->original_product->url }}" title="{{ $product->name }}">{{ $product->name }} @if ($product->isOutOfStock()) <span class="stock-status-label">({!! $product->stock_status_html !!})</span> @endif</a>
+                                        </h5>
+                                        <p class="text-muted small mb-1">
+
+
+                                            <p style="margin-bottom: 0">
+                                                <small>{{ $cartItem->options['attributes'] ?? '' }}</small>
+                                            </p>
+
+
+                                            @if (!empty($cartItem->options['options']))
+                                            {!! render_product_options_info($cartItem->options['options'], $product, true) !!}
+                                            @endif
+
+                                            @if (!empty($cartItem->options['extras']) && is_array($cartItem->options['extras']))
+                                            @foreach($cartItem->options['extras'] as $option)
+                                            @if (!empty($option['key']) && !empty($option['value']))
+                                        <p style="margin-bottom: 0;"><small>{{ $option['key'] }}: <strong> {{ $option['value'] }}</strong></small></p>
+                                        @endif
+                                        @endforeach
+                                        @endif
+                                        </p>
+                                        <p class="cart-item-price text-danger fw-bold mb-2">
+                                            <span>{{ format_price($cartItem->price) }}</span>
+                                            @if ($product->front_sale_price != $product->price)
+                                            <small><del>{{ format_price($product->price) }}</del></small>
+                                            @endif
+                                            <input type="hidden" name="items[{{ $key }}][rowId]" value="{{ $cartItem->rowId }}">
+                                        </p>
+
+                                        <div class="input-group quantity-group w-20">
+                                            <div class="product-quantity" data-title="{{ __('Quantity') }}">
+                                                <div class="quantity">
+                                                    <input type="button" value="-" class="minus">
+                                                    <input type="text" value="{{ $cartItem->qty }}" title="Qty" class="qty" size="4" min="{{$product->minium_order}}" name="items[{{ $key }}][values][qty]">
+                                                    <input type="button" value="+" class="plus">
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                    </div>
+                                    <a href="{{ route('public.cart.remove', $cartItem->rowId) }}" class="remove-cart-button">
+                                        <button class="btn btn-danger btn-sm cart-item-remove">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </a>
+
+
+                                </div>
+                                @endif
+                                @endforeach
+                                @endif
+                            </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-                {{-- <div class="row">
-                    <div class="col-12">
-                        <div class="medium_divider"></div>
-                        <div class="divider center_icon"><i class="ti-shopping-cart-full"></i></div>
-                        <div class="medium_divider"></div>
-                    </div>
-                </div> --}}
+                    {{-- <div class="row">
+                        <div class="col-12">
+                            <div class="medium_divider"></div>
+                            <div class="divider center_icon"><i class="ti-shopping-cart-full"></i></div>
+                            <div class="medium_divider"></div>
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="col-md-4">
                     <div class="shop_cart_total border p-3 p-md-4">
-                            <div class="heading_s1 mb-3 ">
-                                <h6>{{ __('Cart Totals') }}</h6>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
+                        <div class="heading_s1 mb-3 ">
+                            <h6>{{ __('Cart Totals') }}</h6>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
                                     <tr class="line_top">
                                         <td class="cart_total_label">{{ __('Subtotal') }}</td>
                                         <td class="cart_total_amount">{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</td>
                                     </tr>
                                     @if ($couponDiscountAmount > 0)
-                                        <tr>
-                                            <td class="cart_total_label">{{ __('Coupon code discount amount') }}</td>
-                                            <td class="cart_total_amount">{{ format_price($couponDiscountAmount) }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="cart_total_label">{{ __('Coupon code discount amount') }}</td>
+                                        <td class="cart_total_amount">{{ format_price($couponDiscountAmount) }}</td>
+                                    </tr>
                                     @endif
                                     @if ($promotionDiscountAmount)
-                                        <tr>
-                                            <td class="cart_total_label">{{ __('Discount promotion') }}</td>
-                                            <td class="cart_total_amount">{{ format_price($promotionDiscountAmount) }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="cart_total_label">{{ __('Discount promotion') }}</td>
+                                        <td class="cart_total_amount">{{ format_price($promotionDiscountAmount) }}</td>
+                                    </tr>
                                     @endif
                                     <tr class="line">
                                         <td class="cart_total_label">{{ __('Tax') }}</td>
@@ -172,44 +243,44 @@
                                             $total = Cart::instance('cart')->rawTotal();
                                             if(!empty(get_ecommerce_setting('minimum_order_vat')))
                                             {
-                                                $total +=   ($total / 100 * intval(get_ecommerce_setting('minimum_order_vat')));
+                                            $total += ($total / 100 * intval(get_ecommerce_setting('minimum_order_vat')));
                                             }
                                             @endphp
                                             <strong>{{ format_price( $total + - $promotionDiscountAmount - $couponDiscountAmount) }}</strong>
                                         </td>
                                     </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <button type="submit" class="btn btn-fill-out" name="checkout">{{ __('Proceed To CheckOut') }}</button>
+                                </tbody>
+                            </table>
                         </div>
+                        <button type="submit" class="btn btn-fill-out" name="checkout">{{ __('CheckOut') }}</button>
                     </div>
                 </div>
-            </form>
+        </div>
+        </form>
 
-            @if (count($crossSellProducts) > 0)
-                {{-- <div class="row">
-                    <div class="col-12">
-                        <div class="small_divider"></div>
-                        <div class="divider"></div>
-                        <div class="medium_divider"></div>
-                    </div>
-                </div> --}}
-                <div class="row shop_container grid">
-                    <div class="col-12">
-                        <div class="heading_s1">
-                            <h3>{{ __('Customers who bought this item also bought') }}</h3>
-                        </div>
-                        <div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                            @foreach ($crossSellProducts as $crossSellProduct)
-                                {!! Theme::partial('product-item-grid', ['product' => $crossSellProduct]) !!}
-                            @endforeach
-                        </div>
-                    </div>
+        @if (count($crossSellProducts) > 0)
+        {{-- <div class="row">
+            <div class="col-12">
+                <div class="small_divider"></div>
+                <div class="divider"></div>
+                <div class="medium_divider"></div>
+            </div>
+        </div> --}}
+        <div class="row shop_container grid">
+            <div class="col-12">
+                <div class="heading_s1">
+                    <h3>{{ __('Customers who bought this item also bought') }}</h3>
                 </div>
-            @endif
+                <div class="releted_product_slider carousel_slider owl-carousel owl-theme" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+                    @foreach ($crossSellProducts as $crossSellProduct)
+                    {!! Theme::partial('product-item-grid', ['product' => $crossSellProduct]) !!}
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
         @else
-            <p class="text-center">{{ __('Your cart is empty!') }}</p>
+        <p class="text-center">{{ __('Your cart is empty!') }}</p>
         @endif
     </div>
 </div>

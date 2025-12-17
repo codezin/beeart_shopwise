@@ -12,8 +12,12 @@
             @php
                 $variationInfo = $productVariationsInfo->where('attribute_set_id', $set->id)->whereIn('variation_id', $variationNextIds);
             @endphp
+        @endif.
+        @if( $set->title == "Kích thước" || $set->title == "Size")
+        @include(Theme::getThemeNamespace(). '::views.ecommerce.attributes._layouts.visual_slug', compact('selected'))
+        @else
+        @include(Theme::getThemeNamespace(). '::views.ecommerce.attributes._layouts.visual', compact('selected'))
         @endif
-        @include(Theme::getThemeNamespace(). '::views.ecommerce.attributes._layouts.dropdown', compact('selected'))
         @php
             [$variationNextIds] = handle_next_attributes_in_product(
                 $attributes->where('attribute_set_id', $set->id),

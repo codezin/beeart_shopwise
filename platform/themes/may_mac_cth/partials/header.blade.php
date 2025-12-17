@@ -127,7 +127,7 @@
 
                 </div>
             </form>
-                <a href="tel_3A+0783157988" class="btn btn-outline-primary px-4">
+                <a href="tel: {{theme_option("hotline")}}" class="btn btn-outline-primary px-4">
                     <i class="bx bx-phone-call me-1"></i> {{theme_option("hotline")}}
                 </a>
             </div>
@@ -158,6 +158,22 @@
 
                 <!-- Icon bên phải -->
                <ul class="navbar-nav ms-3">
+
+                    @if (!auth('customer')->check())
+                    <li>
+                        <div class="account-links">
+
+                            <a href="{{ route('customer.login') }}" style="color: #fff">{{__("Login")}}</a> / <a href="{{ route('customer.register') }}" style="color: #fff"> {{__("Sign up")}}</a>
+                        </div>
+                    </li>
+                    @else
+                    <li>
+                        <div class="account-links">
+                            <a href="{{ route('customer.overview') }}">{{__("Account")}}</a> /
+                            <a href="{{ route('customer.logout') }}">{{__("Log out")}}</a>
+                        </div>
+                    </li>
+                    @endif
                     <li class="nav-item" style="margin-right: 90px;">
                         {{-- <a class="nav-link" href="cart.html" style="display: flex; align-items: center; justify-content: center;"> --}}
 
