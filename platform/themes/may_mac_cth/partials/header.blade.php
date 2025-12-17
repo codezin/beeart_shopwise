@@ -97,10 +97,10 @@
                 <a href="{{ route('public.index') }}">
                     <img src="{{ RvMedia::getImageUrl(theme_option('logo')) }}" alt="Logo" height="60" class="me-32">
                 </a>
+                <form action="{{ route('public.products') }}" data-ajax-url="{{ route('public.ajax.search-products') }}" method="GET">
 
                 <div class="d-flex align-items-center bg-white border rounded px-2"
                     style="height: 45px; position: relative;">
-                    <form action="{{ route('public.products') }}" data-ajax-url="{{ route('public.ajax.search-products') }}" method="GET">
                         <div class="search-dropdown-wrap h-100 d-flex align-items-center position-relative">
                             <input type="hidden" id="categorySelectValue" value="">
 
@@ -118,15 +118,15 @@
                         </div>
 
                         <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
-                            <input type="text" class="form-control border-0 shadow-none search-input" id="searchInput"
+                            <input type="text" class="form-control border-0 shadow-none search-input"  name="q" id="searchInput"
                                 placeholder="Tìm kiếm sản phẩm..." aria-label="Search" style="font-size: 14px;">
                             <button class="btn border-0" type="button" id="btnSearch">
                                 <i class='bx bx-search fs-5 text-primary'></i>
                             </button>
                         </div>
-                     </form>
-                </div>
 
+                </div>
+            </form>
                 <a href="tel_3A+0783157988" class="btn btn-outline-primary px-4">
                     <i class="bx bx-phone-call me-1"></i> {{theme_option("hotline")}}
                 </a>

@@ -10,7 +10,7 @@
                       Chúng tôi luôn trân trọng mọi ý kiến đóng góp của khách hàng,
                       không ngừng cải thiện để mang đến sản phẩm và dịch vụ tốt nhất.
                   </p>
-                  <a href="contact.html#feedbackForm" class="btn btn-warning footer-btn">
+                  <a href="{{url("contact")}}" class="btn btn-warning footer-btn">
                       ĐÓNG GÓP Ý KIẾN →
                   </a>
                   <p class="footer-tax mt-3"><strong>MÃ SỐ THUẾ:</strong> 0202167805</p>
@@ -406,26 +406,26 @@
               });
           }
           const btnSearch = document.getElementById('btnSearch');
-          const searchInput = document.getElementById('searchInput');
+        //   const searchInput = document.getElementById('searchInput');
 
-          const performSearch = () => {
-              const keyword = searchInput.value.trim();
-              const categoryId = document.getElementById('categorySelectValue').value;
+        //   const performSearch = () => {
+        //       const keyword = searchInput.value.trim();
+        //       const categoryId = document.getElementById('categorySelectValue').value;
 
-              let url = 'products.html';
-              const params = new URLSearchParams();
+        //       let url = 'products.html';
+        //       const params = new URLSearchParams();
 
-              if (keyword) params.append('q', keyword);
-              if (categoryId) params.append('category', categoryId);
+        //       if (keyword) params.append('q', keyword);
+        //       if (categoryId) params.append('category', categoryId);
 
-              if (params.toString()) url += '?' + params.toString();
-              window.location.href = url;
-          };
+        //       if (params.toString()) url += '?' + params.toString();
+        //       window.location.href = url;
+        //   };
 
           if (btnSearch) btnSearch.addEventListener('click', performSearch);
-          if (searchInput) searchInput.addEventListener('keypress', e => {
-              if (e.key === 'Enter') performSearch();
-          });
+        //   if (searchInput) searchInput.addEventListener('keypress', e => {
+        //       if (e.key === 'Enter') performSearch();
+        //   });
           updateCartCount();
       });
 
