@@ -12,6 +12,7 @@ class GlobalOption extends BaseModel
 
     protected $fillable = [
         'name',
+        'content',
         'option_type',
         'required',
     ];

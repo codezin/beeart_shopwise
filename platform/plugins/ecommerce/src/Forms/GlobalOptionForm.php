@@ -28,6 +28,14 @@ class GlobalOptionForm extends FormAbstract
                     'data-counter' => 120,
                 ],
             ])
+             ->add('content', 'editor', [
+                'label'      => trans('core/base::forms.content'),
+                'label_attr' => ['class' => 'control-label'],
+                'attr'       => [
+                    'rows'        => 4,
+                    'placeholder' => trans('core/base::forms.description_placeholder'),
+                ],
+            ])
             ->add('option_type', 'customSelect', [
                 'label' => trans('plugins/ecommerce::product-option.option_type'),
                 'label_attr' => ['class' => 'control-label required'],

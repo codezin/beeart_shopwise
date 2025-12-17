@@ -90,6 +90,44 @@ Theme::asset()
                     <form class="add-to-cart-form" method="POST" action="{{ route('public.cart.add-to-cart') }}">
                         @csrf
                         <h1 class="product-title mb-0 text-start">{{ $product->name }}</h1>
+                        <style>
+.start_rating {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.star {
+    color: #ffc107; /* sao vàng */
+    margin-right: 2px;
+}
+
+.star.empty {
+    color: #ddd; /* sao rỗng */
+}
+
+.rating-count {
+    margin-left: 6px;
+    font-size: 14px;
+    color: #555;
+}
+</style>
+</head>
+<body>
+
+<div class="start_rating">
+    <span class="star">★</span>
+    <span class="star">★</span>
+    <span class="star">★</span>
+    <span class="star">★</span>
+    <span class="star empty">★</span>
+    <span class="rating-count">(1)</span>
+</div>
+
                         <div class="price-range mb-4 text-start">
                             <span class="price h3 fw-bold">
                                 @if ($product->front_sale_price !== $product->price)
@@ -127,13 +165,21 @@ Theme::asset()
                         </div> --}}
                         {!! apply_filters(ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML, null, $product) !!}
                         <input type="hidden" name="id" id="hidden-product-id" value="{{ ($product->is_variation || !$product->defaultVariation->product_id) ? $product->id : $product->defaultVariation->product_id }}" />
-                        <div class="size-options mb-4">
+                        {{-- <div class="size-options mb-4">
                             <div class="d-flex justify-content-between align-items-center mb-2">
 
                                 <a href="#" class="size-guide text-primary small" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Hướng dẫn chọn size</a>
                             </div>
 
-                        </div>
+                        </div> --}}
+                        <style type="text/css">
+                            .size-options{
+                                position: absolute;
+    top: 127px;
+    right: 0;
+}
+
+                            </style>
                         @if (EcommerceHelper::isCartEnabled())
                         <div class="quantity mb-4">
                             <h6 class="fw-bold mb-2 text-start">Số lượng</h6>
@@ -174,8 +220,9 @@ Theme::asset()
                     </form>
 
                     <!-- Dịch vụ -->
-                    <div class="product-description-wrapper mt-4 pt-3 border-bottom">
-                        <h2 class="section-title text-start">Dịch vụ của chúng tôi</h2>
+                    <div class="product-description-wrapper mt-4 ">
+                        <h2 class="section-title text-start line-hr">Dịch vụ của chúng tôi</h2>
+
                     </div>
 
                     <div class="policy-wrapper mt-3">

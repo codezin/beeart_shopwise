@@ -1,8 +1,7 @@
 @php
     $key = mt_rand();
 @endphp
-<div class="product-attributes"
-     data-target="{{ route('public.web.get-variation-by-attributes', ['id' => $product->id]) }}">
+<div class="product-attributes" data-target="{{ route('public.web.get-variation-by-attributes', ['id' => $product->id]) }}">
     @php
         $variationInfo = $productVariationsInfo;
         $variationNextIds = [];
@@ -12,7 +11,7 @@
             @php
                 $variationInfo = $productVariationsInfo->where('attribute_set_id', $set->id)->whereIn('variation_id', $variationNextIds);
             @endphp
-        @endif.
+        @endif
         @if( $set->title == "Kích thước" || $set->title == "Size")
         @include(Theme::getThemeNamespace(). '::views.ecommerce.attributes._layouts.visual_slug', compact('selected'))
         @else

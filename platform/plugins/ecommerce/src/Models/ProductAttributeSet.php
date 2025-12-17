@@ -12,6 +12,7 @@ class ProductAttributeSet extends BaseModel
 
     protected $fillable = [
         'title',
+        'content',
         'slug',
         'status',
         'order',

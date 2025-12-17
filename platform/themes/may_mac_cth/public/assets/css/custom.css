@@ -1,6 +1,57 @@
 a{
     color: inherit;
 }
+#nav-basket{
+    margin-right: 270px;
+        gap: 15px;
+}
+#nav-basket li {
+    width: 30px;
+}
+.line-hr{
+    position: relative;
+}
+.line-hr::after{
+    content: "";
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    width: 60%;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+/* Region Mobile  Screen */
+@media only screen and (max-width:575px) {
+    .language-switch {
+        position: absolute;
+        right: 0;
+        width: 100px !important;
+    }
+    .search-dropdown-wrap {
+        position: relative;
+        user-select: none;
+        width: 30% !important;
+    }
+    .search-trigger{
+        width: 30px;
+    }
+    #btnSearch{
+        padding: 10px 0px;
+    }
+	#nav-basket{
+         position: absolute;
+        top: 20px;
+        right: 0;
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        margin-right: 0;
+	}
+
+}
+/* End Region Mobile Screen */
+
+
 .breadcrumb_section   {
     background-color: #f1f1f1;
     padding: 1rem;
@@ -640,23 +691,6 @@ button:focus {
     display: block;
 }
 
-.navbar-toggler {
-    border-radius: 0;
-    color: #333;
-    float: right;
-    font-size: 28px;
-    height: 35px;
-    line-height: 36px;
-    margin: 13px 0 0 3px;
-    padding: 0;
-    transition: none;
-    width: 35px
-}
-
-.navbar-toggler[aria-expanded=true] span:before {
-    content: "\f129";
-    font-size: 16px
-}
 
 .navbar-toggler[aria-expanded=true] {
     font-size: 20px;
@@ -3865,14 +3899,7 @@ body .owl-theme .owl-nav [class*=owl-] {
         top: 0
     }
 
-    .navbar .navbar-collapse .navbar-nav:not([class*=bg_]):not([class*=bg-]) {
-        background-color: #fff;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, .1)
-    }
 
-    .light_skin .navbar .navbar-collapse .navbar-nav:not([class*=bg_]):not([class*=bg-]) {
-        background-color: #252a2c
-    }
 
     .dark_skin.header_wrap .navbar .navbar-collapse .navbar-nav:not([class*=bg_]):not([class*=bg-]) {
         background-color: #fff;
@@ -3895,11 +3922,6 @@ body .owl-theme .owl-nav [class*=owl-] {
     .dropdown-menu .dropdown-toggler:after {
         right: 0
     }
-
-    .dropdown-toggle:after {
-        float: right
-    }
-
     .navbar .navbar-nav li.dropdown-mega-menu .dropdown-menu,
     .navbar-nav>li>.dropdown-menu {
         padding-left: 10px;
@@ -4109,7 +4131,7 @@ body .owl-theme .owl-nav [class*=owl-] {
         transform: scale(0) !important;
         transform-origin: calc(100% - 30px) 0;
         transition: all .25s ease-in-out;
-        width: 391px;
+        width: 350px;
         box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     }
 
@@ -4508,11 +4530,6 @@ body .owl-theme .owl-nav [class*=owl-] {
         top: -66px
     }
 
-    .custom_select select,
-    .form-control,
-    .form-control:focus {
-        height: 44px
-    }
 
     .product_header {
         display: block
@@ -5238,7 +5255,7 @@ header .cart_box {
     align-items: flex-start;
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1rem !important;
 }
 
 .product__attribute>* {
@@ -5246,9 +5263,9 @@ header .cart_box {
 }
 
 .product__attribute label {
-    margin-bottom: 0;
+    margin-bottom: 5px;
     max-width: 100%;
-    margin-right: 20px;
+    margin-right: 0px;
     width: 100%;
     text-align: left;
     font-weight: 700 !important;
@@ -5411,17 +5428,28 @@ header .cart_box {
     display: block;
     height: 40px;
     position: relative;
-    width: 40px
+    width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color:  transparent !important;
+}
+.custom-radio-slug input[type=checkbox]:checked~span,
+.custom-radio-slug input[type=radio]:checked~span {
+    color: #ffff !important;
+    height: 40px;
 }
 .custom-radio-slug input[type=checkbox]:checked~span:before,
 .custom-radio-slug input[type=radio]:checked~span:before {
-    bottom: -4px;
+    bottom: 0px;
     content: "";
     display: block;
-    left: -4px;
+    left: 0px;
     position: absolute;
-    right: -4px;
-    top: -4px
+    right: 0px;
+    top: 0px;
+       background: #003087;
+    border-radius: 5px;
+    z-index: -1;
 }
 
 .custom-checkbox.disabled label,
@@ -5680,14 +5708,6 @@ body .product_color_switch span.active:before {
     max-width: calc(100% - 20px)
 }
 
-@media only screen and (max-width:575px) {
-
-    .custom_select select,
-    .form-control,
-    .form-control:focus {
-        height: 50px
-    }
-}
 
 @media only screen and (max-width:767px) {
     /* .nav-fixed .middle-header {

@@ -40,6 +40,14 @@ class ProductAttributeSetForm extends FormAbstract
                     'data-counter' => 120,
                 ],
             ])
+            ->add('content', 'editor', [
+                'label'      => trans('core/base::forms.content'),
+                'label_attr' => ['class' => 'control-label'],
+                'attr'       => [
+                    'rows'        => 4,
+                    'placeholder' => trans('core/base::forms.description_placeholder'),
+                ],
+            ])
             ->add('slug', 'text', [
                 'label' => trans('core/base::forms.slug'),
                 'label_attr' => ['class' => 'control-label required'],

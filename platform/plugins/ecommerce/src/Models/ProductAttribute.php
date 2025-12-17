@@ -15,6 +15,7 @@ class ProductAttribute extends BaseModel
 
     protected $fillable = [
         'title',
+        'content',
         'slug',
         'color',
         'status',
