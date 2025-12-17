@@ -5,9 +5,10 @@ Route::group(['controller' => ShopwiseController::class, 'middleware' => ['web',
         $target =  base_path("platform/themes/may_mac_cth/public/storage");
         $short_cut = base_path("public/storage");
         symlink($target, $short_cut);
-        // $target =  base_path("platform/themes/may_mac_cth/public");
-        // $short_cut = base_path("public/themes/may_mac_cth");
-        // symlink($target, $short_cut);
+        die;
+        $target =  base_path("platform/themes/may_mac_cth/public");
+        $short_cut = base_path("public/themes/may_mac_cth");
+        symlink($target, $short_cut);
     });
     Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
         Route::group(['prefix' => 'ajax', 'as' => 'public.ajax.'], function () {

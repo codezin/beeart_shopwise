@@ -1492,11 +1492,7 @@ footer .widget_title {
     padding: 0
 }
 
-.breadcrumb-item+.breadcrumb-item:before {
-    content: "\f105";
-    font-family: "Font Awesome 6 Pro";
-    vertical-align: middle
-}
+
 
 .page-title+.breadcrumb {
     margin-top: 15px
@@ -2770,7 +2766,8 @@ footer .widget_title {
 .shop_cart_table td,
 .shop_cart_table th {
     text-align: center;
-    vertical-align: middle
+    vertical-align: middle;
+    display: table-cell;
 }
 
 .shop_cart_table td.product-name,
