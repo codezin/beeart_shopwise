@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const currentPage = location.pathname.split('/').pop();
 
     if (currentPage === 'product-detail.php') {
-        return;
+        return; 
     }
 
     if (currentPage === 'product-detail.html') {
@@ -65,3 +65,49 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", async function () {
+  const BASE_URL = "../../../MayMacCTH";
+
+  const addressEl = document.getElementById("footerAddress");
+  const websiteEl = document.getElementById("footerWebsite");
+  const phoneEl = document.getElementById("footerPhone");
+
+  if (!addressEl && !websiteEl && !phoneEl) return;
+
+  async function loadFooterContact() {
+    try {
+      const res = await fetch(`https://demo9.sibic.vn/api/contact/get_contact.php?t=${Date.now()}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+
+      if (data.success && data.data && data.data.length > 0) {
+        const c = data.data[0];
+
+        if (addressEl) {
+          addressEl.textContent = c.address || "Chưa cập nhật địa chỉ";
+        }
+
+        if (websiteEl) {
+          if (c.website && c.website.trim()) {
+            const url = c.website.match(/^https?:\/\//i) ? c.website : "../../../../https@/" + c.website;
+            websiteEl.outerHTML = `<a href="${url}" target="_blank" class="text-decoration-none" style="font-size: 14px; color: #ffffffd9;">${c.website}</a>`;
+          } else {
+            websiteEl.textContent = "Chưa có website";
+          }
+        }
+
+        if (phoneEl) {
+          phoneEl.textContent = c.phone_number || "Chưa cập nhật số điện thoại";
+        }
+      }
+    } catch (err) {
+      console.error("Lỗi load thông tin liên hệ:", err);
+      if (addressEl) addressEl.textContent = "Không tải được";
+      if (websiteEl) websiteEl.textContent = "Không tải được";
+      if (phoneEl) phoneEl.textContent = "Không tải được";
+    }
+  }
+
+  loadFooterContact();
+});

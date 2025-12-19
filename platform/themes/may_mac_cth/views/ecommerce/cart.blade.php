@@ -1,6 +1,6 @@
 @php Theme::set('pageName', __('Shopping Cart')); @endphp
 <link rel="stylesheet" href="{{ base }}assets/css/cart.css" />
-<div class="section cart-section">
+<div class="section cart-section pt-4">
     <div class="container">
         @if (Cart::instance('cart')->count() > 0)
         @if (session()->has('success_msg'))
@@ -193,7 +193,9 @@
                                 </div>
                                 @endif
                                 @endforeach
-                                @endif
+                                @endif     
+								<a href="{{url('products')}}" class="btn btn-outline-primary mt-3">Tiếp tục mua
+                            sắm</a>
                             </div>
                             @endif
                         </div>

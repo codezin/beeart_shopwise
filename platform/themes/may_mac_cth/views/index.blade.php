@@ -42,7 +42,7 @@
                 <div class="card h-100 product-card border-0 shadow-sm overflow-hidden">
                     <a href="{{ $product->url }}" class="text-decoration-none text-dark">
                         <div class="product-image-container position-relative">
-                            <img src="{{ RvMedia::getImageUrl($product->image, null, false, RvMedia::getDefaultImage()) }}" class="card-img-top" alt="Áo len" style="object-fit: cover;" onerror="this.src='/MayMacCTH/public/assets/images/no-image.jpg'">
+                            <img src="{{ RvMedia::getImageUrl($product->image, null, false, RvMedia::getDefaultImage()) }}" class="card-img-top" alt="Áo len" style="object-fit: cover;" onerror="this.src='assets/images/no-image.jpg'">
                         </div>
                     </a>
                     <div class="card-body text-center p-2">

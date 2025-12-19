@@ -1,7 +1,7 @@
 @php Theme::set('pageName', __('News')) @endphp
 
 <link rel="stylesheet" href="{{ base }}assets/css/about.css">
-<section class="about-us">
+<section class="about-us pt-4">
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4" id="homeNewsContainer">
             @if ($posts->count() > 0)
