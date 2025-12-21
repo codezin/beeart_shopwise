@@ -70,7 +70,7 @@
                     <div class="row fade-elementt" id="productList">
                         @if ($products->count() > 0)
                             @foreach ($products as $product)
-                                <div class="col-12 col-md-4 mb-4 product-item" style="display: block;">
+                                <div class="col-12 col-sm-6 col-md-6 col-xxl-4 mb-4 product-item" style="display: block;">
                                     <div class="card product-card h-100 border-0 shadow-sm">
                                         <div class="image-container position-relative">
                                             <a href="{{ url($product->url) }}">

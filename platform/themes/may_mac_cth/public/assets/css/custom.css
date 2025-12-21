@@ -1,9 +1,19 @@
 a{
     color: inherit;
 }
+
+.navbar-nav {
+    list-style: none;
+    position: relative;
+    transition: all .3s ease 0s;
+    margin: 0 auto;
+}
+.navbar-category{
+    margin: 0;
+    padding: 0;
+}
 #nav-basket{
-    margin-right: 270px;
-        gap: 15px;
+    gap: 15px;
 }
 #nav-basket li {
     width: 30px;
@@ -20,6 +30,62 @@ a{
     right: 0;
     top: 50%;
 }
+
+.card-body p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+@media only screen and (min-width: 1440px) {
+    .navbar .container{
+        width: calc(100% - 200px);
+        max-width: calc(100% - 200px);
+    }
+}
+@media only screen and (max-width: 1440px) {
+    .nav-item.me-4 {
+        margin-left: 100px;
+        margin-right: 150px !important;
+    }
+}
+@media only screen and (max-width: 1208px) {
+    .row-cols-md-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0px;
+    }
+    .nav-item.me-4 {
+        margin-left: 100px;
+        margin-right: 40px !important;
+    }
+    #nav-basket {
+        margin-right: 130px;
+        gap: 15px;
+        position: absolute;
+        top: 20px;
+        right: 0;
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        margin-right: 0;
+
+    }
+
+    #homeProductList.row-cols-md-5 > * {
+        flex: 0 0 auto;
+        width: 22%;
+    }
+}
+@media only screen and (max-width: 844px) {
+    #nav-basket {
+        position: absolute;
+        top: 20px;
+        right: 0;
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        margin-right: 0;
+    }
+    }
 /* Region Mobile  Screen */
 @media only screen and (max-width:575px) {
     .language-switch {
@@ -47,8 +113,73 @@ a{
         flex-direction: row;
         margin-right: 0;
 	}
+    .navbar .navbar-nav.attr-nav li .nav-link.cart_trigger [class*=linearicons-] {
+        display: inline-block;
+        margin-top: 5px
+    }
 
+    .navbar .navbar-nav .dropdown-item {
+              padding: 8px 10px;
+        color: #fff !important;
+    }
+    .dropdown-menu-custom li{
+        border: 0;
+    }
+    .banner-container {
+        height: 240px;
+    }
+    .banner-container img.banner-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+    .xs-flex{
+        display: flex;
+    }
+    .flex-col-1 {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    .max-w-50{
+        max-width: 50%;
+        min-width: 46%;
+    }
+    .xs-gap-0{
+        gap: 0;
+    }
+    .guide-card .card-body {
+        padding: 1.3rem;
+    }
+    /* Region Footer */
+    footer.footer .footer-contact-btns {
+               flex-direction: row;
+    }
+    .contact-btn {
+        max-width: 160px;
+    }
+    .text-wrap {
+        position: relative;
+                height: 40px;
+        min-width: 118px;
+            padding-left: 17px;
+        padding-right: 17px;
+    }
+     .text-wrap .contact-label {
+        font-size: 11px;
+    }
+    /* Region Footer */
 }
+
+
+
+
+/* End Region Footer*/
 /* End Region Mobile Screen */
 
 
@@ -416,11 +547,6 @@ button:focus {
     vertical-align: top
 }
 
-.navbar-nav {
-    list-style: none;
-    position: relative;
-    transition: all .3s ease 0s;
-}
 
 
 .navbar-nav .dropdown-menu.cart_box {
@@ -1711,9 +1837,6 @@ footer .widget_title {
     margin: 0
 }
 
-.card-body p {
-    margin-bottom: 15px
-}
 
 .error_wrap {
     width: 100%
@@ -3937,14 +4060,7 @@ body .owl-theme .owl-nav [class*=owl-] {
         transform: rotate(0deg)
     }
 
-    .navbar .navbar-nav.attr-nav li .nav-link.cart_trigger [class*=linearicons-] {
-        display: inline-block;
-        margin-top: 5px
-    }
 
-    .navbar .navbar-nav .dropdown-item {
-        padding: 8px 10px
-    }
 
     .nav_cat.collapse:not(.show) {
         display: block
@@ -6021,13 +6137,7 @@ body[dir=rtl] .language-wrapper .language_bar_list li a img {
     line-height: 22px
 }
 
-.ps-list--categories li a:before {
-    content: "\f3d1";
-    font-family: Ionicons;
-    height: auto;
-    line-height: normal;
-    margin-right: 10px
-}
+
 
 .ps-list--categories li .sub-toggle {
     cursor: pointer;

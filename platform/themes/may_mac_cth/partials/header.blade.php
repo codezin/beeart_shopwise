@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ base }}assets/css/style.css">
-    <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v=1">
+    <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v={{time()}}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     {!! Theme::partial('meta') !!}
 </head>
@@ -93,11 +93,11 @@
                 <a href="{{ route('public.index') }}">
                     <img src="{{ RvMedia::getImageUrl(theme_option('logo')) }}" alt="Logo" height="60" class="me-32">
                 </a>
-                <button class="btn btn-sm p-0 text-muted d-flex align-items-center col-sm-1 d-lg-none language-switch" type="button" aria-expanded="false">
+                {{-- <button class="btn btn-sm p-0 text-muted d-flex align-items-center col-sm-1 d-block d-sm-none language-switch" type="button" aria-expanded="false">
 
                     <img src="assets/images/vietnam-flag.png" id="currentFlag" style="width: 20px; height: 20px; object-fit: cover; border-radius: 3px;">
                     <span id="currentLang" class="ms-1">VN</span>
-                </button>
+                </button> --}}
                 <form action="{{ route('public.products') }}" data-ajax-url="{{ route('public.ajax.search-products') }}" method="GET">
 
                     <div class="d-flex align-items-center bg-white border rounded px-2" style="height: 45px; position: relative;">
@@ -134,20 +134,29 @@
 
     <!-- Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
+        <div class="container container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <ul class="navbar-category me-auto align-items-center">
+                <li class="nav-item dropdown-custom me-4">
+                    <a href="#" class="nav-link text-warning d-flex align-items-center">
+                        <i class="bx bx-menu me-2 d-none d-sm-block"></i> TẤT CẢ DANH MỤC
+                    </a>
+                    {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.sub-menu', 'options' => ['class' => 'dropdown-menu-custom']]) !!}
+
+                </li>
+            </ul>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto align-items-center">
-                    <li class="nav-item dropdown-custom me-4">
+                    {{-- <li class="nav-item dropdown-custom me-4">
                         <a href="#" class="nav-link text-warning d-flex align-items-center">
                             <i class="bx bx-menu me-2 d-none d-sm-block"></i> TẤT CẢ DANH MỤC
                         </a>
                         {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.sub-menu', 'options' => ['class' => 'dropdown-menu-custom']]) !!}
 
-                    </li>
+                    </li> --}}
 
                     {!! Menu::renderMenuLocation('main-menu', ['view' => 'menus.main', 'options' => ['class' => '']]) !!}
 
@@ -157,10 +166,8 @@
 
             </div>
             <ul id="nav-basket" class="navbar-nav ms-3">
-
                 @if (!auth('customer')->check())
                     <li>
-
                         <a href="{{ route('customer.register') }}" style="color: #fff">
                             <i class="fa  fa-address-card" title="{{ __('Sign up') }}"></i>
                         </a>

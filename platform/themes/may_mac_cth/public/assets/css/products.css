@@ -16,7 +16,7 @@
     background-size: contain;
     opacity: 0.08;
     filter: blur(2px);
-    z-index: 0;
+    z-index: -1;
 }
 
 .products-section > * {

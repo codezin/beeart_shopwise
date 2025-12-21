@@ -17,13 +17,13 @@
               </div>
 
               <!-- Về chúng tôi -->
-              <div class="col-12 col-md-6 col-lg-3">
-                  <div class="mb-4">
+              <div class="col-12 col-md-6 col-lg-3 xs-flex">
+                  <div class="mb-4 flex-col-1">
                       <p class="footer-title">VỀ CHÚNG TÔI</p>
 
                       {!! Menu::renderMenuLocation('footer-menu', ['view' => 'menus.sub-menu', 'options' => ['class' => 'footer-links']]) !!}
                   </div>
-                  <div>
+                  <div class="flex-col-1">
                       <p class="footer-title mb-3">THÔNG TIN LIÊN HỆ</p>
 
                       <div class="d-flex align-items-start mb-3">
@@ -57,7 +57,7 @@
 
                               {!! Menu::renderMenuLocation('links-menu', ['view' => 'menus.sub-menu', 'options' => ['id' => 'footerNewsCategories', 'class' => 'footer-links']]) !!}
                           </div>
-                          <div class="mb-4">
+                          <div class="mb-4 d-none d-sm-block">
                               <p class="footer-title">PHƯƠNG THỨC THANH TOÁN</p>
                               <div class="d-flex gap-2">
                                   <img src="assets/images/cash.png" height="28" style="margin-right: 10px;">
@@ -67,8 +67,16 @@
                           </div>
                       </div>
                   </div>
-
+                <div class="mb-4 d-block d-sm-none">
+                    <p class="footer-title">PHƯƠNG THỨC THANH TOÁN</p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <img src="assets/images/cash.png" height="28" style="margin-right: 10px;">
+                        <img src="assets/images/mastercard.png" height="28" style="margin-right: 10px;">
+                        <img src="assets/images/visa.png" height="28">
+                    </div>
+                </div>
                   <div class="footer-contact-btns mt-4">
+
                       <a href="https://zalo.me/0783159798" target="_blank" class="contact-btn">
                           <div class="icon-wrap">
                               <img src="assets/images/zalo.png" alt="Zalo">
@@ -422,7 +430,7 @@
         //       window.location.href = url;
         //   };
 
-          if (btnSearch) btnSearch.addEventListener('click', performSearch);
+        //   if (btnSearch) btnSearch.addEventListener('click', performSearch);
         //   if (searchInput) searchInput.addEventListener('keypress', e => {
         //       if (e.key === 'Enter') performSearch();
         //   });

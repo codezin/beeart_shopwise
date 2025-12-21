@@ -1,25 +1,44 @@
 @php
     Theme::layout('homepage');
 @endphp
-<div class="banner-container position-relative text-center fade-element visible" id="bannerContainer">
 
-    <div class="banner-dots" id="bannerDots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-        <span class="dot" data-index="2"></span>
-        <span class="dot" data-index="3"></span>
-        <span class="dot" data-index="4"></span>
-    </div>
+<div class="banner-container position-relative text-center fade-element visible carousel slide" id="bannerContainer" data-bs-ride="carousel">
     @php
         $sliders = get_slider('home-slider');
     @endphp
-    @foreach ($sliders->loadMissing('metadata') as $slider)
-        @php
-            $tabletImage = $slider->getMetaData('tablet_image', true) ?: $slider->image;
-            $mobileImage = $slider->getMetaData('mobile_image', true) ?: $tabletImage;
-        @endphp
-        <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="banner-image {{ $loop->index == 0 ? 'active' : '' }}" alt="{{ $slider->title }}">
-    @endforeach
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+         @foreach ($sliders->loadMissing('metadata') as $slider)
+        <button type="button" data-bs-target="#bannerContainer" data-bs-slide-to="{{ $loop->index}}" class=" {{ $loop->index == 0 ? 'active' : '' }}"></button>
+              @endforeach
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        @foreach ($sliders->loadMissing('metadata') as $slider)
+            @php
+                $tabletImage = $slider->getMetaData('tablet_image', true) ?: $slider->image;
+                $mobileImage = $slider->getMetaData('mobile_image', true) ?: $tabletImage;
+            @endphp
+            <div class="carousel-item  {{ $loop->index == 0 ? 'active' : '' }}">
+                <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="d-block w-100" alt="">
+            </div>
+
+            {{-- <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="banner-image {{ $loop->index == 0 ? 'active' : '' }}" alt="{{ $slider->title }}"> --}}
+        @endforeach
+
+    </div>
+
+    <!-- Controls -->
+    {{-- <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button> --}}
+
 </div>
 
 <!-- Sản phẩm -->
@@ -38,7 +57,7 @@
 
     <div class="row row-cols-1 row-cols-md-5 g-4" id="homeProductList">
         @foreach ($products as $product)
-            <div class="col">
+            <div class="col flex-col-1 max-w-50">
                 <div class="card h-100 product-card border-0 shadow-sm overflow-hidden">
                     <a href="{{ $product->url }}" class="text-decoration-none text-dark">
                         <div class="product-image-container position-relative">
@@ -62,12 +81,12 @@
 <!-- Hướng dẫn -->
 <div class="container my-5 fade-element">
     <h3 class="text-left mb-4 guide-title">HƯỚNG DẪN / TRỢ GIÚP</h3>
-    <div class="row row-cols-1 row-cols-md-5 g-4">
+    <div class="row row-cols-1 row-cols-md-5 g-4 xs-gap-0">
         @php
             $faqs = get_list_faqs_categories([]);
         @endphp
         @foreach ($faqs as $faq)
-            <div class="col">
+            <div class="col flex-col-1">
                 <a href="#" class="text-decoration-none">
                     <div class="card text-center guide-card">
                         <div class="card-body">

@@ -13,7 +13,7 @@
     background-size: 60%;
     opacity: 0.08;
     filter: blur(2px);
-    z-index: 0;
+    z-index: -1;
 }
 
 .news-section > * {
@@ -100,7 +100,7 @@
 .pagination .page-item .page-link {
     display: flex;
     align-items: center;
-    gap: 5px; 
+    gap: 5px;
     margin-right: 10px;
 }
 

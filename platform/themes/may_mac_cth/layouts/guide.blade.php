@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="container my-5 fade-element visible">
-        <div class="row row-cols-1 row-cols-md-5 g-4">
+        <div class="row row-cols-1 row-cols-md-3  row-cols-xxl-5  g-4">
             <div class="col">
                 <a href="javascript:;" class="text-decoration-none guide-card-link" data-target="guide-content-1-1,guide-content-1-2">
                     <div class="card text-center guide-card">
