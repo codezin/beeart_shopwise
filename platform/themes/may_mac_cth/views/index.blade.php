@@ -2,6 +2,10 @@
     Theme::layout('homepage');
 @endphp
 
+
+<div class="container fade-element">
+
+
 <div class="banner-container position-relative text-center fade-element visible carousel slide" id="bannerContainer" data-bs-ride="carousel">
     @php
         $sliders = get_slider('home-slider');
@@ -41,14 +45,13 @@
 
 </div>
 
-<!-- Sản phẩm -->
-<div class="container my-5 fade-element">
+	 <!-- Sản phẩm -->
     @php
 
         $products = get_featured_products();
 
     @endphp
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center my-5  mb-4">
         <h3 class="product-title">SẢN PHẨM / SHOP</h3>
         <a href="{{ url('products') }}" class="view-more">
             Xem thêm sản phẩm <i class='bx bx-right-arrow-alt'></i>

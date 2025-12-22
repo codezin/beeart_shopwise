@@ -64,3 +64,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         `;
     }
 });
+
+$(document).on("click",".mobile-nav-toggle", function(){
+    $(".navbar-collapse").toggleClass("show")
+})

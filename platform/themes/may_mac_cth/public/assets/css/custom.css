@@ -1,7 +1,13 @@
 a{
     color: inherit;
 }
-
+.top-header .container, .search-bar .container, .navbar .container{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.navbar{
+    padding: 0;
+}
 .navbar-nav {
     list-style: none;
     position: relative;
@@ -9,8 +15,28 @@ a{
     margin: 0 auto;
 }
 .navbar-category{
+
+    background: #FFD000;
+    color: #174DAF;
     margin: 0;
     padding: 0;
+    height: 56px;
+    line-height: 58px;
+    list-style: none;
+    width: 300px;
+}
+.navbar-category a.nav-link{
+    padding-left: 10px;
+    color: inherit !important;
+}
+
+.navbar-category .dropdown-menu-custom li{
+    height: 40px;
+    line-height: 20px;
+}
+
+.navbar-category .dropdown-menu-custom li a:hover{
+    padding-left:  30px;
 }
 #nav-basket{
     gap: 15px;
@@ -37,31 +63,34 @@ a{
 }
 
 @media only screen and (min-width: 1440px) {
-    .navbar .container{
-        width: calc(100% - 200px);
-        max-width: calc(100% - 200px);
-    }
+
 }
 @media only screen and (max-width: 1440px) {
+    .top-header .container, .search-bar .container, .navbar .container{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
     .nav-item.me-4 {
-        margin-left: 100px;
-        margin-right: 150px !important;
+        margin-left: 0px;
+        margin-right: 0px !important;
     }
 }
 @media only screen and (max-width: 1208px) {
+    .navbar-category {
+
+        width: auto;
+    }
+
     .row-cols-md-3 {
         grid-template-columns: repeat(2, 1fr);
         gap: 0px;
     }
     .nav-item.me-4 {
-        margin-left: 100px;
-        margin-right: 40px !important;
+        /* margin-left: 100px;
+        margin-right: 40px !important; */
     }
     #nav-basket {
-        margin-right: 130px;
-        gap: 15px;
-        position: absolute;
-        top: 20px;
+
         right: 0;
         width: 150px;
         display: flex;
@@ -76,6 +105,14 @@ a{
     }
 }
 @media only screen and (max-width: 844px) {
+    .navbar-category {
+        background: transparent;
+        color: #fff;
+        width: auto;
+    }
+    .navbar-category li a.nav-link{
+        display: none !important;
+    }
     #nav-basket {
         position: absolute;
         top: 20px;
@@ -88,6 +125,70 @@ a{
     }
 /* Region Mobile  Screen */
 @media only screen and (max-width:575px) {
+     .top-header .container, .search-bar .container, .navbar .container{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .navbar-category{
+        display: none
+    }
+    .navbar-collapse {
+    	bottom: 0;
+        display: block;
+        left: -280px;
+        max-width: 270px;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        transition: all .3s ease-in-out;
+    }
+    .mobile-nav-toggle.bi-x {
+        background: #03294f;
+        color: #fff;
+        position: absolute;
+        font-size: 13px;
+        top: 10px;
+        right: 14px;
+        margin-right: 0;
+        z-index: 9999;
+        border-radius: 50%;
+        padding: 8px 13px;
+        text-align: left;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-collapse.show{
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+        z-index: 3000;
+        width: 100%;
+    }
+     .navbar-collapse.show  li{
+            width: 100%;
+        text-align: left;
+    }
+    .navbar-collapse.show .nav-link{
+        color: #212529 !important;
+        position: relative;
+                border-bottom: 1px solid #ccc;
+    }
+    .navbar-collapse.show .nav-link::after{
+        position: absolute;
+        right: 10px;
+        top: 20px;
+    }
+    .navbar-category {
+        background: transparent;
+        color: #fff;
+        width: auto;
+    }
+    .navbar-category li a.nav-link{
+        display: none !important;
+    }
     .language-switch {
         position: absolute;
         right: 0;
@@ -118,9 +219,14 @@ a{
         margin-top: 5px
     }
 
+    .dropdown-menu-custom {
+        position: static;
+        display: none;
+        background: #ffffff !important;
+    }
     .navbar .navbar-nav .dropdown-item {
-              padding: 8px 10px;
-        color: #fff !important;
+        padding: 8px 10px;
+        color: #000 !important;
     }
     .dropdown-menu-custom li{
         border: 0;
@@ -509,7 +615,7 @@ button:focus {
 .cart_count{
     position: absolute;
     top: -5px;
-    right: -15px;
+    right: 0px;
     font-size: 9px;
     padding: 0px 4px;
     border: 1px solid rgb(255, 255, 255);
@@ -4000,8 +4106,7 @@ body .owl-theme .owl-nav [class*=owl-] {
         max-height: 100vh
     }
 
-    .nav-fixed .navbar .navbar-nav>li>.nav-link,
-    .navbar .navbar-nav>li>.nav-link {
+    .nav-fixed .navbar .navbar-nav>li>.nav-link,.navbar .navbar-nav>li>.nav-link {
         padding: 10px
     }
 

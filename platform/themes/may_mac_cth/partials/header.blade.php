@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="{{ base }}assets/css/style.css">
+    <link rel="stylesheet" href="{{ base }}assets/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v={{time()}}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     {!! Theme::partial('meta') !!}
@@ -141,7 +141,7 @@
 
             <ul class="navbar-category me-auto align-items-center">
                 <li class="nav-item dropdown-custom me-4">
-                    <a href="#" class="nav-link text-warning d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-warning d-flex align-items-center">
                         <i class="bx bx-menu me-2 d-none d-sm-block"></i> TẤT CẢ DANH MỤC
                     </a>
                     {!! Menu::renderMenuLocation('categories-menu', ['view' => 'menus.sub-menu', 'options' => ['class' => 'dropdown-menu-custom']]) !!}
@@ -149,6 +149,7 @@
                 </li>
             </ul>
             <div class="collapse navbar-collapse" id="navbarNav">
+                     <i class="mobile-nav-toggle fa-solid fa-xmark d-xl-none bi bi-x"></i>
                 <ul class="navbar-nav me-auto align-items-center">
                     {{-- <li class="nav-item dropdown-custom me-4">
                         <a href="#" class="nav-link text-warning d-flex align-items-center">
