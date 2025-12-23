@@ -8,6 +8,14 @@ a{
 .navbar{
     padding: 0;
 }
+.top-header .container, .search-bar .container, .navbar .container{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.navbar{
+    padding: 0;
+	height: 56px;
+}
 .navbar-nav {
     list-style: none;
     position: relative;
@@ -18,8 +26,28 @@ a{
 
     background: #FFD000;
     color: #174DAF;
+
+    background: #FFD000;
+    color: #174DAF;
     margin: 0;
     padding: 0;
+    height: 56px;
+    line-height: 58px;
+    list-style: none;
+    width: 300px;
+}
+.navbar-category a.nav-link{
+    padding-left: 10px;
+    color: inherit !important;
+}
+
+.navbar-category .dropdown-menu-custom li{
+    height: 40px;
+    line-height: 20px;
+}
+
+.navbar-category .dropdown-menu-custom li a:hover{
+    padding-left:  30px;
     height: 56px;
     line-height: 58px;
     list-style: none;
@@ -60,6 +88,26 @@ a{
 .card-body p {
     margin-bottom: 15px;
     text-align: justify;
+}
+  .title-section {
+    background-color: #f1f1f1;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.page-title {
+    font-family: 'Baloo 2';
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
 }
 
 @media only screen and (min-width: 1440px) {
@@ -105,6 +153,63 @@ a{
     }
 }
 @media only screen and (max-width: 844px) {
+    .navbar-collapse {
+    	bottom: 0;
+        display: block;
+        left: -280px;
+        max-width: 270px;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        transition: all .3s ease-in-out;
+    }
+    .mobile-nav-toggle.bi-x {
+        background: #03294f;
+        color: #fff;
+        position: absolute;
+        font-size: 13px;
+        top: 10px;
+        right: 14px;
+        margin-right: 0;
+        z-index: 9999;
+        border-radius: 50%;
+        padding: 8px 13px;
+        text-align: left;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-collapse.show{
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+        z-index: 3000;
+        width: 100%;
+    }
+     .navbar-collapse.show  li{
+            width: 100%;
+        text-align: left;
+    }
+    .navbar-collapse.show .nav-link{
+        color: #212529 !important;
+        position: relative;
+                border-bottom: 1px solid #ccc;
+    }
+    .navbar-collapse.show .nav-link::after{
+        position: absolute;
+        right: 10px;
+        top: 20px;
+    }
+    .navbar-category {
+        background: transparent;
+        color: #fff;
+        width: auto;
+    }
+    .navbar-category li a.nav-link{
+        display: none !important;
+    }
     .navbar-category {
         background: transparent;
         color: #fff;
@@ -262,6 +367,12 @@ a{
     .guide-card .card-body {
         padding: 1.3rem;
     }
+
+    .product-main-img {
+        width: 100% !important;
+        height: max-content !important;
+    }
+
     /* Region Footer */
     footer.footer .footer-contact-btns {
                flex-direction: row;
@@ -1729,22 +1840,6 @@ footer .widget_title {
     opacity: 1
 }
 
-.breadcrumb_section {
-    padding: 150px 0;
-    width: 100%
-}
-
-.breadcrumb_section.page-title-mini {
-    padding: 70px 0
-}
-
-.page-title-mini .page-title h1 {
-    font-size: 28px
-}
-
-.page-title-mini .breadcrumb li {
-    font-size: 14px
-}
 
 .page-title h1 {
     font-weight: 700;
@@ -3886,9 +3981,6 @@ body .owl-theme .owl-nav [class*=owl-] {
         font-size: 52px
     }
 
-    .breadcrumb_section {
-        padding: 100px 0
-    }
 
     .footer_top {
         padding: 80px 0 50px
@@ -4186,10 +4278,6 @@ body .owl-theme .owl-nav [class*=owl-] {
         font-size: 44px
     }
 
-    .breadcrumb_section {
-        padding: 80px 0
-    }
-
     .highlight_text {
         font-size: 18px
     }
@@ -4414,10 +4502,6 @@ body .owl-theme .owl-nav [class*=owl-] {
         font-size: 36px
     }
 
-    .breadcrumb_section.page-title-mini {
-        padding: 50px 0
-    }
-
     .footer_top {
         padding: 50px 0 20px
     }
@@ -4627,14 +4711,6 @@ body .owl-theme .owl-nav [class*=owl-] {
 
     .small_divider {
         height: 5px
-    }
-
-    .breadcrumb_section {
-        padding: 50px 0
-    }
-
-    .breadcrumb_section.page-title-mini {
-        padding: 30px 0
     }
 
     .footer_top {
@@ -5406,11 +5482,6 @@ header .cart_box {
 .pr_action_btn li a.active {
     background-color: var(--color-1st);
     color: #fff
-}
-
-.breadcrumb_section.page-title-mini {
-    margin-top: 0px;
-    padding: 30px 0
 }
 
 .section {
