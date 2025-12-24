@@ -168,11 +168,11 @@
             </div>
             <ul id="nav-basket" class="navbar-nav ms-3">
                 @if (!auth('customer')->check())
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('customer.register') }}" style="color: #fff">
                             <i class="fa  fa-address-card" title="{{ __('Sign up') }}"></i>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('customer.login') }}" style="color: #fff">
                             <i class="fa fa-user" title="{{ __('Login') }}"></i>

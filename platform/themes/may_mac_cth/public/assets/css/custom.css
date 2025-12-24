@@ -67,10 +67,10 @@ a{
     padding-left:  30px;
 }
 #nav-basket{
-    gap: 15px;
+    gap: 5px;
 }
 #nav-basket li {
-    width: 30px;
+    width: 20px;
 }
 .line-hr{
     position: relative;
@@ -311,10 +311,10 @@ a{
         padding: 10px 0px;
     }
 	#nav-basket{
-         position: absolute;
+        position: absolute;
         top: 20px;
-        right: 0;
-        width: 150px;
+        right: 0px;
+        width: 68px;
         display: flex;
         flex-direction: row;
         margin-right: 0;
@@ -367,13 +367,23 @@ a{
     .guide-card .card-body {
         padding: 1.3rem;
     }
-
+    .guide-card .card-text {
+        flex-direction: column;
+        gap: 12px;
+        font-size: 14px;
+    }
     .product-main-img {
         width: 100% !important;
         height: max-content !important;
     }
 
     /* Region Footer */
+    footer.footer .footer-desc {
+        font-size: 13px;
+        opacity: 0.9;
+        padding-top: 5px;
+		padding-right: 0;
+    }
     footer.footer .footer-contact-btns {
                flex-direction: row;
     }
@@ -726,7 +736,7 @@ button:focus {
 .cart_count{
     position: absolute;
     top: -5px;
-    right: 0px;
+    right: -10px;
     font-size: 9px;
     padding: 0px 4px;
     border: 1px solid rgb(255, 255, 255);
@@ -4214,12 +4224,9 @@ body .owl-theme .owl-nav [class*=owl-] {
         padding: 16px 8px
     }
 
-    .cart_count,
-    .wishlist_count {
+    .cart_count{
         top: 0
     }
-
-
 
     .dark_skin.header_wrap .navbar .navbar-collapse .navbar-nav:not([class*=bg_]):not([class*=bg-]) {
         background-color: #fff;

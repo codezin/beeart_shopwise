@@ -89,8 +89,8 @@ Theme::layout('homepage');
         $faqs = get_list_faqs_categories([]);
         @endphp
         @foreach ($faqs as $faq)
-        <div class="col flex-col-1">
-            <a href="#" class="text-decoration-none">
+        <div class="col flex-col-1  {{$loop->last?'':'max-w-50'}}">
+            <a href="javascript:;" class="text-decoration-none">
                 <div class="card text-center guide-card">
                     <div class="card-body">
                         <a href="{{ url('guide') }}">
