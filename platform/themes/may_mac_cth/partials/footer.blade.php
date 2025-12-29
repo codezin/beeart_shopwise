@@ -10,7 +10,7 @@
                       Chúng tôi luôn trân trọng mọi ý kiến đóng góp của khách hàng,
                       không ngừng cải thiện để mang đến sản phẩm và dịch vụ tốt nhất.
                   </p>
-                  <a href="{{url("contact")}}" class="btn btn-warning footer-btn">
+                  <a href="{{url("contact-us")}}" class="btn btn-warning footer-btn">
                       ĐÓNG GÓP Ý KIẾN →
                   </a>
                   <p class="footer-tax mt-3"><strong>MÃ SỐ THUẾ:</strong> 0202167805</p>
