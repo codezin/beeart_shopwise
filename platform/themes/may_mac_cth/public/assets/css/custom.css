@@ -378,6 +378,12 @@ a{
     }
 
     /* Region Footer */
+    footer.footer .footer-desc {
+        font-size: 13px;
+        opacity: 0.9;
+        padding-top: 5px;
+		padding-right: 0;
+    }
     footer.footer .footer-contact-btns {
                flex-direction: row;
     }

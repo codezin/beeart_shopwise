@@ -2,10 +2,10 @@
 use Theme\MayMacCTH\Http\Controllers\ShopwiseController;
 Route::group(['controller' => ShopwiseController::class, 'middleware' => ['web', 'core']], function () {
     Route::get('create_folder_storage',function(){
-        $target =  base_path("platform/themes/may_mac_cth/public/storage");
-        $short_cut = base_path("public/storage");
-        symlink($target, $short_cut);
-        die;
+        // $target =  base_path("platform/themes/may_mac_cth/public/storage");
+        // $short_cut = base_path("public/storage");
+        // symlink($target, $short_cut);
+        // die;
         $target =  base_path("platform/themes/may_mac_cth/public");
         $short_cut = base_path("public/themes/may_mac_cth");
         symlink($target, $short_cut);
