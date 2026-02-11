@@ -127,14 +127,14 @@ Theme::layout('homepage');
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title mb-2">
-                        <a href="/MayMacCTH/tin-tuc/Top 10 xu hướng Xuân Hè 2025" class="news-title-link fw-bold text-decoration-none">
+                        <a href="{{$post->url}}" class="news-title-link fw-bold text-decoration-none">
                             {{ $post->name }}
                         </a>
                     </h5>
                     <p class="text-muted small mb-3">
                         <i class="bi bi-calendar3"></i>
                         {{ date('d/m/Y', strtotime($post->created_at)) }}
-                        | Admin CTH
+
                     </p>
                     <p class="card-text text-muted flex-grow-1">
                         {{ $post->description }}

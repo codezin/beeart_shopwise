@@ -3,7 +3,7 @@
     <li @if ($row->has_child || $row->css_class || $row->active)
         class="nav-item @if ($row->has_child) dropdown-custom @endif @if ($row->css_class) {{ $row->css_class }} @endif "  @endif>
         <a class=" @if ($row->has_child) dropdown-toggle nav-link @else nav-link nav_item @endif @if ($row->active) active @endif"
-            href="{{ $row->has_child ? 'javascript:;' : url($row->url) }}" @if ($row->target !== '_self') target="{{ $row->target }}" @endif
+            href="{{ url($row->url) }}" @if ($row->target !== '_self') target="{{ $row->target }}" @endif
             {{-- @if ($row->has_child) data-toggle="dropdown" @endif --}}
             >
             @if ($iconImage = $row->getMetadata('icon_image', true))
