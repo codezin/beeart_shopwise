@@ -1,88 +1,84 @@
-@php Theme::set('pageName', __('Blog')) @endphp
-<div class="section">
+@php Theme::set('pageName', __('News')) @endphp
+<link rel="stylesheet" href="{{ base }}assets/css/news-detail.css">
+<section class="news-detail-section pb-5">
     <div class="container">
         <div class="row">
-            <div class="col-xl-9">
-                <div class="single_post">
-                    <h2 class="blog_title">{{ $post->name }}</h2>
-                    <ul class="list_none blog_meta">
-                        <li><i class="ti-calendar"></i> {{ $post->created_at->translatedFormat('M d, Y') }}</li>
-                        <li><i class="ti-pencil-alt"></i>
-                            @if (!$post->categories->isEmpty())
-                                @foreach($post->categories as $category)
-                                    <a href="{{ $category->url }}">{{ $category->name }}</a>@if (!$loop->last),@endif
+            <div class="col-lg-8">
+                <article>
+            <h1 class="news-detail-title">{{ $post->name }}</h1>
+
+            <div class="news-meta mb-4">
+                <span><i class="bx bx-calendar"></i>{{ $post->created_at->translatedFormat('d/M/Y') }}<</span>
+                {{-- <span class="ms-4"><i class="bx bx-user"></i> Admin CTH</span> --}}
+            </div>
+
+            <div class="news-content fs-5 lh-lg">
+                {!! BaseHelper::clean($post->content) !!}
+            </div>
+            <div class="blog_post_footer">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <div class="tags">
+                            @if (!$post->tags->isEmpty())
+                                @foreach ($post->tags as $tag)
+                                    <a href="{{ $tag->url }}">{{ $tag->name }}</a>
                                 @endforeach
                             @endif
-                        </li>
-                        <li><i class="ti-eye"></i> {{ number_format($post->views) }} {{ __('Views') }}</li>
-                    </ul>
-                    <div class="blog_img">
-                        <img src="{{ RvMedia::getImageUrl($post->image, null, false, RvMedia::getDefaultImage()) }}" alt="{{ $post->name }}" loading="lazy" />
-                    </div>
-                    <div class="blog_content">
-                        <div class="blog_text">
-                             <div class="ck-content">{!! BaseHelper::clean($post->content) !!}</div>
-                            <div class="blog_post_footer">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-md-8 mb-3 mb-md-0">
-                                        <div class="tags">
-                                            @if (!$post->tags->isEmpty())
-                                                @foreach ($post->tags as $tag)
-                                                    <a href="{{ $tag->url }}">{{ $tag->name }}</a>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="social_icons text-md-right">
-                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($post->url) }}&title={{ rawurldecode($post->description) }}" target="_blank" title="{{ __('Share on Facebook') }}"><i class="ion-social-facebook"></i></a></li>
-                                            <li><a href="https://twitter.com/intent/tweet?url={{ urlencode($post->url) }}&text={{ rawurldecode($post->description) }}" target="_blank" title="{{ __('Share on Twitter') }}"><i class="ion-social-twitter"></i></a></li>
-                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode($post->url) }}&summary={{ rawurldecode($post->description) }}&source=Linkedin" title="{{ __('Share on Linkedin') }}" target="_blank"><i class="ion-social-linkedin"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, theme_option('facebook_comment_enabled_in_post', 'yes') == 'yes' ? Theme::partial('comments') : null) !!}
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="social_icons text-md-right">
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($post->url) }}&title={{ rawurldecode($post->description) }}" target="_blank" title="{{ __('Share on Facebook') }}"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/intent/tweet?url={{ urlencode($post->url) }}&text={{ rawurldecode($post->description) }}" target="_blank" title="{{ __('Share on Twitter') }}"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode($post->url) }}&summary={{ rawurldecode($post->description) }}&source=Linkedin" title="{{ __('Share on Linkedin') }}" target="_blank"><i class="ion-social-linkedin"></i></a></li>
+                        </ul>
                     </div>
                 </div>
-                @php $relatedPosts = get_related_posts($post->id, 2); @endphp
-                @if ($relatedPosts->count())
-                    <br>
-                    <div class="related_post">
-                        <div class="content_title">
-                            <h5>{{ __('Related posts') }}</h5>
-                        </div>
-                        <div class="row">
-                            @foreach ($relatedPosts as $relatedItem)
-                                <div class="col-md-6">
-                                    <div class="blog_post blog_style2 box_shadow1">
-                                        <div class="blog_img">
-                                            <a href="{{ $relatedItem->url }}"><img src="{{ RvMedia::getImageUrl($relatedItem->image, 'small', false, RvMedia::getDefaultImage()) }}" alt="{{ $relatedItem->name }}" loading="lazy" /></a>
-                                        </div>
-                                        <div class="blog_content bg-white">
-                                            <div class="blog_text">
-                                                <h6 class="blog_title"><a href="{{ $relatedItem->url }}">{{ $relatedItem->name }}</a></h6>
-                                                <ul class="list_none blog_meta">
-                                                    <li><i class="ti-calendar"></i> {{ $relatedItem->created_at->translatedFormat('M d, Y') }}</li>
-                                                    <li><i class="ti-eye"></i> {{ number_format($relatedItem->views) }} {{ __('Views') }}</li>
-                                                </ul>
-                                                <p>{{ Str::limit($relatedItem->description, 110) }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+            </div>
+            {{-- <div class="mt-5 pt-4 border-top">
+                <p class="lead">Hãy liên hệ ngay để được tư vấn thiết kế đồng phục miễn phí!</p>
+                <p class="fw-bold mb-2">Chia sẻ bài viết:</p>
+
+                <div class="social-buttons">
+                    <button class="btn fb-btn btn-sm me-3" title="Chia sẻ lên Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')">
+                        <img src="../../assets/images/facebook.png" alt="Facebook Icon" class="social-icon">
+                    </button>
+
+                    <button class="btn ig-btn btn-sm" title="Sao chép link bài viết" onclick="navigator.clipboard.writeText(window.location.href);">
+                        <img src="../../assets/images/instagram.png" alt="Instagram Icon" class="social-icon">
+                    </button>
+                </div>
+            </div> --}}
+        </article>
+            </div>
+            <div class="col-lg-4 ps-lg-5 mt-5 mt-lg-0">
+                <div class="mb-5">
+                    <h4 class="sidebar-title">Tìm kiếm</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm bài viết...">
+                        <button class="btn btn-primary"><i class="bx bx-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <h4 class="sidebar-title">Tin tức nổi bật</h4>
+                    @php $relatedPosts = get_related_posts($post->id, 2); @endphp
+                    @if ($relatedPosts->count())
+                    @foreach ($relatedPosts as $relatedItem)
+                    <div class="related-news-item">
+                        <img src="{{ RvMedia::getImageUrl($relatedItem->image, 'small', false, RvMedia::getDefaultImage()) }}" onerror="this.src='https://via.placeholder.com/150'" class="related-news-img" alt="{ $relatedItem->name }}">
+                        <div class="related-news-content">
+                            <h5><a href="{{ $relatedItem->url }}">{{ $relatedItem->name }}</a></h5>
+                            <span class="related-date"><i class="bx bx-time"></i>{{ $relatedItem->created_at->translatedFormat('d/M/Y') }}</span>
                         </div>
                     </div>
-                @endif
-            </div>
-            <div class="col-xl-3 mt-4 pt-2 mt-xl-0 pt-xl-0">
-                <div class="sidebar">
-                    {!! dynamic_sidebar('primary_sidebar') !!}
+                    @endforeach
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+

@@ -117,11 +117,11 @@
     padding: 0;
     border: none;
     background: none;
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;
 }
 
 .social-icon {
-    width: 36px; 
+    width: 36px;
     height: 36px;
     cursor: pointer;
     vertical-align: middle;

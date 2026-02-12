@@ -106,7 +106,7 @@
         @endif
 
         <div class="row">
-            <div class="col-sm-12 col-12" style="display:none">
+            <div class="col-sm-12 col-12">
                 <div class="form-group mb-3 @error('address.state') has-error @enderror">
                     @if (EcommerceHelper::loadCountriesStatesCitiesFromPluginLocation())
                     <div class="select--arrow form-input-wrapper">
@@ -166,16 +166,16 @@
                 </div>
             </div> --}}
 
-            {{-- <div class="col-sm-6 col-12">
+          <div class="col-sm-6 col-12">
                 <div class="form-group mb-3 @error('address.state') has-error @enderror">
                     <div class="form-input-wrapper">
                         <input id="address_state" type="text" class="form-control" required name="address[state_name]" value="{{ old('address.state_name', Arr::get($sessionCheckoutData, 'state_name')) }}">
-                        <label for='address_state'>{{ __('Postcode') }}</label>
+                        <label for='address_state'>{{ __('Ward') }}</label>
                     </div>
                     {!! Form::error('address.state', $errors) !!}
                 </div>
-            </div> --}}
-            <div class="col-sm-6 col-12">
+            </div>
+               {{--<div class="col-sm-6 col-12">
                 <div class="form-group mb-3 @error('address.postcode') has-error @enderror">
                     <div class="form-input-wrapper">
                         <input id="address_postcode" type="text" class="form-control" required name="address[postcode]" value="{{old('address.postcode', Arr::get($sessionCheckoutData, 'address_postcode')) }}" autocomplete="false">
@@ -183,7 +183,7 @@
                     </div>
                     {!! Form::error('address.postcode', $errors) !!}
                 </div>
-            </div>
+            </div>--}}
         </div>
 
     </div>
@@ -198,13 +198,13 @@
         {!! Form::error('address.zip_code', $errors) !!}
     </div>
     @endif
-    <div class="form-group mb-3">
+    {{-- <div class="form-group mb-3">
         <label><b>{{ __('When you want your order delivered') }}</b></label>
         <div class="form-input-wrapper">
             <input id="billing_address_delivered_time" type="text" class="form-control" readonly name="delivered_time" value="{{ old('delivered_time', Arr::get($sessionCheckoutData, 'delivered_time')) }}" autocomplete="offf">
         </div>
         {!! Form::error('billing_address.delivered_time', $errors) !!}
-    </div>
+    </div> --}}
 
 
 </div>

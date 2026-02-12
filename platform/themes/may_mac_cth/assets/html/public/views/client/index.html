@@ -281,7 +281,7 @@
 
         <!-- Container -->
         <div class="row row-cols-1 row-cols-md-3 g-4" id="homeNewsContainer">
-           
+
             <div class="col-12 text-center py-5">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Đang tải...</span>
@@ -437,10 +437,10 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add("visible");
                     } else {
-                        entry.target.classList.remove("visible"); 
+                        entry.target.classList.remove("visible");
                     }
                 });
-            }, { threshold: 0.4 }); 
+            }, { threshold: 0.4 });
 
             fadeElements.forEach(el => observer.observe(el));
         });
@@ -481,7 +481,7 @@
                         dotsContainer.appendChild(dot);
 
                         dot.addEventListener('click', (e) => {
-                            const idx = parseInt(e.target.dataset.index);  
+                            const idx = parseInt(e.target.dataset.index);
                             showBanner(idx);
                             resetInterval();
                         });
@@ -561,8 +561,8 @@
                             <div class="card h-100 product-card border-0 shadow-sm overflow-hidden">
                                 <a href="../../../public/views/client/product-detail.html?id=${product.product_id}" class="text-decoration-none text-dark">
                                     <div class="product-image-container position-relative">
-                                        <img src="${imageUrl}" 
-                                            class="card-img-top" 
+                                        <img src="${imageUrl}"
+                                            class="card-img-top"
                                             alt="${product.name}"
                                             style="object-fit: cover;"
                                             onerror="this.src='../../../MayMacCTH/public/assets/images/no-image.jpg'">
@@ -643,7 +643,7 @@
                 console.error('Lỗi load danh mục:', err);
                 dropdownMenu.innerHTML = '<li><a href="#" class="dropdown-item text-danger">Lỗi tải danh mục</a></li>';
             }
-            
+
             await loadSearchCategories();
 
             const searchWrap = document.querySelector('.search-dropdown-wrap');
@@ -652,7 +652,7 @@
 
             if (searchWrap && searchTrigger && searchList) {
                 searchTrigger.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
+                    e.stopPropagation();
                     searchList.classList.toggle('show');
                 });
 
@@ -685,7 +685,7 @@
             });
             updateCartCount();
         });
-        
+
         function selectSearchCategory(id, name) {
             document.getElementById('categoryDisplayText').innerText = name;
             document.getElementById('categorySelectValue').value = id;
@@ -727,7 +727,7 @@
                 console.error('Lỗi load danh mục:', err);
             }
         }
-        
+
          function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const totalItems = cart.length;
@@ -840,7 +840,7 @@
                                     </a>
                                 </h5>
                                 <p class="text-muted small mb-3">
-                                    <i class="bi bi-calendar3"></i> 
+                                    <i class="bi bi-calendar3"></i>
                                     ${new Date(article.created_at).toLocaleDateString('vi-VN')}
                                     ${article.author ? ` | ${article.author}` : ''}
                                 </p>
@@ -863,7 +863,7 @@
             const link = e.target.closest('a[href*="../../../tin-tuc/default.htm"]');
             if (!link) return;
 
-            e.preventDefault(); 
+            e.preventDefault();
 
             const href = link.getAttribute('href');
             const slug = href.split('/').pop();
@@ -907,11 +907,11 @@
             try {
                 const res = await fetch('../../../api/category/get_category.php@t=' + Date.now());
                 const result = await res.json();
-                
+
                 container.innerHTML = '';
 
                 if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-                    
+
                     let categories = result.data;
                     categories.sort((a, b) => a.name.localeCompare(b.name));
 

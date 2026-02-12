@@ -183,8 +183,17 @@
                 @else
                     <li>
                         <div class="account-links">
-                            <a href="{{ route('customer.overview') }}">{{ __('Account') }}</a> /
-                            <a href="{{ route('customer.logout') }}">{{ __('Log out') }}</a>
+                            <a href="{{ route('customer.overview') }}" style="color: #fff">
+                                <i class="fa fa-user" title="{{ __('Account') }}"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="account-links">
+
+                            <a href="{{ route('customer.logout') }}" style="color: #fff">
+                                <i class="fa fa-sign-out" title="{{ __('Log out') }}"></i>
+                            </a>
                         </div>
                     </li>
                 @endif

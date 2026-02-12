@@ -96,37 +96,37 @@ Theme::asset()
     align-items: center;
     font-size: 18px;
     font-family: Arial, sans-serif;
-    position: absolute;
-    top: 5%;
-    right: 5%;
-}
+                            position: absolute;
+                            top: 5%;
+                            right: 5%;
+                        }
 
-.star {
-    color: #ffc107; /* sao vàng */
-    margin-right: 2px;
-}
+                        .star {
+                            color: #ffc107; /* sao vàng */
+                            margin-right: 2px;
+                        }
 
-.star.empty {
-    color: #ddd; /* sao rỗng */
-}
+                        .star.empty {
+                            color: #ddd; /* sao rỗng */
+                        }
 
-.rating-count {
-    margin-left: 6px;
-    font-size: 14px;
-    color: #555;
-}
-</style>
-</head>
-<body>
+                        .rating-count {
+                            margin-left: 6px;
+                            font-size: 14px;
+                            color: #555;
+                        }
+                        </style>
+                        </head>
+                        <body>
 
-<div class="start_rating">
-    <span class="star">★</span>
-    <span class="star">★</span>
-    <span class="star">★</span>
-    <span class="star">★</span>
-    <span class="star empty">★</span>
-    <span class="rating-count">(1)</span>
-</div>
+                        <div class="start_rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star empty">★</span>
+                            <span class="rating-count">(1)</span>
+                        </div>
 
                         <div class="price-range mb-4 text-start">
                             <span class="price h3 fw-bold">

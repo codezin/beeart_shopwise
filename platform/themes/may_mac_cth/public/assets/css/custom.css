@@ -40,7 +40,10 @@ a{
     padding-left: 10px;
     color: inherit !important;
 }
-
+.navbar-category .dropdown-menu-custom{
+    width: 300px;  
+	border-radius: 0 0 5px 5px;
+}
 .navbar-category .dropdown-menu-custom li{
     height: 40px;
     line-height: 20px;
@@ -48,10 +51,8 @@ a{
 
 .navbar-category .dropdown-menu-custom li a:hover{
     padding-left:  30px;
-    height: 56px;
-    line-height: 58px;
     list-style: none;
-    width: 300px;
+
 }
 .navbar-category a.nav-link{
     padding-left: 10px;
@@ -5734,8 +5735,12 @@ header .cart_box {
 }
 .custom-radio-slug input[type=checkbox]:checked~span,
 .custom-radio-slug input[type=radio]:checked~span {
-    color: #ffff !important;
+    color: #ffff;
     height: 40px;
+}
+
+.custom-radio-slug span[style*="background-image"] {
+    color: #000;
 }
 .custom-radio-slug input[type=checkbox]:checked~span:before,
 .custom-radio-slug input[type=radio]:checked~span:before {

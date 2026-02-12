@@ -16,6 +16,6 @@ if (!function_exists('get_list_faqs')) {
 
      function get_list_faqs_categories(array $condition)
     {
-        return app(FaqCategoryInterface::class)->allBy($condition);
+        return app(FaqCategoryInterface::class)->allBy($condition)->sortBy("order");
     }
 }

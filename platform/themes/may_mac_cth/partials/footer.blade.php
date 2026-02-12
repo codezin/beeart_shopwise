@@ -128,9 +128,9 @@
 
   <!-- Cart -->
   <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
-  <div id="globalToast" class="global-toast">
+  <div id="globalToast" class="global-toast" style="display: none" >
         <i id="toastIcon" class='bx'></i>
-        <span id="toastMessage">Thông báo</span>
+        <span id="toastMessage"></span>
     </div>
   <script>
       document.addEventListener('DOMContentLoaded', function() {
