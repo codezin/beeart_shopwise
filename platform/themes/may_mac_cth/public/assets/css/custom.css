@@ -41,7 +41,7 @@ a{
     color: inherit !important;
 }
 .navbar-category .dropdown-menu-custom{
-    width: 300px;  
+    width: 300px;
 	border-radius: 0 0 5px 5px;
 }
 .navbar-category .dropdown-menu-custom li{
@@ -70,9 +70,13 @@ a{
 #nav-basket{
     gap: 5px;
 }
-#nav-basket li {
+/* #nav-basket li {
     width: 20px;
+} */
+#nav-basket .cart_dropdown .cart_list li small {
+    color: #646464
 }
+
 .line-hr{
     position: relative;
 }
@@ -6547,9 +6551,6 @@ body[dir=rtl] .language-wrapper .language_bar_list li a img {
     background-size: cover
 }
 
-.cart_dropdown .cart_list li small {
-    color: #fff
-}
 
 @media only screen and (max-width:699px) {
     .dropdown-menu.show {

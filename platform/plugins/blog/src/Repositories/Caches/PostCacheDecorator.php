@@ -60,7 +60,7 @@ class PostCacheDecorator extends CacheAbstractDecorator implements PostInterface
         return $this->getDataIfExistCache(__FUNCTION__, func_get_args());
     }
 
-    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable']): Collection|LengthAwarePaginator
+    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable'], array $filters = []): Collection|LengthAwarePaginator
     {
         return $this->getDataIfExistCache(__FUNCTION__, func_get_args());
     }

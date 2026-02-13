@@ -2,7 +2,7 @@
 
 @php
 $page = Theme::get("page");
-$posts = get_all_posts();
+$posts = get_all_posts(12, true, ['slugable'],['search'=> request("keyword")]);
 @endphp
 <link rel="stylesheet" href="{{ base }}assets/css/about.css">
 <div id="title-page" class="breadcrumb_section  page-title-mini">
@@ -32,7 +32,7 @@ $posts = get_all_posts();
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title mb-2">
-                                    <a href="/MayMacCTH/tin-tuc/Top 10 xu hướng Xuân Hè 2025" class="news-title-link fw-bold text-decoration-none">
+                                    <a href=" {{ $post->url }}" class="news-title-link fw-bold text-decoration-none">
                                         {{ $post->name }}
                                     </a>
                                 </h5>

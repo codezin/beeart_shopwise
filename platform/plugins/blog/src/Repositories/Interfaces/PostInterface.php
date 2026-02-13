@@ -29,7 +29,7 @@ interface PostInterface extends RepositoryInterface
 
     public function getSearch(string|null $keyword, int $limit = 10, int $paginate = 10): Collection|LengthAwarePaginator;
 
-    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable']): Collection|LengthAwarePaginator;
+    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable'], array $filters = []): Collection|LengthAwarePaginator;
 
     public function getPopularPosts(int $limit, array $args = []): Collection;
 

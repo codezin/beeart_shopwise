@@ -8,7 +8,7 @@
             <h1 class="news-detail-title">{{ $post->name }}</h1>
 
             <div class="news-meta mb-4">
-                <span><i class="bx bx-calendar"></i>{{ $post->created_at->translatedFormat('d/M/Y') }}<</span>
+                <span><i class="bx bx-calendar"></i>{{ $post->created_at->translatedFormat('d/M/Y') }}</span>
                 {{-- <span class="ms-4"><i class="bx bx-user"></i> Admin CTH</span> --}}
             </div>
 
@@ -55,9 +55,17 @@
                 <div class="mb-5">
                     <h4 class="sidebar-title">Tìm kiếm</h4>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm bài viết...">
-                        <button class="btn btn-primary"><i class="bx bx-search"></i></button>
+                        <input type="text" id="search_input" class="form-control" placeholder="Tìm bài viết...">
+                        <button class="btn btn-primary" id="btnSearch"><i class="bx bx-search"></i></button>
                     </div>
+                    <script>
+                        $(document).on('click', '#btnSearch', function () {
+                            var keyword = $('#search_input').val().trim();
+                            if (keyword !== '') {
+                                window.location.href = '/news?keyword=' + encodeURIComponent(keyword);
+                            }
+                        });
+                    </script>
                 </div>
 
                 <div class="mb-5">

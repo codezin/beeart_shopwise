@@ -188,7 +188,7 @@ class PostRepository extends RepositoriesAbstract implements PostInterface
         return $this->applyBeforeExecuteQuery($data)->get();
     }
 
-    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable']): Collection|LengthAwarePaginator
+    public function getAllPosts(int $perPage = 12, bool $active = true, array $with = ['slugable'], array $filters = []): Collection|LengthAwarePaginator
     {
         $data = $this->model
             ->with($with)
@@ -196,6 +196,14 @@ class PostRepository extends RepositoriesAbstract implements PostInterface
 
         if ($active) {
             $data = $data->where('status', BaseStatusEnum::PUBLISHED);
+        }
+        if ($filters['search'] !== null) {
+            $data = $data
+                ->where(function ($query) use ($filters) {
+                    $query
+                        ->addSearch('posts.name', $filters['search'])
+                        ->addSearch('posts.description', $filters['search']);
+                });
         }
 
         return $this->applyBeforeExecuteQuery($data)->paginate($perPage);

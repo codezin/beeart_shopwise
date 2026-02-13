@@ -58,9 +58,9 @@ if (! function_exists('get_all_posts')) {
     function get_all_posts(
         bool $active = true,
         int $perPage = 12,
-        array $with = ['slugable', 'categories', 'categories.slugable', 'author']
+        array $with = ['slugable', 'categories', 'categories.slugable', 'author'], $filters
     ): Collection|LengthAwarePaginator {
-        return app(PostInterface::class)->getAllPosts($perPage, $active, $with);
+        return app(PostInterface::class)->getAllPosts($perPage, $active, $with, $filters);
     }
 }
 
