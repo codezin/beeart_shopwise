@@ -10,11 +10,13 @@
     <div class="container">
         <div class="row">
             <!-- Sidebar (Filter) -->
+
             <div class="col-12 col-md-3">
                 <div class="sidebar fade-elementt">
                     <h5 class="sidebar-title">BỘ LỌC</h5>
+                    <form action="{{ URL::current() }}" method="GET">
                     @include(Theme::getThemeNamespace() . '::views/ecommerce/includes/filters')
-
+                    </form>
                     <!-- Danh mục với checkbox -->
                     {{-- <div class="filter-group">
                         <h6>Danh mục</h6>
@@ -141,3 +143,6 @@
         padding-top: 10px;
 }
 </style>
+@push("js")
+<script type="text/javascript" src="{{ asset('themes/assets/js/product.js') }}"></script>
+@endpush

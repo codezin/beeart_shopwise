@@ -6,6 +6,6 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-4 text-end">
-        <button class="btn btn-md btn-gray btn-info apply-coupon-code float-end" data-url="{{ route('public.coupon.apply') }}" type="button" style="margin-top: 0;padding: 10px 20px;><i class="><i class="fa fa-gift"></i> {{ __('Apply') }}</button>
+        <button class="btn btn-md btn-gray btn-info apply-coupon-code float-end" data-url="{{ route('public.coupon.apply') }}" type="button" style="margin-top: 0;padding: 10px;><i class="><i class="fa fa-gift"></i> {{ __('Apply') }}</button>
     </div>
 </div>

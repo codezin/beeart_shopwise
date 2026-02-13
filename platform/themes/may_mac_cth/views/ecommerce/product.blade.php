@@ -91,11 +91,11 @@ Theme::asset()
                         @csrf
                         <h1 class="product-title mb-0 text-start">{{ $product->name }}</h1>
                         <style>
-.start_rating {
-    display: inline-flex;
-    align-items: center;
-    font-size: 18px;
-    font-family: Arial, sans-serif;
+                        .start_rating {
+                            display: inline-flex;
+                            align-items: center;
+                            font-size: 18px;
+                            font-family: Arial, sans-serif;
                             position: absolute;
                             top: 5%;
                             right: 5%;
@@ -116,8 +116,7 @@ Theme::asset()
                             color: #555;
                         }
                         </style>
-                        </head>
-                        <body>
+
 
                         <div class="start_rating">
                             <span class="star">★</span>
@@ -175,9 +174,9 @@ Theme::asset()
                         <style type="text/css">
                             .size-options{
                                 position: absolute;
-    top: 127px;
-    right: 0;
-}
+                            top: 127px;
+                            right: 0;
+                        }
 
                             </style>
                         @if (EcommerceHelper::isCartEnabled())
@@ -450,11 +449,11 @@ Theme::asset()
                             <input type="hidden" name="star" value="1">
                             <div class="form-group col-12">
                                 <div class="star_rating">
-                                    <span data-value="1"><i class="ion-star"></i></span>
-                                    <span data-value="2"><i class="ion-star"></i></span>
-                                    <span data-value="3"><i class="ion-star"></i></span>
-                                    <span data-value="4"><i class="ion-star"></i></span>
-                                    <span data-value="5"><i class="ion-star"></i></span>
+                                    <span data-value="1"><i class="bx bxs-star"></i></span>
+                                    <span data-value="2"><i class="bx bxs-star"></i></span>
+                                    <span data-value="3"><i class="bx bxs-star"></i></span>
+                                    <span data-value="4"><i class="bx bxs-star"></i></span>
+                                    <span data-value="5"><i class="bx bxs-star"></i></span>
                                 </div>
                             </div>
                             <div class="form-group col-12">

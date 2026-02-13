@@ -15,11 +15,11 @@ use EcommerceHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Theme;
-use Theme\Jacaranda\Http\Resources\BrandResource;
-use Theme\Jacaranda\Http\Resources\PostResource;
-use Theme\Jacaranda\Http\Resources\ProductCategoryResource;
-use Theme\Jacaranda\Http\Resources\ReviewResource;
-use Theme\Jacaranda\Http\Resources\TestimonialResource;
+use Theme\MayMacCTH\Http\Resources\BrandResource;
+use Theme\MayMacCTH\Http\Resources\PostResource;
+use Theme\MayMacCTH\Http\Resources\ProductCategoryResource;
+use Theme\MayMacCTH\Http\Resources\ReviewResource;
+use Theme\MayMacCTH\Http\Resources\TestimonialResource;
 
 class ShopwiseController extends PublicController
 {

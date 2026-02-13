@@ -2644,7 +2644,29 @@ footer .widget_title {
 .description p:last-child {
     margin: 0
 }
+/* Region Product Detail*/
 
+.rating_wrap .rating {
+    font-family: Ionicons;
+    vertical-align: top
+}
+
+.rating_wrap .rating:before {
+    color: #d2d2d2;
+    content: "\f24e\f24e\f24e\f24e\f24e";
+    font-size: 16px
+}
+
+.product .rating_wrap .rating {
+    height: 28px
+}
+
+.product_rate:before {
+    content: "\f24e\f24e\f24e\f24e\f24e";
+    font-size: 16px;
+    font-weight: 400
+}
+/* Region1 Star Rating*/
 .star_rating>span {
     color: #f6bc3e
 }
@@ -2661,6 +2683,8 @@ footer .widget_title {
 .star_rating>span.selected i:before {
     font-weight: 900
 }
+/* End Region1 Star Rating*/
+/* End Region Product Detail*/
 
 .releted_product_slider .item {
     margin: 10px 0 0
@@ -5056,26 +5080,6 @@ header .cart_box {
     display: none !important
 }
 
-.rating_wrap .rating {
-    font-family: Ionicons;
-    vertical-align: top
-}
-
-.rating_wrap .rating:before {
-    color: #d2d2d2;
-    content: "\f24e\f24e\f24e\f24e\f24e";
-    font-size: 16px
-}
-
-.product .rating_wrap .rating {
-    height: 28px
-}
-
-.product_rate:before {
-    content: "\f24e\f24e\f24e\f24e\f24e";
-    font-size: 16px;
-    font-weight: 400
-}
 
 .half-circle-spinner,
 .half-circle-spinner * {

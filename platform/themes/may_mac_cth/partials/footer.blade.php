@@ -127,7 +127,11 @@
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
   <!-- Cart -->
-  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
+  <script src="{{ asset('themes/assets/js/app.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('themes/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('themes/assets/css/ionicons.min.css') }}">
+  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>      
+    <script type="text/javascript" src="{{ asset('themes/assets/js/product.js') }}"></script>     
   <div id="globalToast" class="global-toast" style="display: none" >
         <i id="toastIcon" class='bx'></i>
         <span id="toastMessage"></span>
@@ -508,6 +512,7 @@
           }
       }
   </script>
+  @stack("js")
   </body>
 
   </html>

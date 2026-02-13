@@ -8,7 +8,7 @@
                 <div class="comment_block block--review">
                     <div class="rating_wrap">
                         <div class="rating">
-                            <div class="product_rate" :style="{width: item.star * 20 + '%'}"></div>
+                            <div data-start="{{item.star}}" class="product_rate" :style="{width: item.star * 20 + '%'}"></div>
                         </div>
                     </div>
                     <div class="my-2">

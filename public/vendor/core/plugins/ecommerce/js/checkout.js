@@ -350,10 +350,15 @@ class MainCheckout {
             let post_code = $(this).val();
             $("#shipping-method-wrapper").find(".list-group-item").hide();
             $("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").show();
-            console.log(348, $("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").length);
-            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").length > 0){$("#tag_ship_delivery").show();
-            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "'] input:checked").length > 0)    $("#tag_ship_delivery").addClass('checked');
+            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "']").length > 0){
+                $("#tag_ship_delivery").show();
+            }
+            if($("#shipping-method-wrapper").find(".list-group-item[data-postcode='" + post_code + "'] input:checked").length > 0)
+            {
+                $("#tag_ship_delivery").addClass('checked');
+            }
             $("#shipping-method-wrapper").find(".list-group-item[data-postcode='0']").show();
+
         }).on("change","#check_delivery", function(){
             let check = $(this).attr("checked");
             if(check == "checked")
