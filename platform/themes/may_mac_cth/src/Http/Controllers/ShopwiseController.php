@@ -85,7 +85,20 @@ class ShopwiseController extends PublicController
 
         return $response->setData($data);
     }
+    public function ajaxGetHomeProducts(Request $request, BaseHttpResponse $response)
+    {
+        if (! $request->ajax() || ! $request->wantsJson()) {
+            return $response->setNextUrl(route('public.index'));
+        }
 
+        $products = get_featured_products();
+        $data = [];
+        foreach ($products as $product) {
+            $data[] = Theme::partial('home-product-item', compact('product'));
+        }
+
+        return $response->setData($data);
+    }
     public function ajaxGetFeaturedBrands(Request $request, BaseHttpResponse $response)
     {
         if (! $request->ajax() || ! $request->wantsJson()) {

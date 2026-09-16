@@ -58,8 +58,8 @@ Theme::layout('homepage');
         </a>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-5 g-4" id="homeProductList">
-        @foreach ($products as $product)
+    <div id="homeProductList">
+        {{-- @foreach ($products as $product)
         <div class="col flex-col-1 max-w-50">
             <div class="card h-100 product-card border-0 shadow-sm overflow-hidden">
                 <a href="{{ $product->url }}" class="text-decoration-none text-dark">
@@ -75,9 +75,39 @@ Theme::layout('homepage');
                 </div>
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
 
+        <trending-products-component class="row row-cols-1 row-cols-md-5 g-4" url="{{ route('public.ajax.home-products') }}"></trending-products-component>
+        <script>
+            $(document).ready(function () {
 
+                $(function () {
+                    $("trending-products-component").each(function () {
+                        const component = $(this);
+                        const url = component.attr("url");
+
+                        $.ajax({
+                            url: url,
+                            type: "GET",
+                            dataType: "json",
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        })
+                        .done(function (response) {
+                            console.log(response);
+
+                            if (response.data) {
+                                component.html(response.data.join(""));
+                            }
+                        })
+                        .fail(function (xhr) {
+                            console.log(xhr.responseText);
+                        });
+                    });
+                });
+            });
+        </script>
     </div>
 </div>
 
