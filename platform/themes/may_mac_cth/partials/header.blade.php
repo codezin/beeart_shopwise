@@ -7,10 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta content="Anil z" name="author" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description"content="{{ theme_option('seo_description') }}" />
-    <meta name="keywords" content="{{ theme_option('seo_description') }}" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+
     <meta name="geo.region" content="VN">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="" />
@@ -18,9 +15,10 @@
     <meta property="og:description" content="" />
     <meta property="og:image" content="{{ RvMedia::getImageUrl(theme_option('seo_og_image')) }}" />
     <meta property="og:site_name" content="{{ theme_option('site_title') }}" />
+      {!! Theme::header() !!}
     <base href="{{ base }}" />
     <!-- SITE TITLE -->
-    <title>{{ theme_option('site_title') }}</title>
+
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ RvMedia::getImageUrl(theme_option('favicon')) }}" />
     @if (!theme_option('alloiw_google_Search'))
@@ -35,10 +33,21 @@
     <link rel="stylesheet" href="{{ base }}assets/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v={{time()}}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PNZDSG23');</script>
+    <!-- End Google Tag Manager -->
     {!! Theme::partial('meta') !!}
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNZDSG23"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Top Header -->
     <div class="top-header bg-white border-bottom d-none d-sm-block">
         <div class="container">
@@ -47,7 +56,7 @@
                     <div class="dropdown me-4">
                         <button class="btn btn-sm p-0 text-muted d-flex align-items-center" type="button" aria-expanded="false">
 
-                            <img src="assets/images/vietnam-flag.png" id="currentFlag" style="width: 20px; height: 20px; object-fit: cover; border-radius: 3px;">
+                            <img src="assets/images/vietnam-flag.png" id="currentFlag" alt="VN" style="width: 20px; height: 20px; object-fit: cover; border-radius: 3px;">
                             <span id="currentLang" class="ms-1">VN</span>
                         </button>
 
@@ -118,7 +127,7 @@
 
                         <div class="search-container flex-grow-1 ms-2 d-flex align-items-center">
                             <input type="text" class="form-control border-0 shadow-none search-input" name="q" id="searchInput" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" style="font-size: 14px;">
-                            <button class="btn border-0" type="button" id="btnSearch">
+                            <button class="btn border-0" type="button" id="btnSearch"  title="Tìm kiếm">
                                 <i class='bx bx-search fs-5 text-primary'></i>
                             </button>
                         </div>

@@ -25,6 +25,7 @@ register_sidebar([
 RvMedia::setUploadPathAndURLToPublic();
 
 RvMedia::addSize('medium', 540, 600)->addSize('small', 540, 300);
+RvMedia::addSize('new_featured',  376, 220);
 
 if (is_plugin_active('ecommerce')) {
     add_action(BASE_ACTION_META_BOXES, function ($context, $object) {

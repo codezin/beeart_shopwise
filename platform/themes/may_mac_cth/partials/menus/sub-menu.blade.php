@@ -1,6 +1,6 @@
 <ul {!! $options !!}>
     @if(trim($options) == 'id="searchCategoryUl" class="search-dropdown-list"')
-    <li><a href="javascript:void(0)" onclick="selectSearchCategory('', 'Tất cả')">Tất cả</a></li>
+    <li><a href="#" id="showCategory" title="Tất cả">Tất cả</a></li>
     @endif
     @foreach ($menu_nodes as $key => $row)
         <li @if ($row->css_class || $row->active) class="@if ($row->css_class) {{ $row->css_class }} @endif @if ($row->active) active @endif" @endif>

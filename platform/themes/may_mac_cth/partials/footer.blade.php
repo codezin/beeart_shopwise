@@ -39,7 +39,7 @@
 
                       <div class="d-flex align-items-start mb-4">
                           <i class="bx bx-phone text-danger me-2" style="font-size: 16px; min-width: 22px; margin-top: 3px;"></i>
-                          <span id="footerPhone" style="font-size: 14px; color: #ffffffd9;">{{ theme_option('hotline') }}</span>
+                          <span id="footerPhone" style="font-size: 14px; color: #ffffffd9;">{{ theme_option('phone') }}</span>
                       </div>
                   </div>
               </div>
@@ -60,9 +60,9 @@
                           <div class="mb-4 d-none d-sm-block">
                               <p class="footer-title">PHƯƠNG THỨC THANH TOÁN</p>
                               <div class="d-flex gap-2">
-                                  <img src="assets/images/cash.png" height="28" style="margin-right: 10px;">
-                                  <img src="assets/images/mastercard.png" height="28" style="margin-right: 10px;">
-                                  <img src="assets/images/visa.png" height="28">
+                                  <img src="assets/images/cash.png"  alt="Cash" height="28" style="margin-right: 10px;">
+                                  <img src="assets/images/mastercard.png"  alt="MaterCard" height="28" style="margin-right: 10px;">
+                                  <img src="assets/images/visa.png" alt="Visa"  height="28">
                               </div>
                           </div>
                       </div>
@@ -70,9 +70,9 @@
                 <div class="mb-4 d-block d-sm-none">
                     <p class="footer-title">PHƯƠNG THỨC THANH TOÁN</p>
                     <div class="d-flex gap-2 justify-content-center">
-                        <img src="assets/images/cash.png" height="28" style="margin-right: 10px;">
-                        <img src="assets/images/mastercard.png" height="28" style="margin-right: 10px;">
-                        <img src="assets/images/visa.png" height="28">
+                        <img src="assets/images/cash.png" alt="Cash" height="28" style="margin-right: 10px;">
+                        <img src="assets/images/mastercard.png" alt="MaterCard" height="28" style="margin-right: 10px;">
+                        <img src="assets/images/visa.png" alt="Visa" height="28">
                     </div>
                 </div>
                   <div class="footer-contact-btns mt-4">
@@ -83,7 +83,7 @@
                           </div>
                           <div class="text-wrap">
                               <span class="contact-label">TƯ VẤN QUA</span>
-                              <span class="contact-value">0783159798</span>
+                              <span class="contact-value">{{theme_option("phone")}}</span>
                           </div>
                       </a>
 
@@ -93,7 +93,7 @@
                           </div>
                           <div class="text-wrap">
                               <span class="contact-label">HOTLINE TƯ VẤN</span>
-                              <span class="contact-value">0783159798</span>
+                              <span class="contact-value">{{theme_option("hotline")}}</span>
                           </div>
                       </a>
 
@@ -103,7 +103,7 @@
                           </div>
                           <div class="text-wrap">
                               <span class="contact-label">XEM VẢI &amp; MẪU</span>
-                              <span class="contact-value">0783159798</span>
+                              <span class="contact-value">{{theme_option("hotline")}}</span>
                           </div>
                       </a>
                   </div>
@@ -130,8 +130,8 @@
   <script src="{{ asset('themes/assets/js/app.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('themes/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('themes/assets/css/ionicons.min.css') }}">
-  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>      
-    <script type="text/javascript" src="{{ asset('themes/assets/js/product.js') }}"></script>     
+  <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
+<script type="text/javascript" src="{{ asset('themes/assets/js/product.js') }}"></script>
   <div id="globalToast" class="global-toast" style="display: none" >
         <i id="toastIcon" class='bx'></i>
         <span id="toastMessage"></span>
@@ -186,8 +186,11 @@
 
                   if (!isMobile) {
                       guideContentArea.style.display = 'flex';
+                      $(`.guide-content`).hide();
                       targetIds.forEach(id => {
-                          const el = document.getElementById(id);
+                        $(`.guide-content[data-id='${id}']`).show();
+
+                         const el = document.querySelector(`[data-id="${id}"]`);
                           if (el && el.querySelector('.card-title').textContent.trim()) {
                               el.style.display = 'block';
                           }
@@ -201,8 +204,10 @@
                   const wrapper = document.createElement('div');
                   wrapper.classList.add('guide-content-wrapper', 'mt-3');
 
+                  $(`.guide-content`).hide();
                   targetIds.forEach(id => {
-                      const content = document.getElementById(id);
+                       $(`.guide-content[data-id='${id}']`).show();
+                      const content = document.querySelector(`[data-id="${id}"]`);
                       if (content && content.querySelector('.card-title').textContent.trim()) {
                           const clone = content.cloneNode(true);
                           clone.style.display = 'block';
@@ -440,6 +445,10 @@
         //   });
           updateCartCount();
       });
+
+      $(document).on("click","#showCategory", function(){
+         selectSearchCategory('', 'Tất cả')
+      })
 
       function selectSearchCategory(id, name) {
           document.getElementById('categoryDisplayText').innerText = name;
