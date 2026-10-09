@@ -122,13 +122,12 @@
   <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
   <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
   <!-- elevatezoom js -->
-  <script src="{{ asset('assets/js/jquery.elevatezoom.js') }}"></script>
-
+  {{-- <script src="{{ asset('assets/js/jquery.elevatezoom.js') }}"></script> --}}
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
   <!-- Cart -->
   <script src="{{ asset('themes/assets/js/app.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('themes/assets/css/style.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('themes/assets/css/style.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('themes/assets/css/ionicons.min.css') }}">
   <script type="text/javascript" src="{{ asset('themes/assets/js/product_cart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('themes/assets/js/product.js') }}"></script>

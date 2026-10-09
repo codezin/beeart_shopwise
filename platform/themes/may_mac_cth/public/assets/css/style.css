@@ -371,10 +371,12 @@ body {
 }
 
 .product-image-container .card-img-top {
-  height: auto;
+  height: auto; 
+  height: 270px;
   object-fit: contain;
   transition: transform 0.4s ease;
-  border-radius: 8px;
+  border-radius: 8px;        
+   object-position: top;
 }
 
 .product-card:hover .card-img-top {

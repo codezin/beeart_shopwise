@@ -30,15 +30,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="{{ base }}assets/css/style.css?v={{time()}}">
-    <link rel="stylesheet" href="{{ base }}assets/css/custom.css?v={{time()}}">
+    <link rel="stylesheet" href="{{ base }}assets/css/style.css">
+    <link rel="stylesheet" href="{{ base }}assets/css/custom.css">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PNZDSG23');</script>
+    })(window,document,'script','dataLayer','GTM-PNZDSG23');</script> --}}
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        (function () {
+
+            var loaded = false;
+
+            function loadGTM() {
+
+                if (loaded) {
+                    return;
+                }
+
+                loaded = true;
+
+                window.dataLayer.push({
+                    'gtm.start': Date.now(),
+                    event: 'gtm.js'
+                });
+
+                var script = document.createElement('script');
+
+                script.async = true;
+
+                script.src =
+                    'https://www.googletagmanager.com/gtm.js?id=GTM-PNZDSG23';
+
+                document.head.appendChild(script);
+            }
+
+            /*
+             * Load GTM sau 3 giây
+             */
+            setTimeout(loadGTM, 3000);
+
+            /*
+             * Load ngay khi người dùng tương tác
+             */
+            [
+                'click',
+                'scroll',
+                'mousemove',
+                'touchstart',
+                'keydown'
+            ].forEach(function (event) {
+
+                window.addEventListener(
+                    event,
+                    loadGTM,
+                    {
+                        once: true,
+                        passive: true
+                    }
+                );
+
+            });
+
+        })();
+        </script>
     <!-- End Google Tag Manager -->
     {!! Theme::partial('meta') !!}
 </head>

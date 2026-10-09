@@ -64,32 +64,67 @@ Theme::layout('homepage');
 
         <trending-products-component class="row row-cols-1 row-cols-md-5 g-4" url="{{ route('public.ajax.home-products') }}"></trending-products-component>
         <script>
-            $(document).ready(function () {
 
-                $(function () {
-                    $("trending-products-component").each(function () {
-                        const component = $(this);
-                        const url = component.attr("url");
+            $(function () {
+                const components = $("trending-products-component");
+                const loadedComponents = new WeakSet();
 
-                        $.ajax({
-                            url: url,
-                            type: "GET",
-                            dataType: "json",
-                            headers: {
-                                "Accept": "application/json"
-                            }
-                        })
-                        .done(function (response) {
-                            console.log(response);
+                function loadProducts(component) {
+                    if (loadedComponents.has(component[0])) return;
 
-                            if (response.data) {
-                                component.html(response.data.join(""));
-                            }
-                        })
-                        .fail(function (xhr) {
-                            console.log(xhr.responseText);
-                        });
+                    loadedComponents.add(component[0]);
+
+                    const url = component.attr("url");
+
+                    if (!url) return;
+
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "json",
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    })
+                    .done(function (response) {
+                        if (response.data) {
+                            component.html(response.data.join(""));
+                        }
+                    })
+                    .fail(function (xhr) {
+                        console.error(
+                            "Không tải được sản phẩm:",
+                            xhr.status,
+                            xhr.responseText
+                        );
+
+                        // Cho phép thử tải lại nếu request thất bại
+                        loadedComponents.delete(component[0]);
                     });
+                }
+
+                // Trình duyệt cũ không hỗ trợ IntersectionObserver
+                if (!("IntersectionObserver" in window)) {
+                    components.each(function () {
+                        loadProducts($(this));
+                    });
+                    return;
+                }
+
+                const observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            observer.unobserve(entry.target);
+                            loadProducts($(entry.target));
+                        }
+                    });
+                }, {
+                    rootMargin: "400px 0px",
+                    threshold: 0
+                });
+
+                components.each(function () {
+                    observer.observe(this);
                 });
             });
         </script>
