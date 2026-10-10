@@ -119,8 +119,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Latest jQuery -->
-  <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
-  <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}"> --}}
+  {{-- <script src="{{ asset('assets/js/jquery-ui.js') }}"></script> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.2/themes/base/jquery-ui.css" integrity="sha512-k0u6mixrDpfcaeu7sUpo4OcH8rfxzgXtiqauVEbd6CXNo6Sa0SuVkxbWvT7SiPKvNpfovncDTNvm3yX1I+xiNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <!-- elevatezoom js -->
   {{-- <script src="{{ asset('assets/js/jquery.elevatezoom.js') }}"></script> --}}
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
@@ -136,6 +137,49 @@
         <span id="toastMessage"></span>
     </div>
   <script>
+      $(function () {
+        function initLazyLoad(context) {
+            const images = $(context).find("img.lazyload").addBack("img.lazyload");
+
+            if ("IntersectionObserver" in window) {
+                if (!window.productImageObserver) {
+                    window.productImageObserver = new IntersectionObserver(function (entries, observer) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+
+                                img.src = img.dataset.src;
+                                img.removeAttribute("data-src");
+                                img.classList.remove("lazyload");
+
+                                observer.unobserve(img);
+                            }
+                        });
+                    }, {
+                        rootMargin: "200px 0px"
+                    });
+                }
+
+                images.each(function () {
+                    window.productImageObserver.observe(this);
+                });
+            } else {
+                images.each(function () {
+                    this.src = this.dataset.src;
+                    this.removeAttribute("data-src");
+                    this.classList.remove("lazyload");
+                });
+            }
+        }
+
+        // Khởi tạo ảnh có sẵn
+        initLazyLoad(document);
+
+        // Gọi lại sau khi AJAX chèn HTML sản phẩm
+        $(document).on("products:loaded", function (event, container) {
+            initLazyLoad(container);
+        });
+    });
       document.addEventListener('DOMContentLoaded', function() {
           const BASE_URL = '/MayMacCTH';
           const catalogMap = {

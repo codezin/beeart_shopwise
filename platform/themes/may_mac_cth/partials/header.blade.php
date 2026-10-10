@@ -20,7 +20,12 @@
     <!-- SITE TITLE -->
 
     <!-- Favicon Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ RvMedia::getImageUrl(theme_option('favicon')) }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ RvMedia::getImageUrl(theme_option('favicon')) }}" /> 
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="ZA0X50o38bK5eKC7QUZdtMLBEgS1CQG0rdA3z-Z8eAc" />
+    <!-- Google Indexing -->
+    <meta name="robots" content="index">
+    <meta name="googlebot" content="index">
     @if (!theme_option('alloiw_google_Search'))
         <meta name="robots" content="noindex">
         <meta name="googlebot" content="noindex">
@@ -28,10 +33,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ base }}assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ base }}assets/css/style.css">
     <link rel="stylesheet" href="{{ base }}assets/css/custom.css">
+    <link rel="stylesheet" href="{{ base }}assets/css/custom.min.css">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <!-- Google Tag Manager -->
     {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

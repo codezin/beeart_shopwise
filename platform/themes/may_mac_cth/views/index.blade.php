@@ -23,7 +23,12 @@ Theme::layout('homepage');
             $mobileImage = $slider->getMetaData('mobile_image', true) ?: $tabletImage;
             @endphp
             <div class="carousel-item  {{ $loop->index == 0 ? 'active' : '' }}">
-                <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="d-block w-100" alt="">
+                @if($loop->index == 0 && false )
+                    <img src="{{ RvMedia::getImageUrl($tabletImage, "medium", false, RvMedia::getDefaultImage()) }}" class="d-block w-100" alt="">
+                @else
+                     <img data-src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="d-block w-100 lazyload" alt="">
+                @endif
+
             </div>
 
             {{-- <img src="{{ RvMedia::getImageUrl($tabletImage, null, false, RvMedia::getDefaultImage()) }}" class="banner-image {{ $loop->index == 0 ? 'active' : '' }}" alt="{{ $slider->title }}"> --}}
@@ -108,6 +113,8 @@ Theme::layout('homepage');
                     components.each(function () {
                         loadProducts($(this));
                     });
+
+
                     return;
                 }
 
@@ -144,7 +151,9 @@ Theme::layout('homepage');
                 <div class="card text-center guide-card">
                     <div class="card-body">
                         <a href="{{ url('guide') }}">
-                            <p class="card-text">{{ $faq->name }} <img src="{{ RvMedia::getImageUrl($faq->icon, null, false, RvMedia::getDefaultImage()) }}" alt="Guide 1" class="guide-image"></p>
+                            <p class="card-text">{{ $faq->name }}
+                                <img data-src="{{ RvMedia::getImageUrl($faq->icon, null, false, RvMedia::getDefaultImage()) }}" alt="Guide 1" class="guide-image lazyload">
+                            </p>
                             <i class='bx bx-down-arrow-alt' style="color: #FFFFFF; font-size: 1.5em;"></i>
                         </a>
                     </div>
