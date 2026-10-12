@@ -33,6 +33,7 @@ class Product extends BaseModel
         'description',
         'content',
         'image', // Featured image
+        'image_mobile', // Featured image for mobile
         'images',
         'sku',
         'order',

@@ -6,7 +6,7 @@
                     <div class="product-image-container position-relative">
                         {{-- <img src="{{ RvMedia::getImageUrl($product->image, "medium", false, RvMedia::getDefaultImage()) }}" class="card-img-top" alt="Áo len" style="object-fit: cover;" onerror="this.src='assets/images/no-image.jpg'"> --}}
                          <img
-                            data-src="{{ RvMedia::getImageUrl($product->image, "medium", false, RvMedia::getDefaultImage()) }}"
+                            data-src="{{ RvMedia::getImageUrl(is_mobile && $product->image_mobile !=""? $product->image_mobile : $product->image, "medium", false, RvMedia::getDefaultImage()) }}"
                             class="card-img-top lazyload"
                             alt="{{ $product->name }}"
                             width="400"

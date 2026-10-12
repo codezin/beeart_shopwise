@@ -99,6 +99,7 @@ class ProductForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label'],
                 'values' => $productId ? $this->getModel()->images : [],
             ])
+
             ->addMetaBoxes([
                 'with_related' => [
                     'title' => null,
@@ -136,6 +137,10 @@ class ProductForm extends FormAbstract
             ])
             ->add('image', 'mediaImage', [
                 'label' => trans('plugins/ecommerce::products.form.featured_image'),
+                'label_attr' => ['class' => 'control-label'],
+            ])
+            ->add('image_mobile', 'mediaImage', [
+                'label' => trans('plugins/ecommerce::products.form.featured_image_mobile'),
                 'label_attr' => ['class' => 'control-label'],
             ])
             ->add('product_collections[]', 'multiCheckList', [

@@ -91,6 +91,7 @@ return [
         'stock_status' => 'Stock status',
         'auto_generate_sku' => 'Auto generate SKU?',
         'featured_image' => 'Featured image (optional)',
+        'featured_image_mobile' => 'Featured image for mobile',
         'product_id' => 'Product ID',
     ],
     'price' => 'Price',

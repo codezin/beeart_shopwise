@@ -7,6 +7,13 @@ use Kris\LaravelFormBuilder\FormHelper;
 use Theme\MayMacCTH\Fields\ThemeIconField;
 
 define('base',asset('themes/may_mac_cth').'/');
+
+define('agent', $_SERVER['HTTP_USER_AGENT'] ?? '');
+define('is_mobile', preg_match(
+    '/Android.*Mobile|iPhone|iPod|Windows Phone|IEMobile|Opera Mini/i',
+    agent
+) === 1);
+define('image_thumb', is_mobile ? 'small' : 'medium');
 register_page_template([
     'homepage' => __('Homepage'),
 
